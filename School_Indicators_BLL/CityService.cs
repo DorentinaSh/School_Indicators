@@ -19,7 +19,7 @@ namespace School_Indicators_BLL
                     List<City> model = (from e in db.tblCities
                                                select new City
                                                {
-                                                   ID = e.Id,
+                                                   Id = e.Id,
                                                    Name1 = e.Name1,
                                                    Name2 = e.Name2,
                                                    Name3 = e.Name3

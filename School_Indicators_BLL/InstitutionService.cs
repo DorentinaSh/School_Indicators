@@ -17,13 +17,19 @@ namespace School_Indicators_BLL
                 using (School_CardsEntities db = new School_CardsEntities())
                 {
                     List<Institution> model = (from e in db.tblInstitutions
-                                                  select new Institution
-                                                  {
-                                                      Id = e.Id,
-                                                      Name1 = e.InstitutionsName1,
-                                                      Name2 = e.InstitutionsName2,
-                                                      Name3 = e.InstitutionsName3
-                                                  }).ToList();
+                                               select new Institution
+                                               {
+                                                   Id = e.Id,
+                                                   Name1 = e.InstitutionsName1,
+                                                   Name2 = e.InstitutionsName2,
+                                                   Name3 = e.InstitutionsName3,
+                                                   InstitutionsNo = e.InstitutionsNo,
+                                                   Location = e.Location,
+                                                   Address = e.Address,
+                                                   CityID = e.CityID,
+                                                   TelephoneNo = e.TelNo,
+                                                   IsActive = e.IsActive
+                                               }).ToList();
                     return model;
                 }
             }
@@ -33,7 +39,7 @@ namespace School_Indicators_BLL
             }
         }
 
-        public void SaveInstitution(Institution model)
+        public bool SaveInstitution(Institution model)
         {
             try
             {
@@ -44,20 +50,27 @@ namespace School_Indicators_BLL
                         InstitutionsName1 = model.Name1,
                         InstitutionsName2 = model.Name2,
                         InstitutionsName3 = model.Name3,
+                        InstitutionsNo = model.InstitutionsNo,
+                        Location = model.Location,
+                        Address = model.Address,
+                        CityID = model.CityID,
+                        TelNo = model.TelephoneNo,
+                        IsActive = model.IsActive,
                         InsertDate = DateTime.Now,
                         InsertBy = "admin",
                     };
                     db.tblInstitutions.Add(q);
                     db.SaveChanges();
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                return false;
             }
         }
 
-        public void UpdateInstitution(Institution model)
+        public bool UpdateInstitution(Institution model)
         {
             try
             {
@@ -67,10 +80,47 @@ namespace School_Indicators_BLL
                     q.InstitutionsName1 = model.Name1;
                     q.InstitutionsName2 = model.Name2;
                     q.InstitutionsName3 = model.Name3;
+                    q.InstitutionsNo = model.InstitutionsNo;
+                    q.Location = model.Location;
+                    q.Address = model.Address;
+                    q.CityID = model.CityID;
+                    q.TelNo = model.TelephoneNo;
+                    q.IsActive = model.IsActive;
                     q.LUB = "admin";
                     q.LUD = DateTime.Now;
                     db.Entry(q).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public Institution GetInstitutionById(int id)
+        {
+            try
+            {
+                using (School_CardsEntities db = new School_CardsEntities())
+                {
+                    Institution model = (from e in db.tblInstitutions
+                                         where e.Id == id
+                                         select new Institution
+                                         {
+                                             Id = e.Id,
+                                             Name1 = e.InstitutionsName1,
+                                             Name2 = e.InstitutionsName2,
+                                             Name3 = e.InstitutionsName3,
+                                             InstitutionsNo = e.InstitutionsNo,
+                                             Location = e.Location,
+                                             Address = e.Address,
+                                             CityID = e.CityID,
+                                             TelephoneNo = e.TelNo,
+                                             IsActive = e.IsActive
+                                         }).FirstOrDefault();
+                    return model;
                 }
             }
             catch (Exception ex)

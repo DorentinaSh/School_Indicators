@@ -5,78 +5,110 @@
 <br />
 <br />
 <div class="row">
-    <h3>Create Questionnarie</h3>
+    <h3>Create instution</h3>
     <hr />
 </div>
 <div class="row">
-        <div class="col-md-12">
-            <div class="form-group col-md-4">
-                <label class="control-label">Institution No.</label>
-                <input type="text" class="form-control" id="InstitutionNo" name="InstitutionNo" />
-            </div>
+    <div class="col-md-4">
+        <div class="form-group" style="float:left;">
+            <label class="control-label">Is Active?</label>
+            <input type="checkbox" class="form-control" id="IsActive" name="IsActive" />
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Name in Albanian</label>
-                <input type="text" class="form-control" id="Name1" name="Name1" />
-            </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Institution No.</label>
+            <input type="number" min="0" class="form-control" id="InstitutionNo" name="InstitutionNo" />
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Name in English</label>
-                <input type="text" class="form-control" id="Name2" name="Name2" />
-            </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Telephone No</label>
+            <input type="tel" class="form-control" id="TelNo" name="TelNo" />
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Name in Srpsko</label>
-                <input type="text" class="form-control" id="Name3" name="Name3" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Location</label>
-                <input type="text" class="form-control" id="Location" name="Location" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                @Html.LabelFor(model => model.CityID, "City", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-12">
-                    @Html.DropDownListFor(m => m.CityID, (SelectList)ViewBag.City, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Address</label>
-                <input type="text" class="form-control" id="Address" name="Address" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Telephone No</label>
-                <input type="text" class="form-control" id="TelNo" name="TelNo" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group" style="float:left;">
-                <label class="control-label">Is Active?</label>
-                <input type="checkbox" class="form-control" id="IsActive" name="IsActive" />
-            </div>
-        </div>
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-success pull-right" onclick="SaveInstitution()">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
-        </div>
+    </div>
 </div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in Albanian</label>
+            <input type="text" class="form-control" id="Name1" name="Name1" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in English</label>
+            <input type="text" class="form-control" id="Name2" name="Name2" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in Srpsko</label>
+            <input type="text" class="form-control" id="Name3" name="Name3" />
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Location</label>
+            <input type="text" class="form-control" id="Location" name="Location" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.CityID, "City", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.CityID, (SelectList)ViewBag.City, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Address</label>
+            <input type="text" class="form-control" id="Address" name="Address" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-success pull-right" onclick="SaveInstitution()">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+    </div>
+</div>
+   
 
 <script>
-    function SaveInstitution()
-    {
-        var institution =
-        {
+    function SaveInstitution() {
 
-        }
+        var frm = {
+            'IsActive': $('#IsActive').prop('checked'),
+            'InstitutionsNo': $('#InstitutionNo').val(),
+            'TelephoneNo': $('#TelNo').val(),
+            'Name1': $('#Name1').val(),
+            'Name2': $('#Name2').val(),
+            'Name3': $('#Name3').val(),
+            'Location': $('#Location').val(),
+            'Address': $('#Address').val(),
+            'CityID': $("#CityID option:selected").val(),
+        };
+
+        console.log(frm);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Create", "Institution")',
+            data: JSON.stringify({
+                model: frm
+            }),
+            cache: false,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                console.log('response', response);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
     }
 </script>
