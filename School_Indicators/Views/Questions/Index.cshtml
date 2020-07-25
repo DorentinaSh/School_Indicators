@@ -1,0 +1,81 @@
+﻿@model List<School_Indicators.BO.Question>
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<br />
+<div class="row">
+    <h3>Questions</h3>
+    <hr />
+</div>
+<div class="row">
+    <h3>Questions of Questionnaire: @ViewBag.Name</h3>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="/Questions/Create?id=@ViewBag.CID">Add New <i class="glyphicon glyphicon-plus"></i></a>
+    </div>
+    <div class="col-md-12">
+        <hr />
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed table-condensed table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Questionnaire</th>
+                        <th>Category</th>
+                        <th>Shqip</th>
+                        <th>English</th>
+                        <th>Srpsko</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.QuestionnaireName</td>
+                                <td>@item.CategoryName</td>
+                                <td>@item.Name1</td>
+                                <td>@item.Name2</td>
+                                <td>@item.Name3</td>
+                                <td>
+                                    <div class="pull-right">
+                                        <a class="btn btn-xs btn-info" href="/Options/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Options"><i class="glyphicon glyphicon-arrow-right"></i></a>
+                                        <a class="btn btn-xs btn-info" href="/Questions/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
+                                        <button class="btn btn-xs btn-danger" type="button" onclick="DeleteQuestions(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function DeleteQuestions(_id) {
+     $.ajax({
+         type: "POST",
+         url: '@Url.Action("DeleteQuestion", "Questions")',
+         data: JSON.stringify({
+             'id': _id
+         }),
+         dataType: "json",
+         contentType: "application/json; charset=utf-8",
+         success: function (response) {
+             console.log('response', response);
+         },
+         error: function (err) {
+             console.log(err);
+         }
+     });
+    }
+</script>

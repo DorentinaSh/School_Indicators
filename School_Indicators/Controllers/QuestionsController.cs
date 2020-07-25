@@ -1,4 +1,6 @@
-﻿using System;
+﻿using School_Indicators.BO;
+using School_Indicators_BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,20 +10,75 @@ namespace School_Indicators.Controllers
 {
     public class QuestionsController : Controller
     {
+        QuestionService service = new QuestionService();
         // GET: Questions
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            ViewBag.CID = id;
+            ViewBag.Name = service.GetCategory(id).CategoryName;
+            List<Question> model = new List<Question>();
+            model = service.GetQuestionsByCategoryId(id);
+            return View(model);
         }
 
-        public ActionResult Create()
+
+        public ActionResult Create(int id)
         {
-            return View();
+            Question model = new Question();
+            model = service.GetCategory(id);
+            model.types = service.GetQuestionTypes();
+            return View(model);
+        }
+        [HttpPost]
+        public JsonResult CreateQuestion(Question model)
+        {
+            try
+            {
+                service.SaveQuestions(model);
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+       
+
+        public ActionResult Edit(int id)
+        {
+            Question model = new Question();
+            model = service.GetQuestionsById(id);
+            model.types = service.GetQuestionTypes();
+            return View(model);
         }
 
-        public ActionResult Edit()
+        [HttpPost]
+        public JsonResult UpdateQuestion(Question model)
         {
-            return View();
+            try
+            {
+                service.UpdateQuestions(model);
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult DeleteQuestion(int id)
+        {
+            try
+            {
+                service.DeleteQuestion(id);
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

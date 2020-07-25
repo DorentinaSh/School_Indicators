@@ -1,7 +1,66 @@
-﻿
+﻿@model School_Indicators_BO.BO.CategoryOfQuestion
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
+<br />
+<br />
+<div class="row">
+    <h3>Edit Category for Questionnaire: @Model.QuestionnaireName</h3>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Category Name in Albanian</label>
+            <input type="text" class="form-control" id="CategoryName" name="CategoryName" value="@Model.CategoryName" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Category Name in English</label>
+            <input type="text" class="form-control" id="CategoryName2" name="CategoryName2" value="@Model.CategoryName2" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Category Name in Srpsko</label>
+            <input type="text" class="form-control" id="CategoryName3" name="CategoryName3" value="@Model.CategoryName3"/>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button type="button" onclick="SaveCategories(@Model.QuestionnaireID, @Model.Id)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+    </div>
+</div>
 
-<h2>Edit</h2>
+<script>
+    function SaveCategories(_qid, _id) {
+
+        var frm = {
+            'Id': _id,
+            'QuestionnaireID': _qid,
+            'CategoryName': $('#CategoryName').val(),
+            'CategoryName2': $('#CategoryName2').val(),
+            'CategoryName3': $('#CategoryName3').val(),
+        };
+
+        console.log(frm);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("UpdateCategory", "Categories")',
+            data: JSON.stringify({
+                model: frm
+            }),
+            cache: false,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                console.log('response', response);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>
 

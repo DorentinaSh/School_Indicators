@@ -5,10 +5,16 @@
 <br />
 <br />
 <div class="row">
-    <h3>Create Questionnarie</h3>
+    <h3>Edit Questionnarie</h3>
     <hr />
 </div>
 <div class="row">
+    <div class="col-md-12">
+        <div class="form-group" style="float:left;">
+            <label class="control-label">Is Active?</label>
+            <input type="checkbox" class="form-control" id="IsActive" name="IsActive" @(Model.IsActive ? "checked" : String.Empty) />
+        </div>
+    </div>
     <div class="col-md-4">
         <div class="form-group">
             <label class="control-label">Name in Albanian</label>
@@ -40,6 +46,7 @@
            'Name1': $('#Name1').val(),
            'Name2': $('#Name2').val(),
            'Name3': $('#Name3').val(),
+           'IsActive': $('#IsActive').prop('checked')
        };
 
         console.log(frm);

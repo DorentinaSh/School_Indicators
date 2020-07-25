@@ -44,6 +44,7 @@ namespace School_Indicators_BLL
                         QuestName3 = model.Name3,
                         InsertDate = DateTime.Now,
                         InsertBy = "admin",
+                        IsActive = model.IsActive
                     };
                     db.tblQuestionnaires.Add(q);
                     db.SaveChanges();
@@ -65,6 +66,7 @@ namespace School_Indicators_BLL
                     q.QuestName = model.Name1;
                     q.QuestName2 = model.Name2;
                     q.QuestName3 = model.Name3;
+                    q.IsActive = model.IsActive;
                     q.LUB = "admin";
                     q.LUD = DateTime.Now;
                     db.Entry(q).State = System.Data.Entity.EntityState.Modified;
@@ -89,7 +91,8 @@ namespace School_Indicators_BLL
                                                 Id = e.Id,
                                                 Name1 = e.QuestName,
                                                 Name2 = e.QuestName2,
-                                                Name3 = e.QuestName3
+                                                Name3 = e.QuestName3,
+                                                IsActive = e.IsActive
                                             }).FirstOrDefault();
                     return model;
                 }
@@ -109,6 +112,22 @@ namespace School_Indicators_BLL
                     tblQuestionnaire q = db.tblQuestionnaires.Where(x => x.Id == id).FirstOrDefault();
                     db.tblQuestionnaires.Remove(q);
                     db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public string GetQuestionnaireNameById(int id)
+        {
+            try
+            {
+                using (School_CardsEntities db = new School_CardsEntities())
+                {
+                    string name = db.tblQuestionnaires.Where(x => x.Id == id).FirstOrDefault().QuestName;
+                    return name;
                 }
             }
             catch (Exception ex)

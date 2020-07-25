@@ -22,8 +22,8 @@ namespace School_Indicators_DAL
         }
     
         public int Id { get; set; }
-        public Nullable<int> CategoryOfQuestionnaireID { get; set; }
-        public Nullable<int> QuestionTypeID { get; set; }
+        public int CategoryOfQuestionnaireID { get; set; }
+        public int QuestionTypeID { get; set; }
         public string QuestionName { get; set; }
         public string QuestionName2 { get; set; }
         public string QuestionName3 { get; set; }
@@ -34,13 +34,13 @@ namespace School_Indicators_DAL
         public Nullable<System.DateTime> LUD { get; set; }
         public Nullable<int> LUN { get; set; }
         public Nullable<int> OrderBy { get; set; }
-        public Nullable<int> isActive { get; set; }
+        public bool isActive { get; set; }
     
+        public virtual tblCategoryOfQuestionnaire tblCategoryOfQuestionnaire { get; set; }
         public virtual tblQuestionType tblQuestionType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblQuestionOption> tblQuestionOptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSessionDetail> tblSessionDetails { get; set; }
-        public virtual tblCategoryOfQuestionnaire tblCategoryOfQuestionnaire { get; set; }
     }
 }
