@@ -31,14 +31,54 @@ namespace School_Indicators.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Questionnaries model)
-        {
-            return View();
+        public JsonResult CreateQuestionnarie(Questionnaries model)
+            {
+            try
+            {
+                service.SaveQuestionnaire(model);
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public ActionResult Edit(int id)
         {
-            return View();
+            Questionnaries model = new Questionnaries();
+            model = service.GetQuestionnarieById(id);
+            return View(model);
         }
+
+        [HttpPost]
+        public JsonResult UpdateQuestionnarie(Questionnaries model)
+        {
+            try
+            {
+                service.UpdateQuestionnaire(model);
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        [HttpPost]
+        public JsonResult DeleteQuestionnarie(int id)
+        {
+            try
+            {
+                service.DeleteQuestionnaire(id);
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

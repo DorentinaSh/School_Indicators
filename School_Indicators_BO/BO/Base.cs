@@ -7,7 +7,7 @@ namespace School_Indicators.BO
 {
     public class Base
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public DateTime InsertDate { get; set; }
         public int InsertBy { get; set; }
         public int LUN { get; set; }

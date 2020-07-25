@@ -9,28 +9,55 @@
     <hr />
 </div>
 <div class="row">
-    @using (Html.BeginForm("Create", "Questionnaire", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Name in Albanian</label>
-                <input type="text" class="form-control" id="Name1" name="Name1" />
-            </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in Albanian</label>
+            <input type="text" class="form-control" id="Name1" name="Name1" />
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Name in English</label>
-                <input type="text" class="form-control" id="Name2" name="Name2" />
-            </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in English</label>
+            <input type="text" class="form-control" id="Name2" name="Name2" />
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label">Name in Srpsko</label>
-                <input type="text" class="form-control" id="Name2" name="Name2" />
-            </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in Srpsko</label>
+            <input type="text" class="form-control" id="Name3" name="Name3" />
         </div>
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
-        </div>
-    }
+    </div>
+    <div class="col-md-12">
+        <button type="button" onclick="SaveQuestionnaire()" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+    </div>
 </div>
+
+<script>
+    function SaveQuestionnaire() {
+
+        var frm = {
+            'Name1': $('#Name1').val(),
+            'Name2': $('#Name2').val(),
+            'Name3': $('#Name3').val(),
+        };
+
+        console.log(frm);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("CreateQuestionnarie", "Questionnaire")',
+            data: JSON.stringify({
+                model: frm
+            }),
+            cache: false,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                console.log('response', response);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>

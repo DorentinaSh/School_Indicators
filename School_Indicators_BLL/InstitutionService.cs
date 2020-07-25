@@ -19,7 +19,7 @@ namespace School_Indicators_BLL
                     List<Institution> model = (from e in db.tblInstitutions
                                                   select new Institution
                                                   {
-                                                      ID = e.Id,
+                                                      Id = e.Id,
                                                       Name1 = e.InstitutionsName1,
                                                       Name2 = e.InstitutionsName2,
                                                       Name3 = e.InstitutionsName3
@@ -63,7 +63,7 @@ namespace School_Indicators_BLL
             {
                 using (School_CardsEntities db = new School_CardsEntities())
                 {
-                    tblInstitution q = db.tblInstitutions.Where(x => x.Id == model.ID).FirstOrDefault();
+                    tblInstitution q = db.tblInstitutions.Where(x => x.Id == model.Id).FirstOrDefault();
                     q.InstitutionsName1 = model.Name1;
                     q.InstitutionsName2 = model.Name2;
                     q.InstitutionsName3 = model.Name3;

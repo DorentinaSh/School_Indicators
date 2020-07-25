@@ -21,7 +21,7 @@ namespace School_Indicators_DAL
         }
     
         public int Id { get; set; }
-        public Nullable<int> QuestionnaireID { get; set; }
+        public int QuestionnaireID { get; set; }
         public string CategoryName { get; set; }
         public string CategoryName2 { get; set; }
         public string CategoryName3 { get; set; }
