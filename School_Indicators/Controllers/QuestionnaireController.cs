@@ -11,6 +11,7 @@ namespace School_Indicators.Controllers
         // GET: Questionnaire
         public ActionResult Index()
         {
+            List< Questionnaries >
             return View();
         }
 
