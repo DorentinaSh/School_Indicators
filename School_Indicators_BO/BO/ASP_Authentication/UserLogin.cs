@@ -8,6 +8,7 @@ namespace School_Indicators.BO.ASP_Authentication
 {
     public class UserLogin
     {
+
         [Key]
         public string LoginProvider { get; set; }
         [Key]
