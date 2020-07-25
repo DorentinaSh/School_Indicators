@@ -54,6 +54,7 @@
     <Compile Include="BO\City.cs" />
     <Compile Include="BO\Institution.cs" />
     <Compile Include="BO\InstitutionUser.cs" />
+    <Compile Include="BO\ModelDTO\InstitutionDTO.cs" />
     <Compile Include="BO\Question.cs" />
     <Compile Include="BO\Questionnaries.cs" />
     <Compile Include="BO\QuestionOption.cs" />

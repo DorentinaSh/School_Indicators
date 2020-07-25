@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstituionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
@@ -243,9 +244,11 @@
     <Content Include="Views\Questionnaire\Index.cshtml" />
     <Content Include="Views\Questionnaire\Create.cshtml" />
     <Content Include="Views\Questionnaire\Edit.cshtml" />
+    <Content Include="Views\Instituion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="Views\Categories\" />
     <Folder Include="Views\Questions\" />
   </ItemGroup>
@@ -261,6 +264,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\School_Indicators_BLL\School_Indicators_BLL.csproj">
+      <Project>{6624758a-192a-4fa0-bb45-34f92c08b9f7}</Project>
+      <Name>School_Indicators_BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\School_Indicators_BO\School_Indicators_BO.csproj">
+      <Project>{a48f26ca-7391-4e0c-b47e-ecd0465e578c}</Project>
+      <Name>School_Indicators_BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\School_Indicators_DAL\School_Indicators_DAL.csproj">
+      <Project>{da24ebe4-5f3e-441e-a28d-c91d2f560f48}</Project>
+      <Name>School_Indicators_DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -308,5 +325,13 @@
     </ItemGroup>
     <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
     <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
-</Target>-->
+</Target>
+<Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+</Target>
+-->
 </Project>
