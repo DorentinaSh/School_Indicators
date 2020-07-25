@@ -14,7 +14,17 @@ namespace School_Indicators.Controllers
             return View();
         }
 
+        public ActionResult EX_Create()
+        {
+            return View();
+        }
+
         public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Edit()
         {
             return View();
         }
