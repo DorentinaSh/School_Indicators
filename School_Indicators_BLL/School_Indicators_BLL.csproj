@@ -48,5 +48,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\School_Indicators_BO\School_Indicators_BO.csproj">
+      <Project>{a48f26ca-7391-4e0c-b47e-ecd0465e578c}</Project>
+      <Name>School_Indicators_BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\School_Indicators_DAL\School_Indicators_DAL.csproj">
+      <Project>{da24ebe4-5f3e-441e-a28d-c91d2f560f48}</Project>
+      <Name>School_Indicators_DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
