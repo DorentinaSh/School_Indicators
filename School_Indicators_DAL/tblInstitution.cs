@@ -26,10 +26,10 @@ namespace School_Indicators_DAL
         public string InstitutionsName2 { get; set; }
         public string InstitutionsName3 { get; set; }
         public string Location { get; set; }
-        public Nullable<int> CityID { get; set; }
+        public int CityID { get; set; }
         public string Address { get; set; }
         public string TelNo { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
         public Nullable<System.DateTime> InsertDate { get; set; }
         public string InsertBy { get; set; }
         public string LUB { get; set; }

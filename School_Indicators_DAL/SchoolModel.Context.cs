@@ -25,6 +25,7 @@ namespace School_Indicators_DAL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<tblCategoryOfQuestionnaire> tblCategoryOfQuestionnaires { get; set; }
         public virtual DbSet<tblCity> tblCities { get; set; }
         public virtual DbSet<tblInstitution> tblInstitutions { get; set; }
         public virtual DbSet<tblQuestionOption> tblQuestionOptions { get; set; }
