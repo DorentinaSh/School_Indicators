@@ -678,7 +678,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SchoolCardsEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="School_CardsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblCategoryOfQuestionnaires" EntityType="Self.tblCategoryOfQuestionnaire" />
           <EntitySet Name="tblCities" EntityType="Self.tblCity" />
           <EntitySet Name="tblInstitutions" EntityType="Self.tblInstitution" />
@@ -739,7 +739,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="School_CardsModelStoreContainer" CdmEntityContainer="SchoolCardsEntities">
+        <EntityContainerMapping StorageEntityContainer="School_CardsModelStoreContainer" CdmEntityContainer="School_CardsEntities">
           <EntitySetMapping Name="tblCategoryOfQuestionnaires">
             <EntityTypeMapping TypeName="School_CardsModel.tblCategoryOfQuestionnaire">
               <MappingFragment StoreEntitySet="tblCategoryOfQuestionnaire">

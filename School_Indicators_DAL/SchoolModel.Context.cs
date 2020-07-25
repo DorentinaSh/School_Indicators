@@ -13,10 +13,10 @@ namespace School_Indicators_DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SchoolCardsEntities : DbContext
+    public partial class School_CardsEntities : DbContext
     {
-        public SchoolCardsEntities()
-            : base("name=SchoolCardsEntities")
+        public School_CardsEntities()
+            : base("name=School_CardsEntities")
         {
         }
     
