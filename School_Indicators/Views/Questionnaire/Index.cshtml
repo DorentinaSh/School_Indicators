@@ -29,6 +29,7 @@
                             <td>@item.Name3</td>
                             <td>
                                 <div class="pull-right">
+                                    <a class="btn btn-xs btn-info" href="/Categories/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Categories"><i class="glyphicon glyphicon-arrow-right"></i></a>
                                     <a class="btn btn-xs btn-info" href="/Questionnaire/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
                                     <button class="btn btn-xs btn-danger" type="button" onclick="DeleteQuestionnaire(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
                                 </div>

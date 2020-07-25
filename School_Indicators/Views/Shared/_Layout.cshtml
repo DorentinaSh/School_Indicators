@@ -55,7 +55,11 @@
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
-
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>

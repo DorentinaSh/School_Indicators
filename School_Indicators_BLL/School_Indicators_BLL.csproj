@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="InstitutionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionCategoryService.cs" />
     <Compile Include="QuestionnaireService.cs" />
   </ItemGroup>
   <ItemGroup>

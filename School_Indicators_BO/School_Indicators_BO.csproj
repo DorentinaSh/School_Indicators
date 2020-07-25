@@ -55,6 +55,7 @@
     <Compile Include="BO\ASP_Authentication\UserLogin.cs" />
     <Compile Include="BO\ASP_Authentication\UserRoles.cs" />
     <Compile Include="BO\Base.cs" />
+    <Compile Include="BO\CategoryOfQuestion.cs" />
     <Compile Include="BO\City.cs" />
     <Compile Include="BO\Institution.cs" />
     <Compile Include="BO\InstitutionUser.cs" />
