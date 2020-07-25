@@ -76,6 +76,29 @@ namespace School_Indicators_BLL
                 throw;
             }
         }
+        public Questionnaries GetQuestionnarieById(int id)
+        {
+            try
+            {
+                using (School_CardsEntities db = new School_CardsEntities())
+                {
+                    Questionnaries model = (from e in db.tblQuestionnaires
+                                            where e.Id == id
+                                            select new Questionnaries
+                                            {
+                                                Id = e.Id,
+                                                Name1 = e.QuestName,
+                                                Name2 = e.QuestName2,
+                                                Name3 = e.QuestName3
+                                            }).FirstOrDefault();
+                    return model;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public void DeleteQuestionnaire(int id)
         {

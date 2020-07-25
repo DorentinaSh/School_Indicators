@@ -1,7 +1,64 @@
-﻿
+﻿@model School_Indicators.BO.Questionnaries
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
+<br />
+<br />
+<div class="row">
+    <h3>Create Questionnarie</h3>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in Albanian</label>
+            <input type="text" class="form-control" id="Name1" name="Name1" value="@Model.Name1" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in English</label>
+            <input type="text" class="form-control" id="Name2" name="Name2" value="@Model.Name2" />
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label class="control-label">Name in Srpsko</label>
+            <input type="text" class="form-control" id="Name3" name="Name3" value="@Model.Name3" />
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button type="button" onclick="SaveQuestionnaire(@Model.Id)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+    </div>
+</div>
 
-<h2>Edit</h2>
+<script>
+   function SaveQuestionnaire(id) {
 
+       var frm = {
+           'Id': id,
+           'Name1': $('#Name1').val(),
+           'Name2': $('#Name2').val(),
+           'Name3': $('#Name3').val(),
+       };
+
+        console.log(frm);
+
+       $.ajax({
+           type: "POST",
+           url: '@Url.Action("UpdateQuestionnarie", "Questionnaire")',
+           data: JSON.stringify({
+               model: frm
+           }),
+           cache: false,
+           dataType: "json",
+           contentType: "application/json; charset=utf-8",
+           success: function (response) {
+               console.log('response', response);
+           },
+           error: function (err) {
+               console.log(err);
+           }
+       });
+    }
+</script>

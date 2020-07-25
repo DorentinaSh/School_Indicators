@@ -7,7 +7,7 @@ namespace School_Indicators.BO
 {
     public class Questionnaries:Base
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         //Name in Albanian Language
         public string Name1 { get; set; }
 

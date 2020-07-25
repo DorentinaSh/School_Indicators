@@ -30,7 +30,7 @@
                             <td>
                                 <div class="pull-right">
                                     <a class="btn btn-xs btn-info" href="/Questionnaire/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <button class="btn btn-xs btn-danger" onclick="DeleteQuestionnaire()"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <button class="btn btn-xs btn-danger" type="button" onclick="DeleteQuestionnaire(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
                                 </div>
                             </td>
                         </tr>
@@ -40,4 +40,22 @@
         </div>
     </div>
 </div>
-
+<script>
+ function DeleteQuestionnaire(_id) {
+     $.ajax({
+         type: "POST",
+         url: '@Url.Action("DeleteQuestionnarie", "Questionnaire")',
+         data: JSON.stringify({
+             'id': _id
+         }),
+         dataType: "json",
+         contentType: "application/json; charset=utf-8",
+         success: function (response) {
+             console.log('response', response);
+         },
+         error: function (err) {
+             console.log(err);
+         }
+     });
+    }
+</script>
