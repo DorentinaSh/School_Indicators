@@ -2,10 +2,9 @@
 @{
     ViewBag.Title = "Create";
 }
-<br />
-<br />
+    <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
-    <h3>Create instution</h3>
+    <h3>Create institution</h3>
     <hr />
 </div>
 <div class="row">
@@ -59,8 +58,8 @@
     <div class="col-md-4">
         <div class="form-group">
             @Html.LabelFor(model => model.CityID, "City", htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.CityID, (SelectList)ViewBag.City, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(m => m.CityID, (SelectList)ViewBag.City, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="col-md-4">
@@ -75,7 +74,7 @@
         <button type="submit" class="btn btn-success pull-right" onclick="SaveInstitution()">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
     </div>
 </div>
-   
+
 
 <script>
     function SaveInstitution() {

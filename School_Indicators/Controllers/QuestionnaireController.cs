@@ -19,10 +19,6 @@ namespace School_Indicators.Controllers
             return View(model);
         }
 
-        public ActionResult EX_Create()
-        {
-            return View();
-        }
 
         public ActionResult Create()
         {
