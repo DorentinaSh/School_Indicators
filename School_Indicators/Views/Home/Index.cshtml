@@ -7,54 +7,25 @@
 <html style="height: 100%;" lang="en-US">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-
-        .search {
-            margin-left: 250px;
-            width: 100%;
-            position: relative;
-            display: flex;
-        }
-
-        .searchTerm {
-            width: 100%;
-            border: 3px solid #00B4CC;
-            border-right: none;
-            padding: 5px;
-            height: 20px;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-            color: #9DBFAF;
-        }
-
-            .searchTerm:focus {
-                color: #00B4CC;
-            }
-
-        .searchButton {
-            width: 40px;
-            height: 36px;
-            border: 1px solid #00B4CC;
-            background: #00B4CC;
-            text-align: center;
-            color: #fff;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        /*Resize the wrap to see the search bar change!*/
-        .wrap {
-            width: 30%;
+        .searchBar {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 70%;
+            left: 70%;
+            height: 30%;
+            width: 50%;
+            margin: -15% 0 0 -25%;
+        }
+        .transparent {
+            border-color: transparent;
+            background-color: transparent;
+            font-size: 18px
         }
     </style>
 </head>
 
-<body style="background: linear-gradient(to bottom, #5CDB95 0%, #379683 100%) no-repeat;">
+<body style="        background: linear-gradient(to bottom, #5CDB95 0%, #379683 100%) no-repeat;">
     <div class="col-md-12">
         <div class="map;">
             <svg style="margin: auto;width: 50%;padding: 30px;"
@@ -460,12 +431,16 @@
                     </g>
                 </g>
             </svg>
-        </div>
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
+            <div class="searchBar">
+                <form class="example" style="float: right; margin-right: 150px;" action="action_page.php">
+
+                    <input style="background-color:transparent;border:1px solid white; border-radius: 2px;font-size:18px" type="text" placeholder="Search.." name="search">
+                    <button class="transparent" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
         </div>
     </div>
 
