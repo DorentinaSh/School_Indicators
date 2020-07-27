@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <h3>List of Institutions</h3>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="/Institution/Create">Add New    <i class="glyphicon glyphicon-plus"></i></a>
+    </div>
+    <div class="col-md-12">
+        <hr />
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed table-condensed table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Is Active</th>
+                        <th>Institution No</th>
+                        <th>Shqip</th>
+                        <th>English</th>
+                        <th>Srpsko</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><input type="checkbox" disabled id="IsActive" name="IsActive" @(item.IsActive ? "checked" : String.Empty) /></td>
+                            <td>@item.InstitutionsNo</td>
+                            <td>@item.Name1</td>
+                            <td>@item.Name2</td>
+                            <td>@item.Name3</td>
+                            <td>
+                                <div class="pull-right">
+                                    <a class="btn btn-xs btn-info" href="/Institution/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <button class="btn btn-xs btn-danger" onclick="DeleteInstitution(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function DeleteInstitution(_id) {
+     $.ajax({
+         type: "POST",
+         url: '@Url.Action("DeleteInstitution", "Institution")',
+         data: JSON.stringify({
+             'id': _id
+         }),
+         dataType: "json",
+         contentType: "application/json; charset=utf-8",
+         success: function (response) {
+             console.log('response', response);
+         },
+         error: function (err) {
+             console.log(err);
+         }
+     });
+    }
+</script>

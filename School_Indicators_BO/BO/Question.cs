@@ -8,7 +8,11 @@ namespace School_Indicators.BO
     public class Question:Base
     {
         public int QuestionnaireID { get; set; }
+        public string QuestionnaireName { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public int QuestionTypeID { get; set; }
+        public string QuestionTypeName { get; set; }
         //Name in Albanian Language
         public string Name1 { get; set; }
 
@@ -20,5 +24,6 @@ namespace School_Indicators.BO
         public int RelatedQuestionOptionID { get; set; }
         public bool IsActive { get; set; }
         public int OrderBy { get; set; }
+        public List<QuestionType> types { get; set; }
     }
 }
