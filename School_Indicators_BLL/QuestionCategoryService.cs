@@ -38,6 +38,32 @@ namespace School_Indicators_BLL
             }
         }
 
+        public List<CategoryOfQuestion> GetCategories()
+        {
+            try
+            {
+                using (School_CardsEntities db = new School_CardsEntities())
+                {
+                    List<CategoryOfQuestion> model = (from e in db.tblCategoryOfQuestionnaires
+                                                      join q in db.tblQuestionnaires on e.QuestionnaireID equals q.Id into con
+                                                      from q in con.DefaultIfEmpty()
+                                                      select new CategoryOfQuestion
+                                                  {
+                                                      Id = e.Id,
+                                                      QuestionnaireID = e.QuestionnaireID,
+                                                      QuestionnaireName = q.QuestName,
+                                                      CategoryName = e.CategoryName,
+                                                      CategoryName2 = e.CategoryName2,
+                                                      CategoryName3 = e.CategoryName3
+                                                  }).ToList();
+                    return model;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
         public void SaveCategory(CategoryOfQuestion model)

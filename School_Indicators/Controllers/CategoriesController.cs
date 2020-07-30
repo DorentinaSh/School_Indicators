@@ -14,20 +14,18 @@ namespace School_Indicators.Controllers
         QuestionCategoryService service = new QuestionCategoryService();
         QuestionnaireService qservice = new QuestionnaireService();
         // GET: Categories
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            ViewBag.QID = id;
-            ViewBag.Name = qservice.GetQuestionnaireNameById(id);
-            List<CategoryOfQuestion> model = service.GetQuestionCategoryByQuestionnarireId(id);
+            //ViewBag.QID = id;
+            //ViewBag.Name = qservice.GetQuestionnaireNameById(id);
+            List<CategoryOfQuestion> model = service.GetCategories();
             return View(model);
         }
 
-        public ActionResult Create(int id)
+        public ActionResult Create()
         {
-            CategoryOfQuestion model = new CategoryOfQuestion();
-            model.QuestionnaireID = id;
-            model.QuestionnaireName = qservice.GetQuestionnaireNameById(id);
-            return View(model);
+            ViewBag.Questionnaires = new SelectList(qservice.GetQuestionnaries(), "Id", "Name1");
+            return View(new CategoryOfQuestion());
         }
 
         [HttpPost]
@@ -48,6 +46,7 @@ namespace School_Indicators.Controllers
         {
             CategoryOfQuestion model = new CategoryOfQuestion();
             model = service.GetCategoryById(id);
+            ViewBag.Questionnaires = new SelectList(qservice.GetQuestionnaries(), "Id", "Name1", model.QuestionnaireID);
             return View(model);
         }
 

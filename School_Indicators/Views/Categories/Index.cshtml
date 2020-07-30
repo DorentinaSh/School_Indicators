@@ -7,12 +7,8 @@
     <hr />
 </div>
 <div class="row">
-    <h3>Categories of Questionnaire: @ViewBag.Name</h3>
-    <hr />
-</div>
-<div class="row">
     <div class="col-md-12">
-        <a class="btn btn-primary" href="/Categories/Create?id=@ViewBag.QID">Add New <i class="glyphicon glyphicon-plus"></i></a>
+        <a class="btn btn-primary" href="/Categories/Create">Add New <i class="glyphicon glyphicon-plus"></i></a>
     </div>
     <div class="col-md-12">
         <hr />
@@ -39,7 +35,7 @@
                                 <td>@item.CategoryName3</td>
                                 <td>
                                     <div class="pull-right">
-                                        <a class="btn btn-xs btn-info" href="/Questions/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Questions"><i class="glyphicon glyphicon-arrow-right"></i></a>
+                                        @*<a class="btn btn-xs btn-info" href="/Questions/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Questions"><i class="glyphicon glyphicon-arrow-right"></i></a>*@
                                         <a class="btn btn-xs btn-info" href="/Categories/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
                                         <button class="btn btn-xs btn-danger" type="button" onclick="DeleteCategory(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
                                     </div>
