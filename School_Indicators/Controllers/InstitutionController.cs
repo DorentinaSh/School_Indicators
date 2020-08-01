@@ -74,5 +74,12 @@ namespace School_Indicators.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public ActionResult GetAll()
+        {
+            var institutionList = InstitutionService.GetInstitutions();
+            return Json(new { data = institutionList }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="QuestionCategoryService.cs" />
     <Compile Include="QuestionnaireService.cs" />
     <Compile Include="QuestionService.cs" />
+    <Compile Include="QuestionTypeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

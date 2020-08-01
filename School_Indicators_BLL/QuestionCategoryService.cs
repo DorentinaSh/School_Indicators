@@ -102,6 +102,7 @@ namespace School_Indicators_BLL
                     q.CategoryName = model.CategoryName;
                     q.CategoryName2 = model.CategoryName2;
                     q.CategoryName3 = model.CategoryName3;
+                    //q. = model.CategoryName3;
                     q.LUB = "admin";
                     q.LUD = DateTime.Now;
                     db.Entry(q).State = System.Data.Entity.EntityState.Modified;

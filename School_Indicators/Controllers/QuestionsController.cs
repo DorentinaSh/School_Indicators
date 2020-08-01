@@ -10,14 +10,17 @@ namespace School_Indicators.Controllers
 {
     public class QuestionsController : Controller
     {
-        QuestionService service = new QuestionService();
+        private QuestionService service = new QuestionService();
+        private QuestionnaireService questionnaireService = new QuestionnaireService();
+        private QuestionCategoryService categoryService = new QuestionCategoryService();
+        private QuestionTypeService questionTypeService = new QuestionTypeService();
         // GET: Questions
         public ActionResult Index(int id)
         {
-            ViewBag.CID = id;
-            ViewBag.Name = service.GetCategory(id).CategoryName;
+            ViewBag.QuestionnaireID = id;
+            ViewBag.Name = questionnaireService.GetQuestionnaireNameById(id);
             List<Question> model = new List<Question>();
-            model = service.GetQuestionsByCategoryId(id);
+            model = service.GetQuestionsByQuestionnaireId(id);
             return View(model);
         }
 
@@ -25,8 +28,9 @@ namespace School_Indicators.Controllers
         public ActionResult Create(int id)
         {
             Question model = new Question();
-            model = service.GetCategory(id);
-            model.types = service.GetQuestionTypes();
+            ViewBag.Name = questionnaireService.GetQuestionnaireNameById(id);
+            ViewBag.Categories = new SelectList(categoryService.GetQuestionCategoryByQuestionnarireId(id), "Id", "CategoryName");
+            ViewBag.QuestionTypes = new SelectList(questionTypeService.GetAllQuestionType(), "Id", "Type");
             return View(model);
         }
         [HttpPost]
@@ -48,7 +52,7 @@ namespace School_Indicators.Controllers
         {
             Question model = new Question();
             model = service.GetQuestionsById(id);
-            model.types = service.GetQuestionTypes();
+            //model.types = service.GetQuestionTypes();
             return View(model);
         }
 

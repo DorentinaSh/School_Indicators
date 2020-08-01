@@ -15,9 +15,9 @@ namespace School_Indicators_DAL
     public partial class tblSessionDetail
     {
         public int Id { get; set; }
-        public Nullable<int> SessionID { get; set; }
-        public Nullable<int> QuestionID { get; set; }
-        public Nullable<int> QuestOptID { get; set; }
+        public int SessionID { get; set; }
+        public int QuestionID { get; set; }
+        public int QuestOptID { get; set; }
         public string QuestAnswer { get; set; }
         public string Description { get; set; }
         public System.DateTime InsertDate { get; set; }
@@ -26,8 +26,8 @@ namespace School_Indicators_DAL
         public Nullable<System.DateTime> LUD { get; set; }
         public Nullable<int> LUN { get; set; }
     
-        public virtual tblQuestionOfQuestionnaire tblQuestionOfQuestionnaire { get; set; }
         public virtual tblQuestionOption tblQuestionOption { get; set; }
         public virtual tblSession tblSession { get; set; }
+        public virtual tblQuestionOfQuestionnaire tblQuestionOfQuestionnaire { get; set; }
     }
 }

@@ -48,8 +48,6 @@
            'IsActive': $('#IsActive').prop('checked')
        };
 
-        console.log(frm);
-
        $.ajax({
            type: "POST",
            url: '@Url.Action("UpdateQuestionnarie", "Questionnaire")',
@@ -60,7 +58,14 @@
            dataType: "json",
            contentType: "application/json; charset=utf-8",
            success: function (response) {
-               console.log('response', response);
+               Swal.fire({
+                   icon: 'success',
+                   title: 'Your work has been saved',
+                   showConfirmButton: false,
+                   timer: 2000
+               })
+               window.location.replace = "index.html";
+               //console.log('response', response);
            },
            error: function (err) {
                console.log(err);

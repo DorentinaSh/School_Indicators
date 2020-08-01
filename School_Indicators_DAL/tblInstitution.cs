@@ -30,7 +30,7 @@ namespace School_Indicators_DAL
         public string Address { get; set; }
         public string TelNo { get; set; }
         public bool IsActive { get; set; }
-        public Nullable<System.DateTime> InsertDate { get; set; }
+        public System.DateTime InsertDate { get; set; }
         public string InsertBy { get; set; }
         public string LUB { get; set; }
         public Nullable<System.DateTime> LUD { get; set; }
