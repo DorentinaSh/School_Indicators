@@ -28,7 +28,7 @@ namespace School_Indicators.Controllers
 
         [HttpPost]
         public JsonResult CreateQuestionnarie(Questionnaries model)
-            {
+        {
             try
             {
                 service.SaveQuestionnaire(model);
