@@ -1,25 +1,14 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-@*<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-<link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
 
-<link rel="stylesheet" href="css/screen.css" />
-<link rel="stylesheet" href="css/styles.css" />
-
-<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<script src="js/jquery.validate.js"></script>
-
-<script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-<script src="~/js/moment-with-locales.js"></script>
-<script src="~/js/moment.min.js"></script>*@
-
-@*<div class="row">
+<style>
+    .hide_column {
+        display: none;
+    }
+</style>
+<div class="row">
         <h3>List of Institutions</h3>
         <hr />
     </div>
@@ -30,52 +19,23 @@
         <div class="col-md-12">
             <hr />
             <div class="table-responsive">
-                <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="instituions">
+                <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="institutions">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>Hide Id</th>
                             <th>Institution No</th>
                             <th>Shqip</th>
                             <th>English</th>
                             <th>Srpsko</th>
                             <th>Is Active</th>
-                            <th></th>
+                            <th>Ndrysho</th>
+                            <th>Fshij</th>
                         </tr>
                     </thead>
                 </table>
             </div>
         </div>
-    </div>*@
-<div class="container">
-    <div class="row">
-        <div class="form-group" style="position:relative">
-            <div class="myInlineElements">
-                <h2>Lista e Institucioneve</h2>
-            </div>
-            <div class="myInlineElements">
-                <a class="btn btn-success" href="@Url.Action("Institution", "Create")">
-                    Add
-                </a>
-            </div>
-        </div>
-        <div style="width:90%;margin-left:15px; margin-top:10px">
-            <table id="institutions" class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th>Hide Id</th>
-                        <th>Institution No</th>
-                        <th>Shqip</th>
-                        <th>English</th>
-                        <th>Srpsko</th>
-                        <th>Is Active</th>
-                        <th>Ndrysho</th>
-                        <th>Fshij</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
     </div>
-</div>
 
 <script>
 
@@ -85,12 +45,10 @@
 
         function LoadInstitutionsDataTable() {
             $("#institutions").DataTable({
-            serverSide: true,
             "ajax": {
                 "url": "/Institution/GetAll",
                 "type": "GET",
-                "datatype": "json",
-                "paging": "false"
+                "datatype": "json"
             },
             "columns": [
                 { "data": "Id", "className": "hide_column"  },
@@ -113,52 +71,20 @@
                     "mRender": function (o) { return '<a class="btn btn-danger" onclick="DeleteInstitution(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
                 },
             ],
+            "language": {
+                "lengthMenu": "Shfaq _MENU_ rekorde për faqe",
+                "zeroRecords": "Nuk u gjet asnjë rekord",
+                "info": "Faqja _PAGE_ nga _PAGES_",
+                "infoEmpty": "Asnjë rekord në dispozicion",
+                "infoFiltered": "(filtruar nga _MAX_ rekorde gjithesej)",
+                "sSearch": "Kërko",
+                "oPaginate": {
+                    "sPrevious": "Pas",
+                    "sNext": "Para"
+                },
+            }
         });
     }
-
-    //function LoadInstitutionsDataTable() {
-    //    $('#institutions').DataTable({
-    //        "ajax": {
-    //            "type": "GET",
-    //            "url": "/Institution/GetAll",
-    //            "datatype": "json",
-    //            "paging": "false"
-    //        },
-    //        "columns": [
-    //            { "data": "ID", "className": "hide_column" },
-    //            { "data": "InstitutionsNo" },
-    //            { "data": "InstitutionsName1" },
-    //            { "data": "InstitutionsName2" },
-    //            { "data": "InstitutionsName3" },
-    //            { "data": "IsActive" },
-    //            {
-    //                "mData": null,
-    //                "bSortable": false,
-    //                "width": "1px",
-    //                "mRender": function (o) { return ' <a onclick="EditStudentOnClick(this)" class="btn btn-warning"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>'; }
-
-    //            },
-    //            {
-    //                "mData": null,
-    //                "bSortable": false,
-    //                "width": "1px",
-    //                "mRender": function (o) { return '<a class="btn btn-danger" onclick="DeleteStudentOnClick(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
-    //            },
-    //        ],
-    //        "language": {
-    //            "lengthMenu": "Shfaq _MENU_ rekorde për faqe",
-    //            "zeroRecords": "Nuk u gjet asnjë rekord",
-    //            "info": "Faqja _PAGE_ nga _PAGES_",
-    //            "infoEmpty": "Asnjë rekord në dispozicion",
-    //            "infoFiltered": "(filtruar nga _MAX_ rekorde gjithesej)",
-    //            "sSearch": "Kërko",
-    //            "oPaginate": {
-    //                "sPrevious": "Pas",
-    //                "sNext": "Para"
-    //            },
-    //        }
-    //    });
-    //}
 
     function EditInstitution(obj) {
         var currow = $(obj).closest('tr');
