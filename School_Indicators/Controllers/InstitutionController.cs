@@ -75,7 +75,6 @@ namespace School_Indicators.Controllers
             }
         }
 
-        [HttpGet]
         public ActionResult GetAll()
         {
             var institutionList = InstitutionService.GetInstitutions();
