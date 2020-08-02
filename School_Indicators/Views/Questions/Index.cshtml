@@ -2,17 +2,15 @@
 @{
     ViewBag.Title = "Index";
 }
+<div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
+
 <div class="row">
-    <h3>Questions</h3>
-    <hr />
-</div>
-<div class="row">
-    <h3>Questions of Questionnaire: @ViewBag.Name</h3>
+    <h3>List of questions of questionnaire "@ViewBag.Name" </h3>
     <hr />
 </div>
 <div class="row">
     <div class="col-md-12">
-        <a class="btn btn-primary" href="/Questions/Create?id=@ViewBag.CID">Add New <i class="glyphicon glyphicon-plus"></i></a>
+        <a class="btn btn-primary" href="/Questions/Create?id=@ViewBag.QuestionnaireID">Add New <i class="glyphicon glyphicon-plus"></i></a>
     </div>
     <div class="col-md-12">
         <hr />
@@ -25,6 +23,7 @@
                         <th>Shqip</th>
                         <th>English</th>
                         <th>Srpsko</th>
+                        <th>Is Active</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -39,6 +38,7 @@
                                 <td>@item.Name1</td>
                                 <td>@item.Name2</td>
                                 <td>@item.Name3</td>
+                                <td><input type="checkbox" disabled id="IsActive" name="IsActive" @(item.IsActive ? "checked" : String.Empty) /></td>
                                 <td>
                                     <div class="pull-right">
                                         <a class="btn btn-xs btn-info" href="/Options/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Options"><i class="glyphicon glyphicon-arrow-right"></i></a>

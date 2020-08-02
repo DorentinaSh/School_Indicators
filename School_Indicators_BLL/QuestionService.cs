@@ -43,7 +43,39 @@ namespace School_Indicators_BLL
                 throw;
             }
         }
-
+        public List<Question> GetQuestionsByQuestionnaireId(int id)
+        {
+            try
+            {
+                using (School_CardsEntities db = new School_CardsEntities())
+                {
+                    List<Question> model = (from e in db.tblQuestionOfQuestionnaires
+                                            join c in db.tblCategoryOfQuestionnaires on e.CategoryOfQuestionnaireID equals c.Id
+                                            join q in db.tblQuestionnaires on c.QuestionnaireID equals q.Id
+                                            join t in db.tblQuestionTypes on e.QuestionTypeID equals t.Id
+                                            where q.Id == id
+                                            select new Question
+                                            {
+                                                Id = e.Id,
+                                                QuestionnaireID = q.Id,
+                                                QuestionnaireName = q.QuestName,
+                                                CategoryId = c.Id,
+                                                CategoryName = c.CategoryName,
+                                                QuestionTypeID = e.QuestionTypeID,
+                                                QuestionTypeName = t.Name1,
+                                                Name1 = e.QuestionName,
+                                                Name2 = e.QuestionName2,
+                                                Name3 = e.QuestionName3,
+                                                IsActive=e.isActive
+                                            }).ToList();
+                    return model;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public Question GetQuestionsById(int id)
         {
             try

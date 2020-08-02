@@ -31,6 +31,7 @@ namespace School_Indicators_DAL
         public Nullable<System.DateTime> LUD { get; set; }
         public Nullable<int> LUN { get; set; }
         public Nullable<int> OrderBy { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual tblQuestionnaire tblQuestionnaire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

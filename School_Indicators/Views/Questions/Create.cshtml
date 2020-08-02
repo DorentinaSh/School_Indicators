@@ -4,47 +4,63 @@
 }
     <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
-    <h3>Questionnaire: @Model.QuestionnaireName</h3>
-    <h3>Create Question for Category: @Model.CategoryName</h3>
+    <h3></h3>
+    <h3>Add question for questionnaire: @ViewBag.Name</h3>
     <hr />
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-4">
         <div class="form-group" style="float:left;">
             <label class="control-label">Is Active?</label>
-            <input type="checkbox" class="form-control" id="IsActive" name="IsActive" />
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="form-group">
-            <label class="control-label">Question Type</label>
-            <select id="QuestionTypeID" class="form-control" name="QuestionTypeID">
-                <option value="0"></option>
-                @foreach (var item in Model.types)
-                {
-                    <option value="@item.Id">@item.Name1</option>
-                }
-            </select>
+            <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked />
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Name in Albanian</label>
-            <input type="text" class="form-control" id="Name1" name="Name1" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, "Choose category", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.CategoryId, (SelectList)ViewBag.Categories, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Name in English</label>
-            <input type="text" class="form-control" id="Name2" name="Name2" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.QuestionTypeID, "Choose question type", htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(m => m.QuestionTypeID, (SelectList)ViewBag.QuestionTypes, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.QuestionTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name1,null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Name in Srpsko</label>
-            <input type="text" class="form-control" id="Name3" name="Name3" />
+            @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
+        </div>
+    </div>
+       </div>
+   <div class="row">
+       <div id="moreoptions"></div>
+   </div>
+<div class="row">
     <div class="col-md-12">
         <button type="button" onclick="SaveQuestionnaire(@Model.CategoryId)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
     </div>
@@ -81,4 +97,28 @@
             }
         });
     }
+
+    $('#questiontype').change(function () {
+        //alert("hii");
+        $("#moreoptions").empty();
+        $('.opt').val(null);
+        option = 2;
+        if (option < 5) {
+            $("#addmore").show();
+        }
+        //   var type = $("#questiontype :selected").text().toLowerCase();
+        var type = $("#questiontype :selected").val();
+        switch (type) {
+            case "1":
+                $(".options").hide();
+                break;
+            case "2":
+                $(".options").show();
+                break;
+            case "3":
+                $(".options").show();
+            default:
+            // code block
+        }
+    });
 </script>

@@ -20,7 +20,8 @@ namespace School_Indicators_BLL
                                                       Id = e.Id,
                                                       Name1 = e.QuestName,
                                                       Name2 = e.QuestName2,
-                                                      Name3 = e.QuestName3
+                                                      Name3 = e.QuestName3,
+                                                      IsActive=e.IsActive
                                                   }).ToList();
                     return model;
                 }
