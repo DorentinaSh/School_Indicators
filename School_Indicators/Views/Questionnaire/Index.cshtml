@@ -4,9 +4,34 @@
 }
 
 <style>
-   .hide_column {
-       display: none;
-   }
+    .hide_column {
+        display: none;
+    }
+
+    .btnSize {
+        font-size: 12px
+    }
+    .btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        padding: 8px 11px;
+        font-size: 15px;
+        line-height: 0.2;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 </style>
 <div class="row">
     <h3>List of questionnaires</h3>
@@ -54,7 +79,15 @@
                 { "data": "Name1" },
                 { "data": "Name2" },
                 { "data": "Name3" },
-                { "data": "IsActive" },
+                {
+                    "data": "IsActive", render: function (data, type, row) {
+                        if (data) {
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" checked>';
+                        } else {
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox">';
+                        }
+                    }
+                },
                 {
                     "mData": null,
                     "bSortable": false,
@@ -66,7 +99,7 @@
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-danger" onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btn btn-danger btnSize" onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
                 },
             ],
             "language": {
