@@ -76,5 +76,11 @@ namespace School_Indicators.Controllers
             }
         }
 
+        public ActionResult GetAll()
+        {
+            var questionnaireList = service.GetQuestionnaries();
+            return Json(new { data = questionnaireList }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
