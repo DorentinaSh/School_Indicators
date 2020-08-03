@@ -59,14 +59,14 @@
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-warning" onclick="EditInstitution(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btn btn-warning" onclick="EditQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
 
                 },
                 {
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-danger" onclick="DeleteInstitution(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btn btn-danger" onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
                 },
             ],
             "language": {
@@ -83,6 +83,13 @@
             }
         });
     }
+
+    function EditQuestionnaire(obj) {
+        var currow = $(obj).closest('tr');
+        var col2 = currow.find('td:eq(0)').text();
+        window.location.href = '/Questionnaire/Edit?id=' + col2;
+    }
+
 
     function DeleteQuestionnaire(_id) {
         Swal.fire({
