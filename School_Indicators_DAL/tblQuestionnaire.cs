@@ -17,8 +17,8 @@ namespace School_Indicators_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblQuestionnaire()
         {
-            this.tblCategoryQuestionnaireQuestions = new HashSet<tblCategoryQuestionnaireQuestion>();
             this.tblSessions = new HashSet<tblSession>();
+            this.tblCategoryQuestionnaireQuestions = new HashSet<tblCategoryQuestionnaireQuestion>();
         }
     
         public int Id { get; set; }
@@ -35,8 +35,8 @@ namespace School_Indicators_DAL
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCategoryQuestionnaireQuestion> tblCategoryQuestionnaireQuestions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSession> tblSessions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCategoryQuestionnaireQuestion> tblCategoryQuestionnaireQuestions { get; set; }
     }
 }

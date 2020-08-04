@@ -17,9 +17,9 @@ namespace School_Indicators_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblQuestionOfQuestionnaire()
         {
-            this.tblCategoryQuestionnaireQuestions = new HashSet<tblCategoryQuestionnaireQuestion>();
             this.tblQuestionOptions = new HashSet<tblQuestionOption>();
             this.tblSessionDetails = new HashSet<tblSessionDetail>();
+            this.tblCategoryQuestionnaireQuestions = new HashSet<tblCategoryQuestionnaireQuestion>();
         }
     
         public int Id { get; set; }
@@ -37,12 +37,12 @@ namespace School_Indicators_DAL
         public Nullable<int> OrderBy { get; set; }
         public bool isActive { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCategoryQuestionnaireQuestion> tblCategoryQuestionnaireQuestions { get; set; }
         public virtual tblQuestionType tblQuestionType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblQuestionOption> tblQuestionOptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSessionDetail> tblSessionDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCategoryQuestionnaireQuestion> tblCategoryQuestionnaireQuestions { get; set; }
     }
 }

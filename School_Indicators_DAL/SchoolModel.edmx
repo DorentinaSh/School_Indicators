@@ -29,6 +29,11 @@
           <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="QuestionnaireId" Type="int" Nullable="false" />
           <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="InsertDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="InsertBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LUB" Type="nvarchar" MaxLength="50" />
+          <Property Name="LUD" Type="smalldatetime" />
+          <Property Name="LUN" Type="int" />
         </EntityType>
         <EntityType Name="tblCity">
           <Key>
@@ -388,7 +393,6 @@
       <Schema Namespace="School_CardsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="School_CardsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblCategoryOfQuestionnaires" EntityType="School_CardsModel.tblCategoryOfQuestionnaire" />
-          <EntitySet Name="tblCategoryQuestionnaireQuestions" EntityType="School_CardsModel.tblCategoryQuestionnaireQuestion" />
           <EntitySet Name="tblCities" EntityType="School_CardsModel.tblCity" />
           <EntitySet Name="tblInstitutions" EntityType="School_CardsModel.tblInstitution" />
           <EntitySet Name="tblQuestionnaires" EntityType="School_CardsModel.tblQuestionnaire" />
@@ -398,18 +402,6 @@
           <EntitySet Name="tblSessionDetails" EntityType="School_CardsModel.tblSessionDetail" />
           <EntitySet Name="tblSessions" EntityType="School_CardsModel.tblSession" />
           <EntitySet Name="tblUserInstitutions" EntityType="School_CardsModel.tblUserInstitution" />
-          <AssociationSet Name="FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire" Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire">
-            <End Role="tblCategoryOfQuestionnaire" EntitySet="tblCategoryOfQuestionnaires" />
-            <End Role="tblCategoryQuestionnaireQuestion" EntitySet="tblCategoryQuestionnaireQuestions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire" Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire">
-            <End Role="tblQuestionnaire" EntitySet="tblQuestionnaires" />
-            <End Role="tblCategoryQuestionnaireQuestion" EntitySet="tblCategoryQuestionnaireQuestions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire" Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire">
-            <End Role="tblQuestionOfQuestionnaire" EntitySet="tblQuestionOfQuestionnaires" />
-            <End Role="tblCategoryQuestionnaireQuestion" EntitySet="tblCategoryQuestionnaireQuestions" />
-          </AssociationSet>
           <AssociationSet Name="FK__tblInstit__CityI__4D94879B" Association="School_CardsModel.FK__tblInstit__CityI__4D94879B">
             <End Role="tblCity" EntitySet="tblCities" />
             <End Role="tblInstitution" EntitySet="tblInstitutions" />
@@ -446,6 +438,19 @@
             <End Role="tblUserInstitution" EntitySet="tblUserInstitutions" />
             <End Role="tblSession" EntitySet="tblSessions" />
           </AssociationSet>
+          <EntitySet Name="tblCategoryQuestionnaireQuestions" EntityType="School_CardsModel.tblCategoryQuestionnaireQuestion" />
+          <AssociationSet Name="FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire" Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire">
+            <End Role="tblCategoryOfQuestionnaire" EntitySet="tblCategoryOfQuestionnaires" />
+            <End Role="tblCategoryQuestionnaireQuestion" EntitySet="tblCategoryQuestionnaireQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire" Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire">
+            <End Role="tblQuestionnaire" EntitySet="tblQuestionnaires" />
+            <End Role="tblCategoryQuestionnaireQuestion" EntitySet="tblCategoryQuestionnaireQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire" Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire">
+            <End Role="tblQuestionOfQuestionnaire" EntitySet="tblQuestionOfQuestionnaires" />
+            <End Role="tblCategoryQuestionnaireQuestion" EntitySet="tblCategoryQuestionnaireQuestions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblCategoryOfQuestionnaire">
           <Key>
@@ -463,18 +468,6 @@
           <Property Name="OrderBy" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblCategoryQuestionnaireQuestions" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire" FromRole="tblCategoryOfQuestionnaire" ToRole="tblCategoryQuestionnaireQuestion" />
-        </EntityType>
-        <EntityType Name="tblCategoryQuestionnaireQuestion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="QuestionnaireId" Type="Int32" Nullable="false" />
-          <Property Name="QuestionId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblCategoryOfQuestionnaire" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire" FromRole="tblCategoryQuestionnaireQuestion" ToRole="tblCategoryOfQuestionnaire" />
-          <NavigationProperty Name="tblQuestionnaire" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire" FromRole="tblCategoryQuestionnaireQuestion" ToRole="tblQuestionnaire" />
-          <NavigationProperty Name="tblQuestionOfQuestionnaire" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire" FromRole="tblCategoryQuestionnaireQuestion" ToRole="tblQuestionOfQuestionnaire" />
         </EntityType>
         <EntityType Name="tblCity">
           <Key>
@@ -529,8 +522,8 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="OrderBy" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblCategoryQuestionnaireQuestions" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire" FromRole="tblQuestionnaire" ToRole="tblCategoryQuestionnaireQuestion" />
           <NavigationProperty Name="tblSessions" Relationship="School_CardsModel.FK__tblSessio__Quest__628FA481" FromRole="tblQuestionnaire" ToRole="tblSession" />
+          <NavigationProperty Name="tblCategoryQuestionnaireQuestions" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire" FromRole="tblQuestionnaire" ToRole="tblCategoryQuestionnaireQuestion" />
         </EntityType>
         <EntityType Name="tblQuestionOfQuestionnaire">
           <Key>
@@ -550,10 +543,10 @@
           <Property Name="LUN" Type="Int32" />
           <Property Name="OrderBy" Type="Int32" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblCategoryQuestionnaireQuestions" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire" FromRole="tblQuestionOfQuestionnaire" ToRole="tblCategoryQuestionnaireQuestion" />
           <NavigationProperty Name="tblQuestionType" Relationship="School_CardsModel.FK__tblQuesti__Quest__5812160E" FromRole="tblQuestionOfQuestionnaire" ToRole="tblQuestionType" />
           <NavigationProperty Name="tblQuestionOptions" Relationship="School_CardsModel.FK__tblQuesti__Quest__5AEE82B9" FromRole="tblQuestionOfQuestionnaire" ToRole="tblQuestionOption" />
           <NavigationProperty Name="tblSessionDetails" Relationship="School_CardsModel.FK__tblSessio__Quest__66603565" FromRole="tblQuestionOfQuestionnaire" ToRole="tblSessionDetail" />
+          <NavigationProperty Name="tblCategoryQuestionnaireQuestions" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire" FromRole="tblQuestionOfQuestionnaire" ToRole="tblCategoryQuestionnaireQuestion" />
         </EntityType>
         <EntityType Name="tblQuestionOption">
           <Key>
@@ -643,42 +636,6 @@
           <NavigationProperty Name="tblInstitution" Relationship="School_CardsModel.FK__tblUserIn__Insti__5EBF139D" FromRole="tblUserInstitution" ToRole="tblInstitution" />
           <NavigationProperty Name="tblSessions" Relationship="School_CardsModel.FK__tblSessio__UserI__619B8048" FromRole="tblUserInstitution" ToRole="tblSession" />
         </EntityType>
-        <Association Name="FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire">
-          <End Type="School_CardsModel.tblCategoryOfQuestionnaire" Role="tblCategoryOfQuestionnaire" Multiplicity="1" />
-          <End Type="School_CardsModel.tblCategoryQuestionnaireQuestion" Role="tblCategoryQuestionnaireQuestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCategoryOfQuestionnaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblCategoryQuestionnaireQuestion">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire">
-          <End Type="School_CardsModel.tblQuestionnaire" Role="tblQuestionnaire" Multiplicity="1" />
-          <End Type="School_CardsModel.tblCategoryQuestionnaireQuestion" Role="tblCategoryQuestionnaireQuestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblQuestionnaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblCategoryQuestionnaireQuestion">
-              <PropertyRef Name="QuestionnaireId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire">
-          <End Type="School_CardsModel.tblQuestionOfQuestionnaire" Role="tblQuestionOfQuestionnaire" Multiplicity="1" />
-          <End Type="School_CardsModel.tblCategoryQuestionnaireQuestion" Role="tblCategoryQuestionnaireQuestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblQuestionOfQuestionnaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblCategoryQuestionnaireQuestion">
-              <PropertyRef Name="QuestionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__tblInstit__CityI__4D94879B">
           <End Type="School_CardsModel.tblCity" Role="tblCity" Multiplicity="1" />
           <End Type="School_CardsModel.tblInstitution" Role="tblInstitution" Multiplicity="*" />
@@ -787,6 +744,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblCategoryQuestionnaireQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionnaireId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InsertBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LUB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LUD" Type="DateTime" Precision="0" />
+          <Property Name="LUN" Type="Int32" />
+          <NavigationProperty Name="tblCategoryOfQuestionnaire" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire" FromRole="tblCategoryQuestionnaireQuestion" ToRole="tblCategoryOfQuestionnaire" />
+          <NavigationProperty Name="tblQuestionnaire" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire" FromRole="tblCategoryQuestionnaireQuestion" ToRole="tblQuestionnaire" />
+          <NavigationProperty Name="tblQuestionOfQuestionnaire" Relationship="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire" FromRole="tblCategoryQuestionnaireQuestion" ToRole="tblQuestionOfQuestionnaire" />
+        </EntityType>
+        <Association Name="FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire">
+          <End Type="School_CardsModel.tblCategoryOfQuestionnaire" Role="tblCategoryOfQuestionnaire" Multiplicity="1" />
+          <End Type="School_CardsModel.tblCategoryQuestionnaireQuestion" Role="tblCategoryQuestionnaireQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategoryOfQuestionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCategoryQuestionnaireQuestion">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire">
+          <End Type="School_CardsModel.tblQuestionnaire" Role="tblQuestionnaire" Multiplicity="1" />
+          <End Type="School_CardsModel.tblCategoryQuestionnaireQuestion" Role="tblCategoryQuestionnaireQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuestionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCategoryQuestionnaireQuestion">
+              <PropertyRef Name="QuestionnaireId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire">
+          <End Type="School_CardsModel.tblQuestionOfQuestionnaire" Role="tblQuestionOfQuestionnaire" Multiplicity="1" />
+          <End Type="School_CardsModel.tblCategoryQuestionnaireQuestion" Role="tblCategoryQuestionnaireQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuestionOfQuestionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCategoryQuestionnaireQuestion">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -806,16 +816,6 @@
                 <ScalarProperty Name="CategoryName3" ColumnName="CategoryName3" />
                 <ScalarProperty Name="CategoryName2" ColumnName="CategoryName2" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblCategoryQuestionnaireQuestions">
-            <EntityTypeMapping TypeName="School_CardsModel.tblCategoryQuestionnaireQuestion">
-              <MappingFragment StoreEntitySet="tblCategoryQuestionnaireQuestions">
-                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
-                <ScalarProperty Name="QuestionnaireId" ColumnName="QuestionnaireId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -972,6 +972,21 @@
                 <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
                 <ScalarProperty Name="InstitutionID" ColumnName="InstitutionID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategoryQuestionnaireQuestions">
+            <EntityTypeMapping TypeName="School_CardsModel.tblCategoryQuestionnaireQuestion">
+              <MappingFragment StoreEntitySet="tblCategoryQuestionnaireQuestions">
+                <ScalarProperty Name="LUN" ColumnName="LUN" />
+                <ScalarProperty Name="LUD" ColumnName="LUD" />
+                <ScalarProperty Name="LUB" ColumnName="LUB" />
+                <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="QuestionnaireId" ColumnName="QuestionnaireId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

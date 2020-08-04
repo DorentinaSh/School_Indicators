@@ -101,8 +101,10 @@
     }
 
     function DeleteCategory(_this) {
+        console.log(_this);
         var currow = $(_this).closest('tr');
         var _id = currow.find('td:eq(0)').text();
+        console.log(_id);
          Swal.fire({
             title: 'Are you sure?',
             text: 'You will not be able to recover this record!',
@@ -137,9 +139,6 @@
                     )
                 }
             })
-
-    }
-    function DeleteCategory(_id) {
 
     }
 </script>

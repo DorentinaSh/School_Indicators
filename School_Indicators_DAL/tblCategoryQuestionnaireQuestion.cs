@@ -18,6 +18,11 @@ namespace School_Indicators_DAL
         public int CategoryId { get; set; }
         public int QuestionnaireId { get; set; }
         public int QuestionId { get; set; }
+        public System.DateTime InsertDate { get; set; }
+        public string InsertBy { get; set; }
+        public string LUB { get; set; }
+        public Nullable<System.DateTime> LUD { get; set; }
+        public Nullable<int> LUN { get; set; }
     
         public virtual tblCategoryOfQuestionnaire tblCategoryOfQuestionnaire { get; set; }
         public virtual tblQuestionnaire tblQuestionnaire { get; set; }
