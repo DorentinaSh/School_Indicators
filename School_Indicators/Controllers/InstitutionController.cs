@@ -46,19 +46,19 @@ namespace School_Indicators.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public JsonResult UpdateInstitution(Institution model)
-        {
-            try
-            {
-                InstitutionService.UpdateInstitution(model);
-                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+       // [HttpPost]
+      //  public JsonResult UpdateInstitution(Institution model)
+       // {
+            //try
+            //{
+            //    InstitutionService.UpdateInstitution(model);
+            //    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw;
+            //}
+      //  }
 
 
         [HttpPost]
@@ -75,7 +75,6 @@ namespace School_Indicators.Controllers
             }
         }
 
-        [HttpGet]
         public ActionResult GetAll()
         {
             var institutionList = InstitutionService.GetInstitutions();

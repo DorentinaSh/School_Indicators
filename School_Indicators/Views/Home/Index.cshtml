@@ -11,7 +11,7 @@
     <style>
         .searchBar {
             position: absolute;
-            top: 70%;
+            top: 40%;
             left: 70%;
             height: 30%;
             width: 50%;
@@ -25,7 +25,7 @@
     </style>
 </head>
 
-<body style="        background: linear-gradient(to bottom, #5CDB95 0%, #379683 100%) no-repeat;">
+<body style=" background: linear-gradient(to bottom, #5CDB95 0%, #379683 100%) no-repeat;">
     <div class="col-md-12">
         <div class="map;">
             <svg style="margin: auto;width: 50%;padding: 30px;"
@@ -432,13 +432,26 @@
                 </g>
             </svg>
             <div class="searchBar">
-                <form class="example" style="float: right; margin-right: 150px;" action="action_page.php">
+                @*<form class="example" style="float: right; margin-right: 150px;" action="action_page.php">*@
 
-                    <input style="background-color:transparent;border:1px solid white; border-radius: 2px;font-size:18px" type="text" placeholder="Search.." name="search">
-                    <button class="transparent" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
+                <input style="background-color:transparent;border:1px solid white; border-radius: 2px;font-size:18px" type="text" placeholder="Search.." name="search" id="search">
+                <button class="transparent" onclick="searchSchools()" @*type="submit"*@>
+                    <i style="color:white" class="fa fa-search"></i>
+                </button>
+                @*</form>*@
+
+                <div>
+                    <table id="tblStudent" class="table table-bordered table-striped table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                @*<th align="left" class="productth">ID</th>
+                        <th align="left" class="productth">Location</th>*@
+                                <th align="left" class="productth">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
@@ -449,8 +462,40 @@
         function regionOnHover(x) {
             x.style.fill = '#EDF5E1';
         }
+
         function regionOnLeave(x) {
             x.style.fill = '#05386b';
+        }
+
+        function getSearchInputValue() {
+            var searchVal = document.getElementById("search").value;
+            return searchVal;
+        }
+
+        function searchSchools() {
+            $.ajax({
+                 type: "GET",
+                 url: '@Url.Action("GetSchools", "Home")',
+                 data:{
+                    query: getSearchInputValue()
+                 },
+                 dataType: "json",
+                 contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                            //+ "<td class='prtoducttd'>" + item.CityId + "</td>"
+                            //+ "<td class='prtoducttd'>" + item.Addess + "</td>"
+                            + "<td class='prtoducttd'>" + item.Name1 + "</td>"
+                            + "</tr>";
+                        $('#tblStudent tbody').append(rows);
+                    });
+                 },
+                 error: function (err) {
+                     console.log(err);
+                 }
+            });
         }
     </script>
 

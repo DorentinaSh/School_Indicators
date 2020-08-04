@@ -2,6 +2,37 @@
 @{
     ViewBag.Title = "Index";
 }
+
+<style>
+    .hide_column {
+        display: none;
+    }
+
+    .btnSize {
+        font-size: 12px
+    }
+    .btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        padding: 8px 11px;
+        font-size: 15px;
+        line-height: 0.2;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+</style>
 <div class="row">
     <h3>List of questionnaires</h3>
     <hr />
@@ -13,49 +44,85 @@
     <div class="col-md-12">
         <hr />
         <div class="table-responsive">
-            <table class="table table-hover table-condensed table-condensed table-striped table-hover">
+            <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="questionnaire">
                 <thead>
                     <tr>
+                        <th>Hide Id</th>
                         <th>Shqip</th>
                         <th>English</th>
                         <th>Srpsko</th>
                         <th>Is Active</th>
-                        <th></th>
+                        <th>Nrysho</th>
+                        <th>Fshij</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Name1</td>
-                            <td>@item.Name2</td>
-                            <td>@item.Name3</td>
-                            <td><input type="checkbox" disabled id="IsActive" name="IsActive" @(item.IsActive ? "checked" : String.Empty) /></td>
-                            <td>
-                                <div class="pull-right">
-                                    <a class="btn btn-xs btn-info" href="/Questions/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Questions"><i class="glyphicon glyphicon-arrow-right"></i></a>
-                                    @*<a class="btn btn-xs btn-info" href="/Categories/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Categories"><i class="glyphicon glyphicon-arrow-right"></i></a>*@
-                                    <a class="btn btn-xs btn-info" href="/Questionnaire/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <button class="btn btn-xs btn-danger" type="button" onclick="DeleteQuestionnaire(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
             </table>
         </div>
     </div>
 </div>
 <script>
 
-    //$(document).ready(function () {
-    //    Swal.fire({
-    //        title: 'Error!',
-    //        text: 'Do you want to continue',
-    //        icon: 'error',
-    //        confirmButtonText: 'Cool'
-    //    })
-    //});
+
+    $(document).ready(function () {
+        LoadQuestionnaireDataTable();
+    });
+
+    function LoadQuestionnaireDataTable() {
+        $("#questionnaire").DataTable({
+            "ajax": {
+                "url": "/Questionnaire/GetAll",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "Id", "className": "hide_column" },
+                { "data": "Name1" },
+                { "data": "Name2" },
+                { "data": "Name3" },
+                {
+                    "data": "IsActive", render: function (data, type, row) {
+                        if (data) {
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" checked>';
+                        } else {
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox">';
+                        }
+                    }
+                },
+                {
+                    "mData": null,
+                    "bSortable": false,
+                    "width": "1px",
+                    "mRender": function (o) { return '<a class="btn btn-warning" onclick="EditQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
+
+                },
+                {
+                    "mData": null,
+                    "bSortable": false,
+                    "width": "1px",
+                    "mRender": function (o) { return '<a class="btn btn-danger btnSize" onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
+                },
+            ],
+            "language": {
+                "lengthMenu": "Shfaq _MENU_ rekorde për faqe",
+                "zeroRecords": "Nuk u gjet asnjë rekord",
+                "info": "Faqja _PAGE_ nga _PAGES_",
+                "infoEmpty": "Asnjë rekord në dispozicion",
+                "infoFiltered": "(filtruar nga _MAX_ rekorde gjithesej)",
+                "sSearch": "Kërko",
+                "oPaginate": {
+                    "sPrevious": "Pas",
+                    "sNext": "Para"
+                },
+            }
+        });
+    }
+
+    function EditQuestionnaire(obj) {
+        var currow = $(obj).closest('tr');
+        var col2 = currow.find('td:eq(0)').text();
+        window.location.href = '/Questionnaire/Edit?id=' + col2;
+    }
+
 
     function DeleteQuestionnaire(_id) {
         Swal.fire({

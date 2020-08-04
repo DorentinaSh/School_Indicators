@@ -1,64 +1,57 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
+
+
+<style>
+    .hide_column {
+        display: none;
+    }
+</style>
 <div class="row">
-    <h3>List of Institutions</h3>
-    <hr />
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <a class="btn btn-primary" href="/Institution/Create">Add New    <i class="glyphicon glyphicon-plus"></i></a>
-    </div>
-    <div class="col-md-12">
+        <h3>List of Institutions</h3>
         <hr />
-        <div class="table-responsive">
-            <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="instituions">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Institution No</th>
-                        <th>Shqip</th>
-                        <th>English</th>
-                        <th>Srpsko</th>
-                        <th>Is Active</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                @*<tbody>
-                    @foreach (var item in Model)
-                    {
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary" href="/Institution/Create">Add New    <i class="glyphicon glyphicon-plus"></i></a>
+        </div>
+        <div class="col-md-12">
+            <hr />
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="institutions">
+                    <thead>
                         <tr>
-                            <td><input type="checkbox" disabled id="IsActive" name="IsActive" @(item.IsActive ? "checked" : String.Empty) /></td>
-                            <td>@item.InstitutionsNo</td>
-                            <td>@item.Name1</td>
-                            <td>@item.Name2</td>
-                            <td>@item.Name3</td>
-                            <td>
-                                <div class="pull-right">
-                                    <a class="btn btn-xs btn-info" href="/Institution/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <button class="btn btn-xs btn-danger" onclick="DeleteInstitution(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
-                                </div>
-                            </td>
+                            <th>Hide Id</th>
+                            <th>Institution No</th>
+                            <th>Shqip</th>
+                            <th>English</th>
+                            <th>Srpsko</th>
+                            <th>Is Active</th>
+                            <th>Ndrysho</th>
+                            <th>Fshij</th>
                         </tr>
-                    }
-                </tbody>*@
-            </table>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
 <script>
+
     $(document).ready(function () {
-        $("#instituions").DataTable({
-            serverSide: true,
+        LoadInstitutionsDataTable();
+    });
+
+        function LoadInstitutionsDataTable() {
+            $("#institutions").DataTable({
             "ajax": {
                 "url": "/Institution/GetAll",
                 "type": "GET",
-                "datatype": "json",
-                "paging": "false"
+                "datatype": "json"
             },
             "columns": [
-                { "data": "Id", "class": "hidden"  },
+                { "data": "Id", "className": "hide_column"  },
                 { "data": "InstitutionsNo" },
                 { "data": "Name1" },
                 { "data": "Name2" },
@@ -78,8 +71,20 @@
                     "mRender": function (o) { return '<a class="btn btn-danger" onclick="DeleteInstitution(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
                 },
             ],
+            "language": {
+                "lengthMenu": "Shfaq _MENU_ rekorde për faqe",
+                "zeroRecords": "Nuk u gjet asnjë rekord",
+                "info": "Faqja _PAGE_ nga _PAGES_",
+                "infoEmpty": "Asnjë rekord në dispozicion",
+                "infoFiltered": "(filtruar nga _MAX_ rekorde gjithesej)",
+                "sSearch": "Kërko",
+                "oPaginate": {
+                    "sPrevious": "Pas",
+                    "sNext": "Para"
+                },
+            }
         });
-    });
+    }
 
     function EditInstitution(obj) {
         var currow = $(obj).closest('tr');
@@ -90,7 +95,7 @@
 
     function DeleteInstitution(_this) {
         var currow = $(_this).closest('tr');
-        var _id = currow.find('td:eq(0)').text(); 
+        var _id = currow.find('td:eq(0)').text();
          Swal.fire({
             title: 'Are you sure?',
             text: 'You will not be able to recover this record!',

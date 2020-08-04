@@ -28,7 +28,7 @@ namespace School_Indicators.Controllers
 
         [HttpPost]
         public JsonResult CreateQuestionnarie(Questionnaries model)
-            {
+        {
             try
             {
                 service.SaveQuestionnaire(model);
@@ -74,6 +74,12 @@ namespace School_Indicators.Controllers
             {
                 throw;
             }
+        }
+
+        public ActionResult GetAll()
+        {
+            var questionnaireList = service.GetQuestionnaries();
+            return Json(new { data = questionnaireList }, JsonRequestBehavior.AllowGet);
         }
 
     }
