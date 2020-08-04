@@ -52,8 +52,9 @@
                         <th>English</th>
                         <th>Srpsko</th>
                         <th>Is Active</th>
-                        <th>Nrysho</th>
-                        <th>Fshij</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
             </table>
@@ -84,9 +85,16 @@
                         if (data) {
                             return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" checked>';
                         } else {
-                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox">';
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" >';
                         }
                     }
+                },
+                {
+                    "mData": null,
+                    "bSortable": false,
+                    "width": "1px",
+                    "mRender": function (o) { return '<a class="btn btn-xs btn-info" onclick="ViewQuestions(this)" data-toggle="tooltip" data-placement="top" title="View Questions"'+'>' + '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>' +'</a>'; }
+
                 },
                 {
                     "mData": null,
@@ -123,8 +131,16 @@
         window.location.href = '/Questionnaire/Edit?id=' + col2;
     }
 
+    function ViewQuestions(obj) {
+        var currow = $(obj).closest('tr');
+        var col2 = currow.find('td:eq(0)').text();
+        window.location.href = '/Questions/Index?id=' + col2;
+    }
 
-    function DeleteQuestionnaire(_id) {
+
+    function DeleteQuestionnaire(_this) {
+        var currow = $(_this).closest('tr');
+        var _id = currow.find('td:eq(0)').text();
         Swal.fire({
             title: 'Are you sure?',
             text: 'You will not be able to recover this record!',
@@ -135,6 +151,7 @@
             confirmButtonText: 'Yes, delete it!',
             cancelButtonText: 'Cancel!',
         }).then((result) => {
+            console.log(_id);
                 if (result.value) {
                     $.ajax({
                          type: "POST",

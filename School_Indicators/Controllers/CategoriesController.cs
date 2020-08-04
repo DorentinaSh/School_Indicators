@@ -16,15 +16,17 @@ namespace School_Indicators.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            //ViewBag.QID = id;
-            //ViewBag.Name = qservice.GetQuestionnaireNameById(id);
             List<CategoryOfQuestion> model = service.GetCategories();
             return View(model);
         }
 
+        public ActionResult GetAll()
+        {
+            var model = service.GetCategories();
+            return Json(new { data = model }, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Create()
         {
-            ViewBag.Questionnaires = new SelectList(qservice.GetQuestionnaries(), "Id", "Name1");
             return View(new CategoryOfQuestion());
         }
 
@@ -46,7 +48,6 @@ namespace School_Indicators.Controllers
         {
             CategoryOfQuestion model = new CategoryOfQuestion();
             model = service.GetCategoryById(id);
-            ViewBag.Questionnaires = new SelectList(qservice.GetQuestionnaries(), "Id", "Name1", model.QuestionnaireID);
             return View(model);
         }
 

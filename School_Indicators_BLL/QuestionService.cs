@@ -19,14 +19,11 @@ namespace School_Indicators_BLL
                 {
                     List<Question> model = (from e in db.tblQuestionOfQuestionnaires
                                             join c in db.tblCategoryOfQuestionnaires on e.CategoryOfQuestionnaireID equals c.Id
-                                            join q in db.tblQuestionnaires on c.QuestionnaireID equals q.Id
                                             join t in db.tblQuestionTypes on e.QuestionTypeID equals t.Id
                                             where e.CategoryOfQuestionnaireID == id
                                             select new Question
                                             {
                                                 Id = e.Id,
-                                                QuestionnaireID = q.Id,
-                                                QuestionnaireName = q.QuestName,
                                                 CategoryId = c.Id,
                                                 CategoryName = c.CategoryName,
                                                 QuestionTypeID = e.QuestionTypeID,
@@ -51,14 +48,11 @@ namespace School_Indicators_BLL
                 {
                     List<Question> model = (from e in db.tblQuestionOfQuestionnaires
                                             join c in db.tblCategoryOfQuestionnaires on e.CategoryOfQuestionnaireID equals c.Id
-                                            join q in db.tblQuestionnaires on c.QuestionnaireID equals q.Id
                                             join t in db.tblQuestionTypes on e.QuestionTypeID equals t.Id
-                                            where q.Id == id
+                                            //where q.Id == id
                                             select new Question
                                             {
                                                 Id = e.Id,
-                                                QuestionnaireID = q.Id,
-                                                QuestionnaireName = q.QuestName,
                                                 CategoryId = c.Id,
                                                 CategoryName = c.CategoryName,
                                                 QuestionTypeID = e.QuestionTypeID,
@@ -84,14 +78,11 @@ namespace School_Indicators_BLL
                 {
                     Question model = (from e in db.tblQuestionOfQuestionnaires
                                       join c in db.tblCategoryOfQuestionnaires on e.CategoryOfQuestionnaireID equals c.Id
-                                      join q in db.tblQuestionnaires on c.QuestionnaireID equals q.Id
                                       join t in db.tblQuestionTypes on e.QuestionTypeID equals t.Id
                                       where e.Id == id
                                       select new Question
                                       {
                                           Id = e.Id,
-                                          QuestionnaireID = q.Id,
-                                          QuestionnaireName = q.QuestName,
                                           CategoryId = c.Id,
                                           CategoryName = c.CategoryName,
                                           QuestionTypeID = e.QuestionTypeID,
@@ -117,12 +108,9 @@ namespace School_Indicators_BLL
                 using (School_CardsEntities db = new School_CardsEntities())
                 {
                     Question model = (from e in db.tblCategoryOfQuestionnaires
-                                      join q in db.tblQuestionnaires on e.QuestionnaireID equals q.Id
                                       where e.Id == id
                                       select new Question
                                       {
-                                          QuestionnaireID = q.Id,
-                                          QuestionnaireName = q.QuestName,
                                           CategoryId = e.Id,
                                           CategoryName = e.CategoryName,
                                       }).FirstOrDefault();

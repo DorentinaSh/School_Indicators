@@ -17,11 +17,10 @@ namespace School_Indicators_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblCategoryOfQuestionnaire()
         {
-            this.tblQuestionOfQuestionnaires = new HashSet<tblQuestionOfQuestionnaire>();
+            this.tblCategoryQuestionnaireQuestions = new HashSet<tblCategoryQuestionnaireQuestion>();
         }
     
         public int Id { get; set; }
-        public int QuestionnaireID { get; set; }
         public string CategoryName { get; set; }
         public string CategoryName2 { get; set; }
         public string CategoryName3 { get; set; }
@@ -33,8 +32,7 @@ namespace School_Indicators_DAL
         public Nullable<int> OrderBy { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual tblQuestionnaire tblQuestionnaire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblQuestionOfQuestionnaire> tblQuestionOfQuestionnaires { get; set; }
+        public virtual ICollection<tblCategoryQuestionnaireQuestion> tblCategoryQuestionnaireQuestions { get; set; }
     }
 }

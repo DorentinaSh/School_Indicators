@@ -23,16 +23,16 @@
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
         </div>
     </div>
 </div>
@@ -44,7 +44,6 @@
 
 <script>
     function SaveQuestionnaire() {
-
         var frm = {
             'Name1': $('#Name1').val(),
             'Name2': $('#Name2').val(),
@@ -68,8 +67,6 @@
                     showConfirmButton: false,
                     timer: 1500
                 })
-                location.reload();
-                //console.log('response', response);
             },
             error: function (err) {
                 console.log(err);

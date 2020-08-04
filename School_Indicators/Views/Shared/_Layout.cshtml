@@ -8,6 +8,21 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <style>
+        footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align:center;
+        }
+        #footerHrLine {
+            position: fixed;
+            left: 0;
+            bottom: 10px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -50,12 +65,11 @@
         @RenderBody()
         <br />
         <br />
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Riinvest College</p>
-        </footer>
     </div>
-
+    <hr id="footerHrLine" />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Riinvest College</p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)

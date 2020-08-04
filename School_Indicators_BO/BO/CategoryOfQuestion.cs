@@ -10,9 +10,6 @@ namespace School_Indicators_BO.BO
 {
     public class CategoryOfQuestion : Base
     {
-        [Display(Name = "Questionnaire")]
-        public int QuestionnaireID { get; set; }
-        public string QuestionnaireName { get; set; }
         [Display(Name = "Name in Albanian")]
         public string CategoryName { get; set; }
         [Display(Name = "Name in English")]

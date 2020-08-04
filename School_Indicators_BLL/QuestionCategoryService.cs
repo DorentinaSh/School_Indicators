@@ -11,20 +11,17 @@ namespace School_Indicators_BLL
 {
     public class QuestionCategoryService
     {
-        public List<CategoryOfQuestion> GetQuestionCategoryByQuestionnarireId(int id)
+        public List<CategoryOfQuestion> GetCategories()
         {
             try
             {
                 using (School_CardsEntities db = new School_CardsEntities())
                 {
                     List<CategoryOfQuestion> model = (from e in db.tblCategoryOfQuestionnaires
-                                                      join q in db.tblQuestionnaires on e.QuestionnaireID equals q.Id
-                                                      where e.QuestionnaireID == id
                                                       select new CategoryOfQuestion
                                                       {
                                                           Id = e.Id,
-                                                          QuestionnaireID = e.QuestionnaireID,
-                                                          QuestionnaireName = q.QuestName,
+                                                          IsActive = e.IsActive,
                                                           CategoryName = e.CategoryName,
                                                           CategoryName2 = e.CategoryName2,
                                                           CategoryName3 = e.CategoryName3
@@ -38,34 +35,6 @@ namespace School_Indicators_BLL
             }
         }
 
-        public List<CategoryOfQuestion> GetCategories()
-        {
-            try
-            {
-                using (School_CardsEntities db = new School_CardsEntities())
-                {
-                    List<CategoryOfQuestion> model = (from e in db.tblCategoryOfQuestionnaires
-                                                      join q in db.tblQuestionnaires on e.QuestionnaireID equals q.Id into con
-                                                      from q in con.DefaultIfEmpty()
-                                                      select new CategoryOfQuestion
-                                                  {
-                                                      Id = e.Id,
-                                                      QuestionnaireID = e.QuestionnaireID,
-                                                      QuestionnaireName = q.QuestName,
-                                                      CategoryName = e.CategoryName,
-                                                      CategoryName2 = e.CategoryName2,
-                                                      CategoryName3 = e.CategoryName3
-                                                  }).ToList();
-                    return model;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-
         public void SaveCategory(CategoryOfQuestion model)
         {
             try
@@ -74,7 +43,7 @@ namespace School_Indicators_BLL
                 {
                     tblCategoryOfQuestionnaire q = new tblCategoryOfQuestionnaire
                     {
-                        QuestionnaireID = model.QuestionnaireID,
+                        IsActive = model.IsActive,
                         CategoryName = model.CategoryName,
                         CategoryName2 = model.CategoryName2,
                         CategoryName3 = model.CategoryName3,
@@ -98,8 +67,8 @@ namespace School_Indicators_BLL
                 using (School_CardsEntities db = new School_CardsEntities())
                 {
                     tblCategoryOfQuestionnaire q = db.tblCategoryOfQuestionnaires.Where(x => x.Id == model.Id).FirstOrDefault();
-                    q.QuestionnaireID = model.QuestionnaireID;
                     q.CategoryName = model.CategoryName;
+                    q.IsActive = model.IsActive;
                     q.CategoryName2 = model.CategoryName2;
                     q.CategoryName3 = model.CategoryName3;
                     //q. = model.CategoryName3;
@@ -122,13 +91,11 @@ namespace School_Indicators_BLL
                 using (School_CardsEntities db = new School_CardsEntities())
                 {
                     CategoryOfQuestion model = (from e in db.tblCategoryOfQuestionnaires
-                                                join q in db.tblQuestionnaires on e.QuestionnaireID equals q.Id
                                                 where e.Id == id
                                                 select new CategoryOfQuestion
                                                 {
                                                     Id = e.Id,
-                                                    QuestionnaireID = e.QuestionnaireID,
-                                                    QuestionnaireName = q.QuestName,
+                                                    IsActive = e.IsActive,
                                                     CategoryName = e.CategoryName,
                                                     CategoryName2 = e.CategoryName2,
                                                     CategoryName3 = e.CategoryName3

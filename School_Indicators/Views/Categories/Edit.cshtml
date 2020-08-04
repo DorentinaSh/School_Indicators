@@ -4,19 +4,16 @@
 }
     <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
-    <h3>Edit Category for Questionnaire: @Model.QuestionnaireName</h3>
+    <h3>Edit Category </h3>
     <hr />
 </div>
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionnaireID, "Choose questionnaire for this category", htmlAttributes: new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.QuestionnaireID, (SelectList)ViewBag.Questionnaires, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.QuestionnaireID, "", new { @class = "text-danger" })
+    <div class="col-md-12">
+        <div class="form-group" style="float:left;">
+            <label class="control-label">Is Active?</label>
+            <input type="checkbox" class="form-control" id="IsActive" name="IsActive" @(Model.IsActive ? "checked" : String.Empty) />
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-md-4">
         <div class="form-group">
             <label class="control-label">Category Name in Albanian</label>
@@ -32,7 +29,7 @@
     <div class="col-md-4">
         <div class="form-group">
             <label class="control-label">Category Name in Srpsko</label>
-            <input type="text" class="form-control" id="CategoryName3" name="CategoryName3" value="@Model.CategoryName3"/>
+            <input type="text" class="form-control" id="CategoryName3" name="CategoryName3" value="@Model.CategoryName3" />
         </div>
     </div>
     <div class="col-md-12">
@@ -45,10 +42,10 @@
 
         var frm = {
             'Id': _id,
-            'QuestionnaireID': $("#QuestionnaireID option:selected").val(),
             'CategoryName': $('#CategoryName').val(),
             'CategoryName2': $('#CategoryName2').val(),
             'CategoryName3': $('#CategoryName3').val(),
+            'IsActive': $('#IsActive').prop('checked')
         };
 
         console.log(frm);

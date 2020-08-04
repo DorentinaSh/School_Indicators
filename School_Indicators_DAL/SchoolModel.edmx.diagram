@@ -5,27 +5,29 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4cabfe9dd04245948e9ce2e53c19ac50" Name="Diagram1">
-        <EntityTypeShape EntityType="School_CardsModel.tblCategoryOfQuestionnaire" Width="1.5" PointX="3" PointY="9.75" />
-        <EntityTypeShape EntityType="School_CardsModel.tblCity" Width="1.5" PointX="1.5" PointY="20" />
-        <EntityTypeShape EntityType="School_CardsModel.tblQuestionnaire" Width="1.5" PointX="0.75" PointY="5.5" />
-        <EntityTypeShape EntityType="School_CardsModel.tblQuestionOption" Width="1.75" PointX="7.5" PointY="9.75" />
-        <EntityTypeShape EntityType="School_CardsModel.tblQuestionType" Width="1.5" PointX="3" PointY="24" />
-        <EntityTypeShape EntityType="School_CardsModel.tblSessionDetail" Width="1.5" PointX="9.75" PointY="7.375" />
-        <EntityTypeShape EntityType="School_CardsModel.tblSession" Width="1.5" PointX="3" PointY="4.5" />
-        <EntityTypeShape EntityType="School_CardsModel.tblUserInstitution" Width="1.5" PointX="0.75" PointY="0.75" />
-        <AssociationConnector Association="School_CardsModel.FK__tblCatego__Quest__52593CB8" />
+        <EntityTypeShape EntityType="School_CardsModel.tblCategoryOfQuestionnaire" Width="1.5" PointX="3" PointY="12.5" />
+        <EntityTypeShape EntityType="School_CardsModel.tblCategoryQuestionnaireQuestion" Width="1.5" PointX="5.25" PointY="2.375" />
+        <EntityTypeShape EntityType="School_CardsModel.tblCity" Width="1.5" PointX="1.5" PointY="22.5" />
+        <EntityTypeShape EntityType="School_CardsModel.tblInstitution" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="School_CardsModel.tblQuestionnaire" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="School_CardsModel.tblQuestionOfQuestionnaire" Width="1.5" PointX="3" PointY="2.375" />
+        <EntityTypeShape EntityType="School_CardsModel.tblQuestionOption" Width="1.5" PointX="5.25" PointY="5.875" />
+        <EntityTypeShape EntityType="School_CardsModel.tblQuestionType" Width="1.5" PointX="0.75" PointY="3" />
+        <EntityTypeShape EntityType="School_CardsModel.tblSessionDetail" Width="1.5" PointX="7.5" PointY="4.125" />
+        <EntityTypeShape EntityType="School_CardsModel.tblSession" Width="1.5" PointX="5.25" PointY="17.125" />
+        <EntityTypeShape EntityType="School_CardsModel.tblUserInstitution" Width="1.5" PointX="3" PointY="17.375" />
+        <AssociationConnector Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblCategoryOfQuestionnaire" />
+        <AssociationConnector Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionnaire" />
+        <AssociationConnector Association="School_CardsModel.FK_tblCategoryQuestionnaireQuestions_tblQuestionOfQuestionnaire" />
+        <AssociationConnector Association="School_CardsModel.FK__tblInstit__CityI__4D94879B" />
+        <AssociationConnector Association="School_CardsModel.FK__tblUserIn__Insti__5EBF139D" />
         <AssociationConnector Association="School_CardsModel.FK__tblSessio__Quest__628FA481" />
-        <AssociationConnector Association="School_CardsModel.FK__tblSessio__Quest__6754599E" />
-        <AssociationConnector Association="School_CardsModel.FK__tblSessio__Sessi__656C112C" />
-        <AssociationConnector Association="School_CardsModel.FK__tblSessio__UserI__619B8048" />
-        <EntityTypeShape EntityType="School_CardsModel.tblQuestionOfQuestionnaire" Width="1.5" PointX="5.25" PointY="16.25" />
-        <AssociationConnector Association="School_CardsModel.FK__tblQuesti__Categ__571DF1D5" />
         <AssociationConnector Association="School_CardsModel.FK__tblQuesti__Quest__5812160E" />
         <AssociationConnector Association="School_CardsModel.FK__tblQuesti__Quest__5AEE82B9" />
         <AssociationConnector Association="School_CardsModel.FK__tblSessio__Quest__66603565" />
-        <EntityTypeShape EntityType="School_CardsModel.tblInstitution" Width="1.5" PointX="3.75" PointY="28.375" />
-        <AssociationConnector Association="School_CardsModel.FK__tblInstit__CityI__4D94879B" />
-        <AssociationConnector Association="School_CardsModel.FK__tblUserIn__Insti__5EBF139D" />
+        <AssociationConnector Association="School_CardsModel.FK__tblSessio__Quest__6754599E" />
+        <AssociationConnector Association="School_CardsModel.FK__tblSessio__Sessi__656C112C" />
+        <AssociationConnector Association="School_CardsModel.FK__tblSessio__UserI__619B8048" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

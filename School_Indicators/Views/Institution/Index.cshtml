@@ -24,12 +24,12 @@
                         <tr>
                             <th>Hide Id</th>
                             <th>Institution No</th>
-                            <th>Shqip</th>
+                            <th>Albanian</th>
                             <th>English</th>
                             <th>Srpsko</th>
                             <th>Is Active</th>
-                            <th>Ndrysho</th>
-                            <th>Fshij</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                 </table>
@@ -56,7 +56,15 @@
                 { "data": "Name1" },
                 { "data": "Name2" },
                 { "data": "Name3" },
-                { "data": "IsActive" },
+                {
+                    "data": "IsActive", render: function (data, type, row) {
+                        if (data) {
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" disabled checked>';
+                        } else {
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" disabled>';
+                        }
+                    }
+                },
                 {
                     "mData": null,
                     "bSortable": false,
@@ -89,8 +97,7 @@
     function EditInstitution(obj) {
         var currow = $(obj).closest('tr');
         var col2 = currow.find('td:eq(0)').text();
-        console.log(col2);
-        //window.location.href = '/Institution/Edit?id=' + col2;
+        window.location.href = '/Institution/Edit?id=' + col2;
     }
 
     function DeleteInstitution(_this) {

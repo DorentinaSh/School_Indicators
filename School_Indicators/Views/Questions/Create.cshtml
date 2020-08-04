@@ -8,8 +8,7 @@
     }
     #options {
         position: fixed;
-        background-color: #00FF00;
-        height: 30%;
+        height: 70%;
         width: 44%;
         overflow-x: hidden;
         overflow-y: scroll;
@@ -69,23 +68,31 @@
                 @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="col-md-12">
+            <button type="button" onclick="SaveQuestionnaire(@Model.CategoryId)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+        </div>
     </div>
     <div class="col-md-6">
         <div id="options" class="row options">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label">1</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in Albanian</label>
                         <input type="text" name="options[0]" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 1 &#235;sht&#235; obligative" aria-invalid="true" />
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in English</label>
                         <input type="text" name="optionsen[0]" class="form-control" />
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in Srpsko</label>
                         <input type="text" name="optionsen[0]" class="form-control" />
@@ -93,40 +100,42 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label">2</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in Albanian</label>
                         <input type="text" name="options[1]" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 2 &#235;sht&#235; obligative" aria-invalid="true" />
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group row">
+                <div class="col-md-3">
+                    <div class="form-group">
                         <label class="control-label">Option in English</label>
                         <input type="text" name="optionsen[1]" class="form-control" />
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in Srpsko</label>
                         <input type="text" name="optionsen[1]" class="form-control" />
                     </div>
                 </div>
             </div>
+            <div id="moreoptions"></div>
             <div class="row">
-                <div id="moreoptions"></div>
                 <div class="col-md-12">
-                    <a id="addmore" class="btn btn-xs btn-info" onclick="test()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                    <a id="addmore" class="btn btn-xs btn-info" onclick="AddMore()"><i class="glyphicon glyphicon-plus-sign"></i></a>
                 </div>
             </div>
 
         </div>
-        <div id="moreoptions"></div>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <button type="button" onclick="SaveQuestionnaire(@Model.CategoryId)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
-    </div>
+ 
 </div>
 
 <script>
@@ -183,23 +192,24 @@
         }
     });
 
-    function test() {
+    function AddMore() {
         $("#removeoption_" + option).hide();
         option++;
-        $("#moreoptions").append('<div class="row"><div class="col-lg-6 col-12"><div id="option_' + option + '" class="form-group"><label class="control-label col-md-12">Emri i Opsionit ' + option + ' Shqip</label><div class="col-md-10">'
-            + '<input id="in_' + option + '" type="text" name="options[' + (option - 1) + ']" class="form-control opt"/></div> <div class="col-md-1">' +
-            '</div></div></div>' +
-            '<div class="col-lg-6 col-12"><div id="optionen_' + option + '" class="form-group row"><label class="control-label col-md-12">Emri i Opsionit ' + option + ' Anglisht</label><div class="col-md-10">'
-            + '<input type="text" name="optionsen[' + (option - 1) + ']" class="form-control opt"/></div>' +
-            '<a id="removeoption_' + option + '" class="btn btn-danger btn-sm text-white" onclick="RemoveOption(' + option + ')"><i class="glyphicon glyphicon-trash"></i></a></div>' +
-            '</div></div>');
+        $("#moreoptions").append('<div class="row" id="option_' + option + '">' + '<div class="col-md-1"><div class="form-group"><label class="control-label">'+option+'</label></div></div>' +
+            '<div class="col-md-3"><div class="form-group"><label class="control-label">Option in Albanian</label>'
+            + '<input id="in_' + option + '" type="text" name="options[' + (option - 1) + ']" class="form-control opt"/></div></div>' +
+            '<div class="col-md-3"><div class="form-group"><label class="control-label">Option in English</label>'
+            + '<input type="text" name="optionsen[' + (option - 1) + ']" class="form-control opt"/></div></div>'+
+            '<div class="col-md-3"><div class="form-group"><label class="control-label">Option in Srpsko</label>'
+            + '<input type="text" name="optionsen[' + (option - 1) + ']" class="form-control opt"/></div></div>' +
+            '<div class="col-md-1" style="padding-top:25px;"><a id="removeoption_' + option + '" class="btn btn-danger btn-sm text-white" onclick="RemoveOption(' + option + ')"><i class="glyphicon glyphicon-trash"></i></a></div>'
+            + '</div>');
 
         $("#in_" + option).rules('add', { required: true, messages: { required: "Emri i Opsionit " + option + " &#235;sht&#235; obligative" } });
     }
 
     function RemoveOption(optionnr) {
         $("#option_" + optionnr).remove();
-        $("#optionen_" + optionnr).remove();
         option--;
         $("#removeoption_" + option).show();
         if (option < 5) {

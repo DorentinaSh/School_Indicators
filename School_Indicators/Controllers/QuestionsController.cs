@@ -29,7 +29,7 @@ namespace School_Indicators.Controllers
         {
             Question model = new Question();
             ViewBag.Name = questionnaireService.GetQuestionnaireNameById(id);
-            ViewBag.Categories = new SelectList(categoryService.GetQuestionCategoryByQuestionnarireId(id), "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(categoryService.GetCategories(), "Id", "CategoryName");
             ViewBag.QuestionTypes = new SelectList(questionTypeService.GetAllQuestionType(), "Id", "Type");
             return View(model);
         }

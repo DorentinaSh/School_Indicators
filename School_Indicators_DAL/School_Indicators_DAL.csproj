@@ -144,6 +144,9 @@
     <Compile Include="tblCategoryOfQuestionnaire.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblCategoryQuestionnaireQuestion.cs">
+      <DependentUpon>SchoolModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblCity.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>

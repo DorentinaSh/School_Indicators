@@ -30,8 +30,8 @@ namespace School_Indicators_DAL
         public Nullable<System.DateTime> LUD { get; set; }
         public Nullable<int> LUN { get; set; }
     
+        public virtual tblInstitution tblInstitution { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSession> tblSessions { get; set; }
-        public virtual tblInstitution tblInstitution { get; set; }
     }
 }

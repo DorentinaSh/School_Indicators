@@ -17,15 +17,6 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionnaireID, "Choose questionnaire for this category", htmlAttributes: new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.QuestionnaireID, (SelectList)ViewBag.Questionnaires, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.QuestionnaireID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-</div>
-<div class="row">
     <div class="col-md-4">
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label" })
@@ -56,7 +47,6 @@
     function SaveCategories() {
 
         var frm = {
-            'QuestionnaireID': $("#QuestionnaireID option:selected").val(),
             'CategoryName': $('#CategoryName').val(),
             'CategoryName2': $('#CategoryName2').val(),
             'CategoryName3': $('#CategoryName3').val(),
