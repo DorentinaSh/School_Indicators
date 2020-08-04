@@ -58,7 +58,7 @@
                 "paging": "false"
             },
             "columns": [
-                { "data": "ID", "className": "hide_column"  },
+                { "data": "Id", "class": "hidden"  },
                 { "data": "InstitutionsNo" },
                 { "data": "Name1" },
                 { "data": "Name2" },
@@ -84,7 +84,8 @@
     function EditInstitution(obj) {
         var currow = $(obj).closest('tr');
         var col2 = currow.find('td:eq(0)').text();
-        window.location.href = '/Institution/Edit?id=' + col2;
+        console.log(col2);
+        //window.location.href = '/Institution/Edit?id=' + col2;
     }
 
     function DeleteInstitution(_this) {
@@ -110,7 +111,7 @@
                         dataType: "json",
                         contentType: "application/json; charset=utf-8",
                         success: function (response) {
-                            console.log('response', response);
+                            location.reload();
                         },
                         error: function (err) {
                             console.log(err);

@@ -2,6 +2,20 @@
 @{
     ViewBag.Title = "Create";
 }
+<style>
+    .options {
+        display: none;
+    }
+    #options {
+        position: fixed;
+        background-color: #00FF00;
+        height: 30%;
+        width: 44%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+</style>
     <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
     <h3></h3>
@@ -9,57 +23,106 @@
     <hr />
 </div>
 <div class="row">
-    <div class="col-md-4">
-        <div class="form-group" style="float:left;">
-            <label class="control-label">Is Active?</label>
-            <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked />
+    <div class="col-md-6">
+        <div class="col-md-12">
+            <div class="form-group" style="float:left;">
+                <label class="control-label">Is Active?</label>
+                <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked />
+            </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
+        <div class="col-md-6">
             <div class="form-group">
-                @Html.LabelFor(model => model.CategoryId, "Choose category", htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.CategoryId, (SelectList)ViewBag.Categories, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CategoryId, "Choose category", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(m => m.CategoryId, (SelectList)ViewBag.Categories, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.QuestionTypeID, "Choose question type", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(m => m.QuestionTypeID, (SelectList)ViewBag.QuestionTypes, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.QuestionTypeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <div class="form-group">
-                @Html.LabelFor(model => model.QuestionTypeID, "Choose question type", htmlAttributes: new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.QuestionTypeID, (SelectList)ViewBag.QuestionTypes, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.QuestionTypeID, "", new { @class = "text-danger" })
+    <div class="col-md-6">
+        <div id="options" class="row options">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Option in Albanian</label>
+                        <input type="text" name="options[0]" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 1 &#235;sht&#235; obligative" aria-invalid="true" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Option in English</label>
+                        <input type="text" name="optionsen[0]" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Option in Srpsko</label>
+                        <input type="text" name="optionsen[0]" class="form-control" />
+                    </div>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Option in Albanian</label>
+                        <input type="text" name="options[1]" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 2 &#235;sht&#235; obligative" aria-invalid="true" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group row">
+                        <label class="control-label">Option in English</label>
+                        <input type="text" name="optionsen[1]" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Option in Srpsko</label>
+                        <input type="text" name="optionsen[1]" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="moreoptions"></div>
+                <div class="col-md-12">
+                    <a id="addmore" class="btn btn-xs btn-info" onclick="test()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                </div>
+            </div>
+
         </div>
+        <div id="moreoptions"></div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Name1,null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
-        </div>
-    </div>
-       </div>
-   <div class="row">
-       <div id="moreoptions"></div>
-   </div>
 <div class="row">
     <div class="col-md-12">
         <button type="button" onclick="SaveQuestionnaire(@Model.CategoryId)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
@@ -98,27 +161,49 @@
         });
     }
 
-    $('#questiontype').change(function () {
-        //alert("hii");
+    $('#QuestionTypeID').change(function () {
         $("#moreoptions").empty();
         $('.opt').val(null);
         option = 2;
         if (option < 5) {
             $("#addmore").show();
         }
-        //   var type = $("#questiontype :selected").text().toLowerCase();
-        var type = $("#questiontype :selected").val();
+        var type = $("#QuestionTypeID :selected").val();
+        console.log(type);
         switch (type) {
-            case "1":
+            case "2":
                 $(".options").hide();
                 break;
-            case "2":
+            case "4":
                 $(".options").show();
                 break;
-            case "3":
+            case "6":
                 $(".options").show();
             default:
-            // code block
         }
     });
+
+    function test() {
+        $("#removeoption_" + option).hide();
+        option++;
+        $("#moreoptions").append('<div class="row"><div class="col-lg-6 col-12"><div id="option_' + option + '" class="form-group"><label class="control-label col-md-12">Emri i Opsionit ' + option + ' Shqip</label><div class="col-md-10">'
+            + '<input id="in_' + option + '" type="text" name="options[' + (option - 1) + ']" class="form-control opt"/></div> <div class="col-md-1">' +
+            '</div></div></div>' +
+            '<div class="col-lg-6 col-12"><div id="optionen_' + option + '" class="form-group row"><label class="control-label col-md-12">Emri i Opsionit ' + option + ' Anglisht</label><div class="col-md-10">'
+            + '<input type="text" name="optionsen[' + (option - 1) + ']" class="form-control opt"/></div>' +
+            '<a id="removeoption_' + option + '" class="btn btn-danger btn-sm text-white" onclick="RemoveOption(' + option + ')"><i class="glyphicon glyphicon-trash"></i></a></div>' +
+            '</div></div>');
+
+        $("#in_" + option).rules('add', { required: true, messages: { required: "Emri i Opsionit " + option + " &#235;sht&#235; obligative" } });
+    }
+
+    function RemoveOption(optionnr) {
+        $("#option_" + optionnr).remove();
+        $("#optionen_" + optionnr).remove();
+        option--;
+        $("#removeoption_" + option).show();
+        if (option < 5) {
+            $("#addmore").show();
+        }
+    }
 </script>
