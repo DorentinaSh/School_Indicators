@@ -12,7 +12,7 @@
         .searchBar {
             position: absolute;
             top: 40%;
-            left: 70%;
+            left: 75%;
             height: 30%;
             width: 50%;
             margin: -15% 0 0 -25%;
@@ -21,6 +21,15 @@
             border-color: transparent;
             background-color: transparent;
             font-size: 18px
+        }
+        td {
+            background-color: #379683;
+            color:white;
+        }
+        .table-responsive {
+            min-height: .01%;
+            overflow-x: auto;
+            width:40%;
         }
     </style>
 </head>
@@ -432,21 +441,16 @@
                 </g>
             </svg>
             <div class="searchBar">
-                @*<form class="example" style="float: right; margin-right: 150px;" action="action_page.php">*@
-
                 <input style="background-color:transparent;border:1px solid white; border-radius: 2px;font-size:18px" type="text" placeholder="Search.." name="search" id="search">
-                <button class="transparent" onclick="searchSchools()" @*type="submit"*@>
+                <button id="searchBtn" class="transparent" onclick="searchSchools()">
                     <i style="color:white" class="fa fa-search"></i>
                 </button>
-                @*</form>*@
 
                 <div>
+                    <br/>
                     <table id="tblStudent" class="table table-bordered table-striped table-responsive table-hover">
                         <thead>
                             <tr>
-                                @*<th align="left" class="productth">ID</th>
-                        <th align="left" class="productth">Location</th>*@
-                                <th align="left" class="productth">Name</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -485,9 +489,7 @@
                     var items = '';
                     $.each(data, function (i, item) {
                         var rows = "<tr>"
-                            //+ "<td class='prtoducttd'>" + item.CityId + "</td>"
-                            //+ "<td class='prtoducttd'>" + item.Addess + "</td>"
-                            + "<td class='prtoducttd'>" + item.Name1 + "</td>"
+                            + "<td>" + item.Name1 + "</td>"
                             + "</tr>";
                         $('#tblStudent tbody').append(rows);
                     });
@@ -497,6 +499,15 @@
                  }
             });
         }
+
+
+        var input = document.getElementById("search");
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("searchBtn").click();
+            }
+        });
     </script>
 
 </body>
