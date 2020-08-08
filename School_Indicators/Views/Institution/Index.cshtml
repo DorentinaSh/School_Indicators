@@ -7,35 +7,56 @@
     .hide_column {
         display: none;
     }
+    .btnList {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        padding: 8px 11px;
+        font-size: 15px;
+        line-height: 0.2;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 </style>
 <div class="row">
-        <h3>List of Institutions</h3>
+    <h3>List of Institutions</h3>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="/Institution/Create">Add New    <i class="glyphicon glyphicon-plus"></i></a>
+    </div>
+    <div class="col-md-12">
         <hr />
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn-primary" href="/Institution/Create">Add New    <i class="glyphicon glyphicon-plus"></i></a>
-        </div>
-        <div class="col-md-12">
-            <hr />
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="institutions">
-                    <thead>
-                        <tr>
-                            <th>Hide Id</th>
-                            <th>Institution No</th>
-                            <th>Albanian</th>
-                            <th>English</th>
-                            <th>Srpsko</th>
-                            <th>Is Active</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="institutions">
+                <thead>
+                    <tr>
+                        <th>Hide Id</th>
+                        <th>Institution No</th>
+                        <th>Albanian</th>
+                        <th>English</th>
+                        <th>Srpsko</th>
+                        <th>Is Active</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
         </div>
     </div>
+</div>
 
 <script>
 
@@ -69,18 +90,24 @@
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-warning" onclick="EditInstitution(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-warning" onclick="EditInstitution(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
 
                 },
                 {
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-danger" onclick="DeleteInstitution(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-danger" onclick="DeleteInstitution(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
                 },
             ],
             "language": {
-                "lengthMenu": "Shfaq _MENU_ rekorde për faqe",
+                "lengthMenu": 'Shfaq <select>' +
+                    '<option value="5">5</option>' +
+                    '<option value="10">10</option>' +
+                    '<option value="25">25</option>' +
+                    '<option value="50">50</option>' +
+                    '<option value="-1">All</option>' +
+                    '</select> rekorde',
                 "zeroRecords": "Nuk u gjet asnjë rekord",
                 "info": "Faqja _PAGE_ nga _PAGES_",
                 "infoEmpty": "Asnjë rekord në dispozicion",

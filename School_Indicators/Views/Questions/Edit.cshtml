@@ -82,7 +82,9 @@
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (response) {
-                console.log('response', response);
+                if (response.success) {
+                    window.location.href = '/Questions/Index';
+                }
             },
             error: function (err) {
                 console.log(err);

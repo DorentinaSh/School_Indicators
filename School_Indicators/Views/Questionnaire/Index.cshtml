@@ -7,11 +7,7 @@
     .hide_column {
         display: none;
     }
-
-    .btnSize {
-        font-size: 12px
-    }
-    .btn {
+    .btnList {
         display: inline-block;
         margin-bottom: 0;
         font-weight: normal;
@@ -39,7 +35,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <a class="btn btn-primary" href="/Questionnaire/Create">Add New <i class="glyphicon glyphicon-plus"></i></a>
+        <a class="btn btn-primary" href="/Questionnaire/Create">Add New    <i class="glyphicon glyphicon-plus"></i></a>
     </div>
     <div class="col-md-12">
         <hr />
@@ -93,25 +89,31 @@
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-xs btn-info" onclick="ViewQuestions(this)" data-toggle="tooltip" data-placement="top" title="View Questions"'+'>' + '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>' +'</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-xs btn-info" onclick="ViewQuestions(this)" data-toggle="tooltip" data-placement="top" title="View Questions"'+'>' + '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>' +'</a>'; }
 
                 },
                 {
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-warning" onclick="EditQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-warning" onclick="EditQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
 
                 },
                 {
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-danger btnSize" onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-danger " onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
                 },
             ],
             "language": {
-                "lengthMenu": "Shfaq _MENU_ rekorde për faqe",
+                "lengthMenu": 'Shfaq <select>' +
+                    '<option value="5">5</option>' +
+                    '<option value="10">10</option>' +
+                    '<option value="25">25</option>' +
+                    '<option value="50">50</option>' +
+                    '<option value="-1">All</option>' +
+                    '</select> rekorde',
                 "zeroRecords": "Nuk u gjet asnjë rekord",
                 "info": "Faqja _PAGE_ nga _PAGES_",
                 "infoEmpty": "Asnjë rekord në dispozicion",

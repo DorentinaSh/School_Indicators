@@ -66,6 +66,7 @@
     <Compile Include="BO\QuestionType.cs" />
     <Compile Include="BO\Session.cs" />
     <Compile Include="BO\SessionDetails.cs" />
+    <Compile Include="BO\CategoryQuestionnaireQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

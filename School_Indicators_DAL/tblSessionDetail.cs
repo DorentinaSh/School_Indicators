@@ -26,8 +26,8 @@ namespace School_Indicators_DAL
         public Nullable<System.DateTime> LUD { get; set; }
         public Nullable<int> LUN { get; set; }
     
-        public virtual tblQuestionOfQuestionnaire tblQuestionOfQuestionnaire { get; set; }
         public virtual tblQuestionOption tblQuestionOption { get; set; }
         public virtual tblSession tblSession { get; set; }
+        public virtual tblQuestionOfQuestionnaire tblQuestionOfQuestionnaire { get; set; }
     }
 }

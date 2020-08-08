@@ -292,6 +292,7 @@ th {
 
     .navbar {
         display: none;
+        height:50%;
     }
 
     .btn > .caret,
@@ -5569,7 +5570,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 
     .navbar-inverse .navbar-brand {
-        color: #ffffff;
+        color: #fff;
+        font-size: 25px;
     }
 
         .navbar-inverse .navbar-brand:hover,
@@ -5583,7 +5585,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     }
 
     .navbar-inverse .navbar-nav > li > a {
-        color: #ffffff;
+        color: #fff;
     }
 
         .navbar-inverse .navbar-nav > li > a:hover,
@@ -8084,6 +8086,8 @@ button.close {
 
 .navbar {
     border-width: 0;
+    height:10%;
+    margin-bottom:0px;
 }
 
 .navbar-default .badge {

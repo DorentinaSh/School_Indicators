@@ -2,6 +2,29 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .btnList {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        padding: 8px 11px;
+        font-size: 15px;
+        line-height: 0.2;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+</style>
 <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 
 <div class="row">
@@ -15,7 +38,7 @@
     <div class="col-md-12">
         <hr />
         <div class="table-responsive">
-            <table class="table table-hover table-condensed table-condensed table-striped table-hover">
+            <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="questions">
                 <thead>
                     <tr>
                         <th>Questionnaire</th>
@@ -42,7 +65,7 @@
                                 <td>
                                     <div class="pull-right">
                                         <a class="btn btn-xs btn-info" href="/Options/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Options"><i class="glyphicon glyphicon-arrow-right"></i></a>
-                                        <a class="btn btn-xs btn-info" href="/Questions/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
+                                        <a class="btn btn-xs btn-warning" href="/Questions/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
                                         <button class="btn btn-xs btn-danger" type="button" onclick="DeleteQuestions(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
                                     </div>
                                 </td>
@@ -59,6 +82,73 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        LoadQuestionnaireDataTable();
+    });
+
+    function LoadQuestionnaireDataTable() {
+        $("#questions").DataTable({
+            "ajax": {
+                "url": "/Questions/GetAll",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "columns": [
+                { "data": "Id", "className": "hide_column" },
+                { "data": "Name1" },
+                { "data": "Name2" },
+                { "data": "Name3" },
+                {
+                    "data": "IsActive", render: function (data, type, row) {
+                        if (data) {
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" checked>';
+                        } else {
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" >';
+                        }
+                    }
+                },
+                {
+                    "mData": null,
+                    "bSortable": false,
+                    "width": "1px",
+                    "mRender": function (o) { return '<a class="btnList btn-xs btn-info" onclick="ViewQuestions(this)" data-toggle="tooltip" data-placement="top" title="View Questions"' + '>' + '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>' + '</a>'; }
+
+                },
+                {
+                    "mData": null,
+                    "bSortable": false,
+                    "width": "1px",
+                    "mRender": function (o) { return '<a class="btnList btn-warning" onclick="EditQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
+
+                },
+                {
+                    "mData": null,
+                    "bSortable": false,
+                    "width": "1px",
+                    "mRender": function (o) { return '<a class="btnList btn-danger " onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
+                },
+            ],
+            "language": {
+                "lengthMenu": 'Shfaq <select>' +
+                    '<option value="5">5</option>' +
+                    '<option value="10">10</option>' +
+                    '<option value="25">25</option>' +
+                    '<option value="50">50</option>' +
+                    '<option value="-1">All</option>' +
+                    '</select> rekorde',
+                "zeroRecords": "Nuk u gjet asnjë rekord",
+                "info": "Faqja _PAGE_ nga _PAGES_",
+                "infoEmpty": "Asnjë rekord në dispozicion",
+                "infoFiltered": "(filtruar nga _MAX_ rekorde gjithesej)",
+                "sSearch": "Kërko",
+                "oPaginate": {
+                    "sPrevious": "Pas",
+                    "sNext": "Para"
+                },
+            }
+        });
+    }
+
     function DeleteQuestions(_id) {
      $.ajax({
          type: "POST",

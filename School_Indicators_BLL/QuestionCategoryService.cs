@@ -115,21 +115,6 @@ namespace School_Indicators_BLL
             {
                 using (School_CardsEntities db = new School_CardsEntities())
                 {
-                    List<tblQuestionOfQuestionnaire> questions = db.tblQuestionOfQuestionnaires.Where(x => x.CategoryOfQuestionnaireID == id).ToList();
-                    if (questions != null)
-                    {
-                        foreach (var item in questions)
-                        {
-                            List<tblQuestionOption> options = db.tblQuestionOptions.Where(x => x.QuestionID == item.Id).ToList();
-                            if (options != null)
-                            {
-                                db.tblQuestionOptions.RemoveRange(options);
-                                db.SaveChanges();
-                            }
-                        }
-                        db.tblQuestionOfQuestionnaires.RemoveRange(questions);
-                        db.SaveChanges();
-                    }
                     tblCategoryOfQuestionnaire q = db.tblCategoryOfQuestionnaires.Where(x => x.Id == id).FirstOrDefault();
                     db.tblCategoryOfQuestionnaires.Remove(q);
                     db.SaveChanges();

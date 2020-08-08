@@ -5,15 +5,20 @@
 <style>
     .options {
         display: none;
+        align-self:center;
     }
-    #options {
-        position: fixed;
-        height: 70%;
-        width: 44%;
+    .answers {
+        color:red;
+        font-size:15px;
+    }
+    /*#options {
+        height: 100%;
+        width: 100%;
+        margin-right:0;
+        margin-left:0;
         overflow-x: hidden;
         overflow-y: scroll;
-    }
-
+    }*/
 </style>
     <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
@@ -22,14 +27,14 @@
     <hr />
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="col-md-12">
             <div class="form-group" style="float:left;">
                 <label class="control-label">Is Active?</label>
                 <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked />
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 <div class="form-group">
                     @Html.LabelFor(model => model.CategoryId, "Choose category", htmlAttributes: new { @class = "control-label" })
@@ -38,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 <div class="form-group">
                     @Html.LabelFor(model => model.QuestionTypeID, "Choose question type", htmlAttributes: new { @class = "control-label" })
@@ -47,32 +52,30 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
                 @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
                 @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="form-group">
                 @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
                 @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-12">
-            <button type="button" onclick="SaveQuestionnaire(@Model.CategoryId)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
-        </div>
+
     </div>
-    <div class="col-md-6">
+    <div class="col-md-7">
         <div id="options" class="row options">
             <div class="row">
                 <div class="col-md-1">
@@ -83,19 +86,25 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in Albanian</label>
-                        <input type="text" name="options[0]" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 1 &#235;sht&#235; obligative" aria-invalid="true" />
+                        <br />
+                        <label class="control-label answers">PO</label>
+                        @*<input type="text" id="optionsAlb_0" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 1 &#235;sht&#235; obligative" aria-invalid="true" />*@
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in English</label>
-                        <input type="text" name="optionsen[0]" class="form-control" />
+                        <br />
+                        <label class="control-label answers">Yes</label>
+                        @*<input type="text" id="optionsEng_0" class="form-control" />*@
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in Srpsko</label>
-                        <input type="text" name="optionsen[0]" class="form-control" />
+                        <br />
+                        <label class="control-label answers">да</label>
+                        @*<input type="text" id="optionsSrp_0" class="form-control" />*@
                     </div>
                 </div>
             </div>
@@ -108,61 +117,106 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in Albanian</label>
-                        <input type="text" name="options[1]" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 2 &#235;sht&#235; obligative" aria-invalid="true" />
+                        <br />
+                        <label class="control-label answers">NDOSHTA</label>
+                        @*<input type="text" id="optionsAlb_1" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 2 &#235;sht&#235; obligative" aria-invalid="true" />*@
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in English</label>
-                        <input type="text" name="optionsen[1]" class="form-control" />
+                        <br />
+                        <label class="control-label answers">PERHAPS</label>
+                        @*<input type="text" id="optionsEng_1" class="form-control" />*@
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Option in Srpsko</label>
-                        <input type="text" name="optionsen[1]" class="form-control" />
+                        <br />
+                        <label class="control-label answers">ПЕРХАПС</label>
+                        @*<input type="text" id="optionsSrp_kk1" class="form-control" />*@
+                    </div>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label">3</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Option in Albanian</label>
+                        <br />
+                        <label class="control-label answers">JO</label>
+                        @*<input type="text" id="optionsAlb_1" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 2 &#235;sht&#235; obligative" aria-invalid="true" />*@
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Option in English</label>
+                        <br />
+                        <label class="control-label answers">NO</label>
+                        @*<input type="text" id="optionsEng_1" class="form-control" />*@
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Option in Srpsko</label>
+                        <br />
+                        <label class="control-label answers">НЕ</label>
+                        @*<input type="text" id="optionsSrp_kk1" class="form-control" />*@
                     </div>
                 </div>
             </div>
-            <div id="moreoptions"></div>
-            <div class="row">
-                <div class="col-md-12">
-                    <a id="addmore" class="btn btn-xs btn-info" onclick="AddMore()"><i class="glyphicon glyphicon-plus-sign"></i></a>
-                </div>
-            </div>
-
         </div>
     </div>
+    <div class="col-md-12">
+        <button type="button" onclick="SaveQuestion()" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+    </div>
 </div>
-<div class="row">
- 
-</div>
-
 <script>
-    function SaveQuestionnaire(_id) {
-
-        var frm = {
-            'CategoryId': _id,
-            'QuestionTypeID': $('#QuestionTypeID').val(),
+    function SaveQuestion() {
+        var question = {
+            'QuestionTypeID': $("#QuestionTypeID option:selected").val() ,
             'Name1': $('#Name1').val(),
             'Name2': $('#Name2').val(),
             'Name3': $('#Name3').val(),
             'IsActive': $('#IsActive').prop('checked')
         };
 
-        console.log(frm);
+        var optionsList = [];
+        for (var i = 0; i < option; i++) {
+            var optionObj = {
+                'Name1': $('#optionsAlb_' + i ).val(),
+                'Name1': $('#optionsAlb_' + i ).val(),
+                'Name2': $('#optionsEng_' + i ).val(),
+                'Name3': $('#optionsSrp_' + i ).val(),
+            };
+            optionsList.push(optionObj);
+        };
+
+        var catQuest = {
+            'CategoryId': $("#CategoryId option:selected").val(),
+            'QuestionnaireId': @ViewBag.QuestionnaireId,
+        };
 
         $.ajax({
             type: "POST",
             url: '@Url.Action("CreateQuestion", "Questions")',
             data: JSON.stringify({
-                model: frm
+                question: question,
+                optionsList: optionsList,
+                catQuest: catQuest
             }),
             cache: false,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (response) {
-                console.log('response', response);
+                if (response.success) {
+                    window.location.href = '/Questions/Index';
+                }
             },
             error: function (err) {
                 console.log(err);
@@ -191,29 +245,4 @@
             default:
         }
     });
-
-    function AddMore() {
-        $("#removeoption_" + option).hide();
-        option++;
-        $("#moreoptions").append('<div class="row" id="option_' + option + '">' + '<div class="col-md-1"><div class="form-group"><label class="control-label">'+option+'</label></div></div>' +
-            '<div class="col-md-3"><div class="form-group"><label class="control-label">Option in Albanian</label>'
-            + '<input id="in_' + option + '" type="text" name="options[' + (option - 1) + ']" class="form-control opt"/></div></div>' +
-            '<div class="col-md-3"><div class="form-group"><label class="control-label">Option in English</label>'
-            + '<input type="text" name="optionsen[' + (option - 1) + ']" class="form-control opt"/></div></div>'+
-            '<div class="col-md-3"><div class="form-group"><label class="control-label">Option in Srpsko</label>'
-            + '<input type="text" name="optionsen[' + (option - 1) + ']" class="form-control opt"/></div></div>' +
-            '<div class="col-md-1" style="padding-top:25px;"><a id="removeoption_' + option + '" class="btn btn-danger btn-sm text-white" onclick="RemoveOption(' + option + ')"><i class="glyphicon glyphicon-trash"></i></a></div>'
-            + '</div>');
-
-        $("#in_" + option).rules('add', { required: true, messages: { required: "Emri i Opsionit " + option + " &#235;sht&#235; obligative" } });
-    }
-
-    function RemoveOption(optionnr) {
-        $("#option_" + optionnr).remove();
-        option--;
-        $("#removeoption_" + option).show();
-        if (option < 5) {
-            $("#addmore").show();
-        }
-    }
 </script>

@@ -11,6 +11,8 @@ namespace School_Indicators.Controllers
     public class QuestionsController : Controller
     {
         private QuestionService service = new QuestionService();
+        private OpsionService opsionService = new OpsionService();
+        private CategoryQuestionnaireQuestionService categoryQuestionnaireService = new CategoryQuestionnaireQuestionService();
         private QuestionnaireService questionnaireService = new QuestionnaireService();
         private QuestionCategoryService categoryService = new QuestionCategoryService();
         private QuestionTypeService questionTypeService = new QuestionTypeService();
@@ -29,16 +31,21 @@ namespace School_Indicators.Controllers
         {
             Question model = new Question();
             ViewBag.Name = questionnaireService.GetQuestionnaireNameById(id);
+            ViewBag.QuestionnaireId = id;
             ViewBag.Categories = new SelectList(categoryService.GetCategories(), "Id", "CategoryName");
             ViewBag.QuestionTypes = new SelectList(questionTypeService.GetAllQuestionType(), "Id", "Type");
             return View(model);
         }
+
         [HttpPost]
-        public JsonResult CreateQuestion(Question model)
+        public JsonResult CreateQuestion(Question question, List<QuestionOption> optionsList, CategoryQuestionnaireQuestion catQuest)
         {
             try
             {
-                service.SaveQuestions(model);
+                int questionId = service.SaveQuestions(question);
+                opsionService.SaveOptions(optionsList, questionId);
+                catQuest.QuestionId = questionId;
+                categoryQuestionnaireService.SaveCategoryQuestionnaireQuestion(catQuest);
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -51,7 +58,7 @@ namespace School_Indicators.Controllers
         public ActionResult Edit(int id)
         {
             Question model = new Question();
-            model = service.GetQuestionsById(id);
+            //model = service.GetQuestionsById(id);
             //model.types = service.GetQuestionTypes();
             return View(model);
         }
@@ -76,7 +83,7 @@ namespace School_Indicators.Controllers
         {
             try
             {
-                service.DeleteQuestion(id);
+                //service.DeleteQuestion(id);
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -84,5 +91,11 @@ namespace School_Indicators.Controllers
                 throw;
             }
         }
+
+        //public ActionResult GetAll()
+        //{
+        //    var questionnaireList = service.GetQuestionnaries();
+        //    return Json(new { data = questionnaireList }, JsonRequestBehavior.AllowGet);
+        //}
     }
 }

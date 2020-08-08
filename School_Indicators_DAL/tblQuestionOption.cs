@@ -33,8 +33,8 @@ namespace School_Indicators_DAL
         public Nullable<int> IsActive { get; set; }
         public Nullable<int> OrderBy { get; set; }
     
-        public virtual tblQuestionOfQuestionnaire tblQuestionOfQuestionnaire { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSessionDetail> tblSessionDetails { get; set; }
+        public virtual tblQuestionOfQuestionnaire tblQuestionOfQuestionnaire { get; set; }
     }
 }

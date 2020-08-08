@@ -8,8 +8,26 @@
         display: none;
     }
 
-    .btnSize {
-        font-size: 12px
+    .btnList {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        padding: 8px 11px;
+        font-size: 15px;
+        line-height: 0.2;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 </style>
 <div class="row">
@@ -69,18 +87,24 @@
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-warning" onclick="EditCategory(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-warning" onclick="EditCategory(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
 
                 },
                 {
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btn btn-danger btnSize" onclick="DeleteCategory(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-danger" onclick="DeleteCategory(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
                 },
             ],
             "language": {
-                "lengthMenu": "Shfaq _MENU_ rekorde për faqe",
+                "lengthMenu": 'Shfaq <select>' +
+                    '<option value="5">5</option>' +
+                    '<option value="10">10</option>' +
+                    '<option value="25">25</option>' +
+                    '<option value="50">50</option>' +
+                    '<option value="-1">All</option>' +
+                    '</select> rekorde',
                 "zeroRecords": "Nuk u gjet asnjë rekord",
                 "info": "Faqja _PAGE_ nga _PAGES_",
                 "infoEmpty": "Asnjë rekord në dispozicion",
@@ -99,12 +123,9 @@
         var col2 = currow.find('td:eq(0)').text();
         window.location.href = '/Categories/Edit?id=' + col2;
     }
-
     function DeleteCategory(_this) {
-        console.log(_this);
         var currow = $(_this).closest('tr');
         var _id = currow.find('td:eq(0)').text();
-        console.log(_id);
          Swal.fire({
             title: 'Are you sure?',
             text: 'You will not be able to recover this record!',
@@ -116,21 +137,21 @@
             cancelButtonText: 'Cancel!',
         }).then((result) => {
                 if (result.value) {
-                         $.ajax({
-                             type: "POST",
-                             url: '@Url.Action("DeleteCategory", "Categories")',
-                             data: JSON.stringify({
-                                 'id': _id
-                             }),
-                             dataType: "json",
-                             contentType: "application/json; charset=utf-8",
-                             success: function (response) {
-                                 location.reload();
-                             },
-                             error: function (err) {
-                                 console.log(err);
-                             }
-                         });
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("DeleteCategory", "Categories")',
+                        data: JSON.stringify({
+                            'id': _id
+                        }),
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (response) {
+                            location.reload();
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire(
                         'Cancelled',

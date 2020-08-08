@@ -58,14 +58,9 @@
            dataType: "json",
            contentType: "application/json; charset=utf-8",
            success: function (response) {
-               Swal.fire({
-                   icon: 'success',
-                   title: 'Your work has been saved',
-                   showConfirmButton: false,
-                   timer: 2000
-               })
-               window.location.replace = "index.html";
-               //console.log('response', response);
+               if (response.success) {
+                   window.location.href = '/Questionnaire/Index';
+               }
            },
            error: function (err) {
                console.log(err);
