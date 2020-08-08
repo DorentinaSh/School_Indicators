@@ -2,6 +2,7 @@
     ViewBag.Title = "Index";
 }
 
+<link href="~/Content/dataTable.css" rel="stylesheet" />
 
 <style>
     .hide_column {
@@ -30,33 +31,33 @@
     }
 </style>
 <div class="row">
-    <h3>List of Institutions</h3>
-    <hr />
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <a class="btn btn-primary" href="/Institution/Create">Add New    <i class="glyphicon glyphicon-plus"></i></a>
-    </div>
-    <div class="col-md-12">
+        <h3>List of Institutions</h3>
         <hr />
-        <div class="table-responsive">
-            <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="institutions">
-                <thead>
-                    <tr>
-                        <th>Hide Id</th>
-                        <th>Institution No</th>
-                        <th>Albanian</th>
-                        <th>English</th>
-                        <th>Srpsko</th>
-                        <th>Is Active</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-            </table>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary" href="/Institution/Create"><i class="glyphicon glyphicon-plus"></i>   Add New</a>
+        </div>
+        <div class="col-md-12">
+            <hr />
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed table-condensed table-striped table-hover" id="institutions">
+                    <thead>
+                        <tr>
+                            <th>Hide Id</th>
+                            <th>Institution No</th>
+                            <th>Albanian</th>
+                            <th>English</th>
+                            <th>Srpsko</th>
+                            <th>Is Active</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
 <script>
 

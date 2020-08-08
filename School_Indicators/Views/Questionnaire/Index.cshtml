@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
 }
 
+<link href="~/Content/dataTable.css" rel="stylesheet" />
+
 <style>
     .hide_column {
         display: none;
@@ -79,9 +81,9 @@
                 {
                     "data": "IsActive", render: function (data, type, row) {
                         if (data) {
-                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" checked>';
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" checked disabled>';
                         } else {
-                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" >';
+                            return '<input data="' + row.isActive + '" type="checkbox" name="my-checkbox" disabled>';
                         }
                     }
                 },
