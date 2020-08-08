@@ -7,6 +7,27 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Contentopen-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+
+    <link rel="stylesheet" href="~/Contentowl.carousel.min.css">
+    <link rel="stylesheet" href="~/Contentowl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/Content/aos.css">
+
+    <link rel="stylesheet" href="~/Contentionicons.min.css">
+
+    <link rel="stylesheet" href="~/Contentbootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Contentjquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/Contentflaticon.css">
+    <link rel="stylesheet" href="~/Contenticomoon.css">
+    <link rel="stylesheet" href="~/Content/style.css">
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
     <style>
         footer {
@@ -14,8 +35,9 @@
             left: 0;
             bottom: 0;
             width: 100%;
-            text-align:center;
+            text-align: center;
         }
+
         #footerHrLine {
             position: fixed;
             left: 0;
@@ -25,40 +47,66 @@
     </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("School Indicators", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("School Indicators", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Institutions <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Institution/Index">Institution</a></li>
+                                <li><a href="#">Another action</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Questionnaires <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/Questionnaire/Index">Questionnaire</a></li>
+                                <li><a href="/Categories/Index">Categories</a></li>
+                                <li><a href="/Questions/Index">Questions</a></li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Institutions <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/Institution/Index">Institution</a></li>
-                            <li><a href="#">Another action</a></li>
-                        </ul>
+        </div>*@
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Snipp.</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="portfolio.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portfolio</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">
+                            <a class="dropdown-item" href="portfolio.html">Portfolio</a>
+                            <a class="dropdown-item" href="portfolio-single.html">Portfolio Single</a>
+                        </div>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Questionnaires <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/Questionnaire/Index">Questionnaire</a></li>
-                            <li><a href="/Categories/Index">Categories</a></li>
-                            <li><a href="/Questions/Index">Questions</a></li>
-                        </ul>
-                    </li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Case Studies</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li class="nav-item cta"><a href="contact.html" class="nav-link"><span>Get in touch</span></a></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
+    </nav>
     <div class="container body-content">
         <br />
         <br />
