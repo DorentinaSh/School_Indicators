@@ -64,7 +64,6 @@
                                 <td><input type="checkbox" disabled id="IsActive" name="IsActive" @(item.IsActive ? "checked" : String.Empty) /></td>
                                 <td>
                                     <div class="pull-right">
-                                        <a class="btn btn-xs btn-info" href="/Options/Index?id=@item.Id" data-toggle="tooltip" data-placement="top" title="View Options"><i class="glyphicon glyphicon-arrow-right"></i></a>
                                         <a class="btn btn-xs btn-warning" href="/Questions/Edit?id=@item.Id"><i class="glyphicon glyphicon-edit"></i></a>
                                         <button class="btn btn-xs btn-danger" type="button" onclick="DeleteQuestions(@item.Id)"><i class="glyphicon glyphicon-trash"></i></button>
                                     </div>
