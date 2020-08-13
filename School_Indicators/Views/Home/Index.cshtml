@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -36,46 +37,51 @@
             width: 40%;
         }
 
-        .body {
-            background: black no-repeat;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
         .searchTitle {
             font-size: 25px;
             font-weight: 800;
-            line-height:1;
+            line-height: 1;
             white-space: nowrap;
         }
+
         .headingWrapper {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items:center;
+            align-items: center;
         }
-        .mainContainer {
+
+        .firstSection {
             display: flex;
             flex-direction: row;
-            padding-left: 20px;
-            padding-right: 20px;
+            height: calc(100% - 50px);
         }
+
+        .secondSection {
+            height: calc(100% - 50px);
+            background-color:white;
+        }
+
         .rightPanel {
             text-align: center;
         }
+
         .leftPanel {
-            display:flex;
+            display: flex;
             justify-content: center;
             flex-direction: column;
             width: 100%;
         }
+
+        .customPadding {
+            padding-top: 50px
+        }
     </style>
 </head>
 
-<body class="body">
-    <div class="mainContainer">
-        <div class="rightPanel">
+<body class="customBody">
+    <div class="firstSection container">
+            <div class="rightPanel">
                 <svg style="margin: auto; width: auto; padding: 30px;"
                      width="480px"
                      height="530px"
@@ -479,37 +485,45 @@
                         </g>
                     </g>
                 </svg>
-        </div>
-        <div class="leftPanel">
-            <div class="headingWrapper">
-                <div class="headingContainer">
-                    <div class="row">
-                        <a class="searchTitle" style="color:gold">Find<br /><p style="color:white">your school</p></a>
-                    </div>
-                    <div class="row">
-                        <input style="background-color:transparent;width:300px;border:1px solid white; border-radius: 8px;font-size:16px" type="text" placeholder="Search.." name="search" id="search">
-                        <button id="searchBtn" class="transparent" onclick="searchSchools()">
-                            <i style="color:white" class="fa fa-search"></i>
-                        </button>
+            </div>
+            <div class="leftPanel">
+                <div class="headingWrapper">
+                    <div class="headingContainer">
+                        <div class="row">
+                            <a class="searchTitle" style="color:gold">Find<br /><p style="color:white">your school</p></a>
+                        </div>
+                        <div class="row">
+                            <input style="background-color:transparent;width:300px;border:1px solid white; border-radius: 8px;font-size:16px" type="text" placeholder="Search.." name="search" id="search">
+                            <button id="searchBtn" class="transparent" onclick="searchSchools()">
+                                <i style="color:white" class="fa fa-search"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+
+
+
+                @*<div>
+                    <br />
+                    <table id="tblStudent" class="table table-bordered table-striped table-responsive table-hover">
+                        <thead>
+                            <tr>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>*@
             </div>
-           
-           
-
-
-            @*<div>
-                <br />
-                <table id="tblStudent" class="table table-bordered table-striped table-responsive table-hover">
-                    <thead>
-                        <tr>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>*@
+    </div>
+   
+    <div class="secondSection customPadding">
+        <div class="container">
+            <p>desfef</p>
         </div>
     </div>
+
+
 
 
     <script>
