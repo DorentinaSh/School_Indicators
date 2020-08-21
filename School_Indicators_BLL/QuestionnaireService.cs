@@ -12,7 +12,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     List<Questionnaries> model = (from e in db.tblQuestionnaires
                                                   select new Questionnaries
@@ -36,7 +36,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     tblQuestionnaire q = new tblQuestionnaire
                     {
@@ -61,7 +61,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     tblQuestionnaire q = db.tblQuestionnaires.Where(x => x.Id == model.Id).FirstOrDefault();
                     q.QuestName = model.Name1;
@@ -83,7 +83,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     Questionnaries model = (from e in db.tblQuestionnaires
                                             where e.Id == id
@@ -108,7 +108,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     tblQuestionnaire q = db.tblQuestionnaires.Where(x => x.Id == id).FirstOrDefault();
                     db.tblQuestionnaires.Remove(q);
@@ -125,7 +125,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     string name = db.tblQuestionnaires.Where(x => x.Id == id).FirstOrDefault().QuestName;
                     return name;

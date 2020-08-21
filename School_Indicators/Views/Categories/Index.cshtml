@@ -1,4 +1,4 @@
-﻿@model List<School_Indicators_BO.BO.CategoryOfQuestion>
+﻿@model List<School_Indicators_BO.BO.Indicator>
 @{
     ViewBag.Title = "Index";
 }
@@ -31,7 +31,7 @@
     }
 </style>
 <div class="row">
-    <h3>Categories</h3>
+    <h3>List of indicators</h3>
     <hr />
 </div>
 <div class="row">
@@ -71,9 +71,9 @@
             },
             "columns": [
                 { "data": "Id", "className": "hide_column" },
-                { "data": "CategoryName" },
-                { "data": "CategoryName2" },
-                { "data": "CategoryName3" },
+                { "data": "Name1" },
+                { "data": "Name2" },
+                { "data": "Name3" },
                 {
                     "data": "IsActive", render: function (data, type, row) {
                         if (data) {
@@ -98,21 +98,21 @@
                 },
             ],
             "language": {
-                "lengthMenu": 'Shfaq <select>' +
+                "lengthMenu": 'Show <select>' +
                     '<option value="5">5</option>' +
                     '<option value="10">10</option>' +
                     '<option value="25">25</option>' +
                     '<option value="50">50</option>' +
                     '<option value="-1">All</option>' +
-                    '</select> rekorde',
-                "zeroRecords": "Nuk u gjet asnjë rekord",
-                "info": "Faqja _PAGE_ nga _PAGES_",
-                "infoEmpty": "Asnjë rekord në dispozicion",
-                "infoFiltered": "(filtruar nga _MAX_ rekorde gjithesej)",
-                "sSearch": "Kërko",
+                    '</select> records',
+                "zeroRecords": "There is no records",
+                "info": "Page _PAGE_ from _PAGES_",
+                "infoEmpty": "There is no records",
+                "infoFiltered": "(filtered from _MAX_ records)",
+                "sSearch": "Search",
                 "oPaginate": {
-                    "sPrevious": "Pas",
-                    "sNext": "Para"
+                    "sPrevious": "Previous",
+                    "sNext": "Next"
                 },
             }
         });

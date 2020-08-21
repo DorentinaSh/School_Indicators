@@ -14,7 +14,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     List<Institution> model = (from e in db.tblInstitutions
                                                select new Institution
@@ -43,7 +43,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     tblInstitution q = new tblInstitution
                     {
@@ -74,7 +74,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     tblInstitution q = db.tblInstitutions.Where(x => x.Id == model.Id).FirstOrDefault();
                     q.InstitutionsName1 = model.Name1;
@@ -103,7 +103,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     Institution model = (from e in db.tblInstitutions
                                          where e.Id == id
@@ -133,7 +133,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     tblInstitution q = db.tblInstitutions.Where(x => x.Id == id).FirstOrDefault();
                     db.tblInstitutions.Remove(q);
@@ -150,7 +150,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     List<Institution> model = (from e in db.tblInstitutions
                                          where e.InstitutionsName1.Contains(query)

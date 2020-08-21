@@ -53,6 +53,7 @@
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
             </table>
@@ -91,6 +92,13 @@
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
+                    "mRender": function (o) { return '<a class="btnList btn-xs btn-default" onclick="ViewQuestionnaire(this)" data-toggle="tooltip" data-placement="top" title="View Questionnaire"'+'>' + '<span class="glyphicon glyphicon-list" aria-hidden="true"></span>' +'</a>'; }
+
+                },
+                {
+                    "mData": null,
+                    "bSortable": false,
+                    "width": "1px",
                     "mRender": function (o) { return '<a class="btnList btn-xs btn-info" onclick="ViewQuestions(this)" data-toggle="tooltip" data-placement="top" title="View Questions"'+'>' + '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>' +'</a>'; }
 
                 },
@@ -98,14 +106,14 @@
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btnList btn-warning" onclick="EditQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-xs btn-warning" onclick="EditQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>' + '</a>'; }
 
                 },
                 {
                     "mData": null,
                     "bSortable": false,
                     "width": "1px",
-                    "mRender": function (o) { return '<a class="btnList btn-danger " onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
+                    "mRender": function (o) { return '<a class="btnList btn-xs btn-danger " onclick="DeleteQuestionnaire(this)" ' + '>' + '<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>' + '</a>'; }
                 },
             ],
             "language": {

@@ -36,6 +36,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -125,80 +128,80 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IndicatorsDetail.cs">
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SchoolModel.Context.cs">
+    <Compile Include="SchoolIndicators.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolModel.Context.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SchoolModel.cs">
+    <Compile Include="SchoolIndicators.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
     </Compile>
-    <Compile Include="SchoolModel.Designer.cs">
+    <Compile Include="SchoolIndicators.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="tblCategoryOfQuestionnaire.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblCategoryQuestionnaireQuestion.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.edmx</DependentUpon>
     </Compile>
     <Compile Include="tblCity.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblEvaluation.cs">
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblIndicator.cs">
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
     </Compile>
     <Compile Include="tblInstitution.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblQuestion.cs">
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
     </Compile>
     <Compile Include="tblQuestionnaire.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblQuestionOfQuestionnaire.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
     </Compile>
     <Compile Include="tblQuestionOption.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblQuestionType.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSession.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSessionDetail.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
     </Compile>
     <Compile Include="tblUserInstitution.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
+      <DependentUpon>SchoolIndicators.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="SchoolModel.edmx">
+    <EntityDeploy Include="SchoolIndicators.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SchoolModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>SchoolIndicators.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SchoolModel.edmx.diagram">
-      <DependentUpon>SchoolModel.edmx</DependentUpon>
+    <None Include="SchoolIndicators.edmx.diagram">
+      <DependentUpon>SchoolIndicators.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SchoolModel.Context.tt">
+    <Content Include="SchoolIndicators.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SchoolModel.edmx</DependentUpon>
-      <LastGenOutput>SchoolModel.Context.cs</LastGenOutput>
+      <DependentUpon>SchoolIndicators.edmx</DependentUpon>
+      <LastGenOutput>SchoolIndicators.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SchoolModel.tt">
+    <Content Include="SchoolIndicators.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SchoolModel.edmx</DependentUpon>
-      <LastGenOutput>SchoolModel.cs</LastGenOutput>
+      <DependentUpon>SchoolIndicators.edmx</DependentUpon>
+      <LastGenOutput>SchoolIndicators.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

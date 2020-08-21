@@ -12,20 +12,23 @@ namespace School_Indicators_DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCategoryQuestionnaireQuestion
+    public partial class tblEvaluation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblEvaluation()
+        {
+            this.tblQuestionOptions = new HashSet<tblQuestionOption>();
+        }
+    
         public int Id { get; set; }
-        public int CategoryId { get; set; }
-        public int QuestionnaireId { get; set; }
-        public int QuestionId { get; set; }
+        public int Value { get; set; }
         public System.DateTime InsertDate { get; set; }
         public string InsertBy { get; set; }
         public string LUB { get; set; }
         public Nullable<System.DateTime> LUD { get; set; }
         public Nullable<int> LUN { get; set; }
     
-        public virtual tblCategoryOfQuestionnaire tblCategoryOfQuestionnaire { get; set; }
-        public virtual tblQuestionnaire tblQuestionnaire { get; set; }
-        public virtual tblQuestionOfQuestionnaire tblQuestionOfQuestionnaire { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblQuestionOption> tblQuestionOptions { get; set; }
     }
 }

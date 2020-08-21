@@ -16,7 +16,7 @@ namespace School_Indicators.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            List<CategoryOfQuestion> model = service.GetCategories();
+            List<Indicator> model = service.GetCategories();
             return View(model);
         }
 
@@ -27,11 +27,11 @@ namespace School_Indicators.Controllers
         }
         public ActionResult Create()
         {
-            return View(new CategoryOfQuestion());
+            return View(new Indicator());
         }
 
         [HttpPost]
-        public JsonResult CreateCategory(CategoryOfQuestion model)
+        public JsonResult CreateCategory(Indicator model)
         {
             try
             {
@@ -46,13 +46,13 @@ namespace School_Indicators.Controllers
 
         public ActionResult Edit(int id)
         {
-            CategoryOfQuestion model = new CategoryOfQuestion();
+            Indicator model = new Indicator();
             model = service.GetCategoryById(id);
             return View(model);
         }
 
         [HttpPost]
-        public JsonResult UpdateCategory(CategoryOfQuestion model)
+        public JsonResult UpdateCategory(Indicator model)
         {
             try
             {

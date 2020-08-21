@@ -1,204 +1,207 @@
-﻿@model School_Indicators.BO.Question
+﻿@model School_Indicators_BO.BO.ModelDTO.QuestionOpstionsDTO
 @{
     ViewBag.Title = "Create";
 }
 <style>
     .options {
-        display: none;
-        align-self:center;
+        align-self: center;
     }
     .answers {
-        color:red;
+        color: red;
+        font-size: 15px;
+    }
+    .circleRate {
+        border-radius: 50%;
+        background: #BADA55;
+        padding-top:-10px;
+        padding-bottom:10px;
+        margin-top:10px;
+        margin-bottom:0px;
+        margin-right:130px;
+        text-align:center;
+        color:white;
         font-size:15px;
     }
-    /*#options {
-        height: 100%;
+    .header {
+        border-top: 3px solid #28a745;
+        background: rgba(230,233,237,0);
+        color: #CDD0D4;
         width: 100%;
-        margin-right:0;
-        margin-left:0;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }*/
+        padding: 1%;
+    }
+    .header-left i {
+        margin-left: 5%;
+    }
+
+    .header-left h4 {
+        text-align: left;
+        margin-right: 10%;
+        line-height: 2;
+    }
+
+    .content {
+        background: #e6e9ed;
+        width: 100%;
+    }
+        .content .form-content {
+            padding: 5%;
+        }
+            .content .form-content .input-group .input-group-text {
+                background: #333;
+                color: #fff;
+                border: none;
+                border-radius: 0;
+                font-weight: 600;
+            }
+            .content .form-content .input-group input {
+                border-radius: 0;
+            }
+                .content .form-content .input-group input:focus {
+                    border-color: transparent;
+                }
+            .content .form-content h4 {
+                margin-bottom: 5%;
+            }
+            .content .form-content button {
+                background: #333;
+                color: #fff;
+                border-radius: 0;
+                width: 20%;
+                font-weight: 600;
+            }
 </style>
-    <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
+<div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
     <h3></h3>
     <h3>Add question for questionnaire: @ViewBag.Name</h3>
     <hr />
 </div>
 <div class="row">
-    <div class="col-md-5">
+    <div class="row">
         <div class="col-md-12">
             <div class="form-group" style="float:left;">
                 <label class="control-label">Is Active?</label>
                 <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked />
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-5">
             <div class="form-group">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CategoryId, "Choose category", htmlAttributes: new { @class = "control-label" })
-                    @Html.DropDownListFor(m => m.CategoryId, (SelectList)ViewBag.Categories, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.Question.IndicatorId, "Choose an indicator", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(m => m.Question.IndicatorId, (SelectList)ViewBag.Indicators, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Question.IndicatorId, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="form-group">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.QuestionTypeID, "Choose question type", htmlAttributes: new { @class = "control-label" })
-                    @Html.DropDownListFor(m => m.QuestionTypeID, (SelectList)ViewBag.QuestionTypes, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.QuestionTypeID, "", new { @class = "text-danger" })
-                </div>
+                @Html.LabelFor(model => model.Question.Name1, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Question.Name1, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Question.Name1, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="form-group">
-                @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Question.Name2, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Question.Name2, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Question.Name2, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="form-group">
-                @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="form-group">
-                @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.Question.Name3, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Question.Name3, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Question.Name3, "", new { @class = "text-danger" })
             </div>
         </div>
 
+
     </div>
-    <div class="col-md-7">
-        <div id="options" class="row options">
+    <div class="row">
+        <div class="header">
             <div class="row">
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="control-label">1</label>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in Albanian</label>
-                        <br />
-                        <label class="control-label answers">PO</label>
-                        @*<input type="text" id="optionsAlb_0" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 1 &#235;sht&#235; obligative" aria-invalid="true" />*@
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in English</label>
-                        <br />
-                        <label class="control-label answers">YES</label>
-                        @*<input type="text" id="optionsEng_0" class="form-control" />*@
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in Srpsko</label>
-                        <br />
-                        <label class="control-label answers">да</label>
-                        @*<input type="text" id="optionsSrp_0" class="form-control" />*@
-                    </div>
+                <div class="col-md-12 header-left">
+                    <h4>Options</h4>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="control-label">2</label>
+        </div>
+        <div class="content">
+            <div class="form-content">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <label class="control-label">Option in Albanian</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">Option in English</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">Option in Srpsko</label>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">Rate</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in Albanian</label>
-                        <br />
-                        <label class="control-label answers">NDOSHTA</label>
-                        @*<input type="text" id="optionsAlb_1" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 2 &#235;sht&#235; obligative" aria-invalid="true" />*@
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in English</label>
-                        <br />
-                        <label class="control-label answers">PERHAPS</label>
-                        @*<input type="text" id="optionsEng_1" class="form-control" />*@
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in Srpsko</label>
-                        <br />
-                        <label class="control-label answers">ПЕРХАПС</label>
-                        @*<input type="text" id="optionsSrp_kk1" class="form-control" />*@
-                    </div>
-                </div>
-            </div> 
-            <div class="row">
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="control-label">3</label>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in Albanian</label>
-                        <br />
-                        <label class="control-label answers">JO</label>
-                        @*<input type="text" id="optionsAlb_1" class="form-control input-validation-error opt" data-val="true" data-val-required="Emri i Opsionit 2 &#235;sht&#235; obligative" aria-invalid="true" />*@
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in English</label>
-                        <br />
-                        <label class="control-label answers">NO</label>
-                        @*<input type="text" id="optionsEng_1" class="form-control" />*@
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Option in Srpsko</label>
-                        <br />
-                        <label class="control-label answers">НЕ</label>
-                        @*<input type="text" id="optionsSrp_kk1" class="form-control" />*@
+                    <div id="options" class="row options">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-md-12">
+        <br />
         <button type="button" onclick="SaveQuestion()" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
     </div>
 </div>
 <script>
+    let nrOfOption = [0,1, 2, 3, 4];
+    let rate = JSON.parse('@Html.Raw(ViewBag.Rate)');
+
+    $(document).ready(function () {
+        DrawOption();
+    });
+
+    function DrawOption() {
+        nrOfOption.forEach(function (item, index, array) {
+            $("#options").append('<div class="row">'+
+                '<div class="col-md-1"> <div class="form-group"><br/><label class="control-label">' + item + ' </label>'
+                + '</div></div>' +
+                '<div class="col-md-3"><div class="form-group row"><br/>'
+                + '<input type="text" id="optionsAlb_' + item + '" class="form-control"/></div></div>' +
+                '<div class="col-md-3"><div class="form-group row"><br/>'
+                + '<input type="text" id="optionsEng_' + item + '" class="form-control"/></div></div>' +
+                '<div class="col-md-3"><div class="form-group row"><br/>'
+                + '<input type="text" id="optionsSrp_' + item + '" class="form-control"/></div></div>' +
+                '<div class="col-md-2"><div class="form-group row circleRate"><br/>'
+                + '<label class="control-label">' + rate[item].Value + ' </label>' +
+                '<input id="rate_' + item + '" type="hidden" value="' + rate[item].Id+'"/> </div></div>' +
+                '</div>');
+        })
+    }
+
     function SaveQuestion() {
         var question = {
-            'QuestionTypeID': $("#QuestionTypeID option:selected").val() ,
-            'Name1': $('#Name1').val(),
-            'Name2': $('#Name2').val(),
-            'Name3': $('#Name3').val(),
+            'IndicatorId': $("#Question_IndicatorId option:selected").val(),
+            'Name1': $('#Question_Name1').val(),
+            'Name2': $('#Question_Name2').val(),
+            'Name3': $('#Question_Name3').val(),
             'IsActive': $('#IsActive').prop('checked')
         };
 
         var optionsList = [];
-        for (var i = 0; i < option; i++) {
+        nrOfOption.forEach(function (item, index, array) {
             var optionObj = {
-                'Name1': $('#optionsAlb_' + i ).val(),
-                'Name1': $('#optionsAlb_' + i ).val(),
-                'Name2': $('#optionsEng_' + i ).val(),
-                'Name3': $('#optionsSrp_' + i ).val(),
+                'Name1': $('#optionsAlb_' + item).val(),
+                'Name2': $('#optionsEng_' + item).val(),
+                'Name3': $('#optionsSrp_' + item).val(),
+                'EvaluationID': $('#rate_' + item).val(),
             };
             optionsList.push(optionObj);
-        };
+        });
 
         var catQuest = {
-            'CategoryId': $("#CategoryId option:selected").val(),
+            'IndicatorId': $("#Question_IndicatorId option:selected").val(),
             'QuestionnaireId': @ViewBag.QuestionnaireId,
         };
 
@@ -215,7 +218,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (response) {
                 if (response.success) {
-                    window.location.href = '/Questions/Index';
+                    window.location.href = '/Questions/Index/' + @ViewBag.QuestionnaireID;
                 }
             },
             error: function (err) {
@@ -223,26 +226,4 @@
             }
         });
     }
-
-    $('#QuestionTypeID').change(function () {
-        $("#moreoptions").empty();
-        $('.opt').val(null);
-        option = 2;
-        if (option < 5) {
-            $("#addmore").show();
-        }
-        var type = $("#QuestionTypeID :selected").val();
-        console.log(type);
-        switch (type) {
-            case "2":
-                $(".options").hide();
-                break;
-            case "4":
-                $(".options").show();
-                break;
-            case "6":
-                $(".options").show();
-            default:
-        }
-    });
 </script>

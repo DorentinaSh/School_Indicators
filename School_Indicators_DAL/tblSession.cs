@@ -21,8 +21,8 @@ namespace School_Indicators_DAL
         }
     
         public int Id { get; set; }
-        public int UserInstitutionID { get; set; }
-        public int QuestionnaireID { get; set; }
+        public Nullable<int> UserInstitutionID { get; set; }
+        public Nullable<int> QuestionnaireID { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public System.DateTime InsertDate { get; set; }

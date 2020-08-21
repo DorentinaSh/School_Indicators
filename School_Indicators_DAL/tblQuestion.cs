@@ -12,18 +12,22 @@ namespace School_Indicators_DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCategoryOfQuestionnaire
+    public partial class tblQuestion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblCategoryOfQuestionnaire()
+        public tblQuestion()
         {
-            this.tblCategoryQuestionnaireQuestions = new HashSet<tblCategoryQuestionnaireQuestion>();
+            this.IndicatorsDetails = new HashSet<IndicatorsDetail>();
+            this.tblQuestionOptions = new HashSet<tblQuestionOption>();
+            this.tblSessionDetails = new HashSet<tblSessionDetail>();
         }
     
         public int Id { get; set; }
-        public string CategoryName { get; set; }
-        public string CategoryName2 { get; set; }
-        public string CategoryName3 { get; set; }
+        public Nullable<int> IndicatorID { get; set; }
+        public string QuestionName1 { get; set; }
+        public string QuestionName2 { get; set; }
+        public string QuestionName3 { get; set; }
+        public Nullable<int> RealatedQuestOptID { get; set; }
         public System.DateTime InsertDate { get; set; }
         public string InsertBy { get; set; }
         public string LUB { get; set; }
@@ -33,6 +37,11 @@ namespace School_Indicators_DAL
         public bool IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCategoryQuestionnaireQuestion> tblCategoryQuestionnaireQuestions { get; set; }
+        public virtual ICollection<IndicatorsDetail> IndicatorsDetails { get; set; }
+        public virtual tblIndicator tblIndicator { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblQuestionOption> tblQuestionOptions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSessionDetail> tblSessionDetails { get; set; }
     }
 }

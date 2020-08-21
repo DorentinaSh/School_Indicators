@@ -13,10 +13,10 @@ namespace School_Indicators_DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class School_CardsEntities : DbContext
+    public partial class School_IndicatorsEntities : DbContext
     {
-        public School_CardsEntities()
-            : base("name=School_CardsEntities")
+        public School_IndicatorsEntities()
+            : base("name=School_IndicatorsEntities")
         {
         }
     
@@ -25,16 +25,16 @@ namespace School_Indicators_DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblCategoryOfQuestionnaire> tblCategoryOfQuestionnaires { get; set; }
+        public virtual DbSet<IndicatorsDetail> IndicatorsDetails { get; set; }
         public virtual DbSet<tblCity> tblCities { get; set; }
+        public virtual DbSet<tblEvaluation> tblEvaluations { get; set; }
+        public virtual DbSet<tblIndicator> tblIndicators { get; set; }
         public virtual DbSet<tblInstitution> tblInstitutions { get; set; }
+        public virtual DbSet<tblQuestion> tblQuestions { get; set; }
         public virtual DbSet<tblQuestionnaire> tblQuestionnaires { get; set; }
         public virtual DbSet<tblQuestionOption> tblQuestionOptions { get; set; }
-        public virtual DbSet<tblQuestionType> tblQuestionTypes { get; set; }
         public virtual DbSet<tblSessionDetail> tblSessionDetails { get; set; }
         public virtual DbSet<tblSession> tblSessions { get; set; }
         public virtual DbSet<tblUserInstitution> tblUserInstitutions { get; set; }
-        public virtual DbSet<tblCategoryQuestionnaireQuestion> tblCategoryQuestionnaireQuestions { get; set; }
-        public virtual DbSet<tblQuestionOfQuestionnaire> tblQuestionOfQuestionnaires { get; set; }
     }
 }

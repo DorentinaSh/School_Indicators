@@ -1,4 +1,5 @@
-﻿using System;
+﻿using School_Indicators_BO.BO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace School_Indicators.BO
     {
         public int QuestionnaireID { get; set; }
         public string QuestionnaireName { get; set; }
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public int QuestionTypeID { get; set; }
+        public int IndicatorId { get; set; }
+        public string IndicatorName { get; set; }
+        public Nullable<int> QuestionTypeID { get; set; }
         public string QuestionTypeName { get; set; }
         //Name in Albanian Language
         [Display(Name =  "Name in Albanian")]
@@ -28,5 +29,7 @@ namespace School_Indicators.BO
         public int RelatedQuestionOptionID { get; set; }
         public bool IsActive { get; set; }
         public int OrderBy { get; set; }
+
+        public List<Evaluation> Rate { get; set; }
     }
 }

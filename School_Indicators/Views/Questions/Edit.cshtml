@@ -1,89 +1,237 @@
-﻿@model School_Indicators.BO.Question
+﻿@model School_Indicators_BO.BO.ModelDTO.QuestionOpstionsDTO
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
-    <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
+<style>
+    .options {
+        align-self: center;
+    }
+
+    .answers {
+        color: red;
+        font-size: 15px;
+    }
+
+    .circleRate {
+        border-radius: 50%;
+        background: #BADA55;
+        padding-top: -10px;
+        padding-bottom: 10px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        margin-right: 130px;
+        text-align: center;
+        color: white;
+        font-size: 15px;
+    }
+
+    .header {
+        border-top: 3px solid #28a745;
+        background: rgba(230,233,237,0);
+        color: #CDD0D4;
+        width: 100%;
+        padding: 1%;
+    }
+
+    .header-left i {
+        margin-left: 5%;
+    }
+
+    .header-left h4 {
+        text-align: left;
+        margin-right: 10%;
+        line-height: 2;
+    }
+
+    .content {
+        background: #e6e9ed;
+        width: 100%;
+    }
+
+        .content .form-content {
+            padding: 5%;
+        }
+
+            .content .form-content .input-group .input-group-text {
+                background: #333;
+                color: #fff;
+                border: none;
+                border-radius: 0;
+                font-weight: 600;
+            }
+
+            .content .form-content .input-group input {
+                border-radius: 0;
+            }
+
+                .content .form-content .input-group input:focus {
+                    border-color: transparent;
+                }
+
+            .content .form-content h4 {
+                margin-bottom: 5%;
+            }
+
+            .content .form-content button {
+                background: #333;
+                color: #fff;
+                border-radius: 0;
+                width: 20%;
+                font-weight: 600;
+            }
+</style>
+<div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
-    <h3>Questionnaire: @Model.QuestionnaireName</h3>
-    <h3>Create Question for Category: @Model.CategoryName</h3>
+    <h3></h3>
+    <h3>Edit question for questionnaire: @ViewBag.Name</h3>
     <hr />
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <div class="form-group" style="float:left;">
-            <label class="control-label">Is Active?</label>
-            <input type="checkbox" class="form-control" id="IsActive" name="IsActive" @(Model.IsActive ? "checked" : String.Empty) />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group" style="float:left;">
+                <label class="control-label">Is Active?</label>
+                <input type="checkbox" class="form-control" id="IsActive" name="IsActive" @(Model.Question.IsActive ? "checked" : String.Empty) />
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Question.IndicatorId, "Choose an indicator", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(m => m.Question.IndicatorId, (SelectList)ViewBag.Indicators, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Question.IndicatorId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <label class="control-label">Name in Albanian</label>
+                <input type="text" class="form-control" id="Name1" name="Name1" value="@Model.Question.Name1" />
+                @Html.ValidationMessageFor(model => model.Question.Name1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <label class="control-label">Name in English</label>
+                <input type="text" class="form-control" id="Name2" name="Name2" value="@Model.Question.Name2" />
+                @Html.ValidationMessageFor(model => model.Question.Name2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="form-group">
+                <label class="control-label">Name in Srpsko</label>
+                <input type="text" class="form-control" id="Name3" name="Name3" value="@Model.Question.Name3" />
+                @Html.ValidationMessageFor(model => model.Question.Name3, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="header">
+            <div class="row">
+                <div class="col-md-12 header-left">
+                    <h4>Options</h4>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="form-content">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <label class="control-label">Option in Albanian</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">Option in English</label>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">Option in Srpsko</label>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">Rate</label>
+                        </div>
+                    </div>
+                    <div id="options" class="row options">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-md-12">
-        <div class="form-group">
-            <label class="control-label">Question Type</label>
-            <select id="QuestionTypeID" class="form-control" name="QuestionTypeID">
-                <option value="0"></option>
-                @foreach (var item in Model.types)
-                {
-                    if (item.Id == Model.QuestionTypeID)
-                    {
-                        <option selected="selected" value="@item.Id">@item.Name1</option>
-                    }
-                    else
-                    {
-                        <option value="@item.Id">@item.Name1</option>
-                    }
-                }
-            </select>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Name in Albanian</label>
-            <input type="text" class="form-control" id="Name1" name="Name1" value="@Model.Name1" />
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Name in English</label>
-            <input type="text" class="form-control" id="Name2" name="Name2" value="@Model.Name2" />
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Name in Srpsko</label>
-            <input type="text" class="form-control" id="Name3" name="Name3" value="@Model.Name3" />
-        </div>
-    </div>
-    <div class="col-md-12">
-        <button type="button" onclick="SaveQuestionnaire(@Model.CategoryId, @Model.Id)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
+        <br />
+        <button type="button" onclick="SaveQuestion(@Model.Question.Id)" class="btn btn-success pull-right">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
     </div>
 </div>
-
 <script>
-    function SaveQuestionnaire(_Cid, _id) {
+    let nrOfOption = [0,1, 2, 3, 4];
+    let rate = JSON.parse('@Html.Raw(ViewBag.Rate)');
+    let options = JSON.parse('@Html.Raw(ViewBag.Options)');
 
-        var frm = {
-            'Id': _id,
-            'CategoryId': _Cid,
-            'QuestionTypeID': $('#QuestionTypeID').val(),
+    $(document).ready(function () {
+        console.log(options);
+        DrawOption();
+    });
+
+    function DrawOption() {
+        nrOfOption.forEach(function (item, index, array) {
+            $("#options").append('<div class="row">'+
+                '<div class="col-md-1"> <div class="form-group"><br/><label class="control-label">' + item + ' </label>' +
+                '<input id="optionID_' + item + '" type="hidden" value="' + options[item].Id + '"/>'
+                + '</div></div>' +
+                '<div class="col-md-3"><div class="form-group row"><br/>'
+                + '<input type="text" id="optionsAlb_' + item + '" class="form-control" value="' + options[item].Name1 + '"/></div></div>' +
+                '<div class="col-md-3"><div class="form-group row"><br/>'
+                + '<input type="text" id="optionsEng_' + item + '" class="form-control" value="' + options[item].Name2 + '"/></div></div>' +
+                '<div class="col-md-3"><div class="form-group row"><br/>'
+                + '<input type="text" id="optionsSrp_' + item + '" class="form-control" value="' + options[item].Name3 + '"/></div></div>' +
+                '<div class="col-md-2"><div class="form-group row circleRate"><br/>'
+                + '<label id="rate_' + item + '" class="control-label" value="' + rate[item].Id + '">' + rate[item].Value + ' </label>' +
+                '<input id="rate_' + item + '" type="hidden" value="' + rate[item].Id +'"/> </div></div>' +
+                '</div>');
+        })
+    }
+
+    function SaveQuestion(id) {
+        var question = {
+            'Id' : id,
+            'IndicatorId': $("#Question_IndicatorId option:selected").val(),
             'Name1': $('#Name1').val(),
             'Name2': $('#Name2').val(),
             'Name3': $('#Name3').val(),
             'IsActive': $('#IsActive').prop('checked')
         };
 
-        console.log(frm);
+        var optionsList = [];
+        nrOfOption.forEach(function (item, index, array) {
+            var optionObj = {
+                'Id': $('#optionID_' + item).val(),
+                'Name1': $('#optionsAlb_' + item).val(),
+                'Name2': $('#optionsEng_' + item).val(),
+                'Name3': $('#optionsSrp_' + item).val(),
+                'EvaluationID': $('#rate_' + item).attr('value'),
+            };
+            optionsList.push(optionObj);
+        });
+
+        var catQuest = {
+            'IndicatorId': $("#Question_IndicatorId option:selected").val(),
+            'QuestionnaireId': @ViewBag.QuestionnaireId,
+        };
 
         $.ajax({
             type: "POST",
             url: '@Url.Action("UpdateQuestion", "Questions")',
             data: JSON.stringify({
-                model: frm
+                question: question,
+                optionsList: optionsList,
+                catQuest: catQuest
             }),
             cache: false,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (response) {
                 if (response.success) {
-                    window.location.href = '/Questions/Index';
+                    window.location.href = '/Questions/Index/' + @ViewBag.QuestionnaireID;
                 }
             },
             error: function (err) {

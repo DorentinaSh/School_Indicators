@@ -1,5 +1,7 @@
-﻿using School_Indicators.BO;
+﻿using Newtonsoft.Json;
+using School_Indicators.BO;
 using School_Indicators_BLL;
+using School_Indicators_BO.BO.ModelDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace School_Indicators.Controllers
     {
         private QuestionService service = new QuestionService();
         private OpsionService opsionService = new OpsionService();
+        private EvaluationService EvaluationService = new EvaluationService();
         private CategoryQuestionnaireQuestionService categoryQuestionnaireService = new CategoryQuestionnaireQuestionService();
         private QuestionnaireService questionnaireService = new QuestionnaireService();
         private QuestionCategoryService categoryService = new QuestionCategoryService();
@@ -29,11 +32,12 @@ namespace School_Indicators.Controllers
 
         public ActionResult Create(int id)
         {
-            Question model = new Question();
+            QuestionOpstionsDTO model = new QuestionOpstionsDTO();
+            model.Question = new Question();
+            ViewBag.Rate = JsonConvert.SerializeObject(EvaluationService.GetRate().OrderByDescending(x=>x.Value));
             ViewBag.Name = questionnaireService.GetQuestionnaireNameById(id);
             ViewBag.QuestionnaireId = id;
-            ViewBag.Categories = new SelectList(categoryService.GetCategories(), "Id", "CategoryName");
-            ViewBag.QuestionTypes = new SelectList(questionTypeService.GetAllQuestionType(), "Id", "Type");
+            ViewBag.Indicators = new SelectList(categoryService.GetCategories(), "Id", "Name1");
             return View(model);
         }
 
@@ -57,18 +61,25 @@ namespace School_Indicators.Controllers
 
         public ActionResult Edit(int id)
         {
-            Question model = new Question();
-            //model = service.GetQuestionsById(id);
-            //model.types = service.GetQuestionTypes();
+            QuestionOpstionsDTO model = new QuestionOpstionsDTO();
+            model.Question = service.GetQuestionById(id);
+            model.Options = opsionService.OptionList(id);
+            ViewBag.QuestionnaireId = model.Question.QuestionnaireID;
+            ViewBag.Rate = JsonConvert.SerializeObject(EvaluationService.GetRate().OrderByDescending(x=>x.Value));
+            ViewBag.Options = JsonConvert.SerializeObject(model.Options);
+            ViewBag.Indicators = new SelectList(categoryService.GetCategories(), "Id", "Name1",model.Question.IndicatorId);
             return View(model);
         }
 
         [HttpPost]
-        public JsonResult UpdateQuestion(Question model)
+        public JsonResult UpdateQuestion(Question question, List<QuestionOption> optionsList, CategoryQuestionnaireQuestion catQuest)
         {
             try
             {
-                service.UpdateQuestions(model);
+                int questionID = service.UpdateQuestions(question);
+                opsionService.UpdateOptions(optionsList,questionID);
+                catQuest.QuestionId = questionID;
+                categoryQuestionnaireService.SaveCategoryQuestionnaireQuestion(catQuest);
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -83,7 +94,9 @@ namespace School_Indicators.Controllers
         {
             try
             {
-                //service.DeleteQuestion(id);
+                categoryQuestionnaireService.DeleteIndicatorDetails(id);
+                opsionService.DeleteOptions(id);
+                service.DeleteQuestion(id);
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -92,10 +105,10 @@ namespace School_Indicators.Controllers
             }
         }
 
-        //public ActionResult GetAll()
-        //{
-        //    var questionnaireList = service.GetQuestionnaries();
-        //    return Json(new { data = questionnaireList }, JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult GetAll(/*int questionnaireID*/)
+        {
+            var questionList = service.GetQuestionsByQuestionnaireId(1);
+            return Json(new { data = questionList }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

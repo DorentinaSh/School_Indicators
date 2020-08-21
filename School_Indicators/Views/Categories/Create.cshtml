@@ -1,11 +1,11 @@
-﻿@model School_Indicators_BO.BO.CategoryOfQuestion
+﻿@model School_Indicators_BO.BO.Indicator
 @{
     ViewBag.Title = "Create";
 }
     <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 
 <div class="row">
-    <h3>Create Category</h3>
+    <h3>Add an indicator</h3>
     <hr />
 </div>
 <div class="row">
@@ -19,23 +19,23 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryName, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.CategoryName, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryName2, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.CategoryName2, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CategoryName2, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryName3, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.CategoryName3, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CategoryName3, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="col-md-12">
@@ -47,9 +47,9 @@
     function SaveCategories() {
 
         var frm = {
-            'CategoryName': $('#CategoryName').val(),
-            'CategoryName2': $('#CategoryName2').val(),
-            'CategoryName3': $('#CategoryName3').val(),
+            'Name1': $('#Name1').val(),
+            'Name2': $('#Name2').val(),
+            'Name3': $('#Name3').val(),
             'IsActive': $('#IsActive').prop('checked')
         };
 

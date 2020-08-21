@@ -14,7 +14,7 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     List<City> model = (from e in db.tblCities
                                                select new City

@@ -26,11 +26,22 @@ namespace School_Indicators_DAL
         public string InstitutionsName2 { get; set; }
         public string InstitutionsName3 { get; set; }
         public string Location { get; set; }
-        public int CityID { get; set; }
+        public Nullable<int> CityID { get; set; }
         public string Address { get; set; }
+        public string Level { get; set; }
+        public string Status { get; set; }
         public string TelNo { get; set; }
+        public Nullable<long> NrOfStudentsTotal { get; set; }
+        public Nullable<long> NrOfStudentsTotal_Female { get; set; }
+        public Nullable<long> NrOfStudentsTotal_Male { get; set; }
+        public Nullable<long> EnrollmentsPerYearTotal { get; set; }
+        public Nullable<long> EnrollmentsPerYear_Female { get; set; }
+        public Nullable<long> EnrollmentsPerYear_Male { get; set; }
+        public Nullable<long> StudentsWDissabilitiesTotal { get; set; }
+        public Nullable<long> StudentsWDissabilitiesTotal_Female { get; set; }
+        public Nullable<long> StudentsWDissabilitiesTotal_Male { get; set; }
         public bool IsActive { get; set; }
-        public System.DateTime InsertDate { get; set; }
+        public Nullable<System.DateTime> InsertDate { get; set; }
         public string InsertBy { get; set; }
         public string LUB { get; set; }
         public Nullable<System.DateTime> LUD { get; set; }

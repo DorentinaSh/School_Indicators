@@ -11,20 +11,20 @@ namespace School_Indicators_BLL
 {
     public class QuestionCategoryService
     {
-        public List<CategoryOfQuestion> GetCategories()
+        public List<Indicator> GetCategories()
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    List<CategoryOfQuestion> model = (from e in db.tblCategoryOfQuestionnaires
-                                                      select new CategoryOfQuestion
+                    List<Indicator> model = (from e in db.tblIndicators
+                                                      select new Indicator
                                                       {
                                                           Id = e.Id,
                                                           IsActive = e.IsActive,
-                                                          CategoryName = e.CategoryName,
-                                                          CategoryName2 = e.CategoryName2,
-                                                          CategoryName3 = e.CategoryName3
+                                                          Name1 = e.IndicatorName,
+                                                          Name2 = e.IndicatorName2,
+                                                          Name3 = e.IndicatorName3
                                                       }).ToList();
                     return model;
                 }
@@ -35,22 +35,22 @@ namespace School_Indicators_BLL
             }
         }
 
-        public void SaveCategory(CategoryOfQuestion model)
+        public void SaveCategory(Indicator model)
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    tblCategoryOfQuestionnaire q = new tblCategoryOfQuestionnaire
+                    tblIndicator q = new tblIndicator
                     {
                         IsActive = model.IsActive,
-                        CategoryName = model.CategoryName,
-                        CategoryName2 = model.CategoryName2,
-                        CategoryName3 = model.CategoryName3,
+                        IndicatorName = model.Name1,
+                        IndicatorName2 = model.Name2,
+                        IndicatorName3 = model.Name3,
                         InsertDate = DateTime.Now,
                         InsertBy = "admin",
                     };
-                    db.tblCategoryOfQuestionnaires.Add(q);
+                    db.tblIndicators.Add(q);
                     db.SaveChanges();
                 }
             }
@@ -60,17 +60,17 @@ namespace School_Indicators_BLL
             }
         }
 
-        public void UpdateCategory(CategoryOfQuestion model)
+        public void UpdateCategory(Indicator model)
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    tblCategoryOfQuestionnaire q = db.tblCategoryOfQuestionnaires.Where(x => x.Id == model.Id).FirstOrDefault();
-                    q.CategoryName = model.CategoryName;
+                    tblIndicator q = db.tblIndicators.Where(x => x.Id == model.Id).FirstOrDefault();
+                    q.IndicatorName = model.Name1;
                     q.IsActive = model.IsActive;
-                    q.CategoryName2 = model.CategoryName2;
-                    q.CategoryName3 = model.CategoryName3;
+                    q.IndicatorName2 = model.Name2;
+                    q.IndicatorName3 = model.Name3;
                     //q. = model.CategoryName3;
                     q.LUB = "admin";
                     q.LUD = DateTime.Now;
@@ -84,21 +84,21 @@ namespace School_Indicators_BLL
             }
         }
 
-        public CategoryOfQuestion GetCategoryById(int id)
+        public Indicator GetCategoryById(int id)
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    CategoryOfQuestion model = (from e in db.tblCategoryOfQuestionnaires
+                    Indicator model = (from e in db.tblIndicators
                                                 where e.Id == id
-                                                select new CategoryOfQuestion
+                                                select new Indicator
                                                 {
                                                     Id = e.Id,
                                                     IsActive = e.IsActive,
-                                                    CategoryName = e.CategoryName,
-                                                    CategoryName2 = e.CategoryName2,
-                                                    CategoryName3 = e.CategoryName3
+                                                    Name1 = e.IndicatorName,
+                                                    Name2 = e.IndicatorName2,
+                                                    Name3 = e.IndicatorName3
                                                 }).FirstOrDefault();
                     return model;
                 }
@@ -113,10 +113,10 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    tblCategoryOfQuestionnaire q = db.tblCategoryOfQuestionnaires.Where(x => x.Id == id).FirstOrDefault();
-                    db.tblCategoryOfQuestionnaires.Remove(q);
+                    tblIndicator q = db.tblIndicators.Where(x => x.Id == id).FirstOrDefault();
+                    db.tblIndicators.Remove(q);
                     db.SaveChanges();
                 }
             }

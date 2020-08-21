@@ -6,6 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using School_Indicators_BO.BO;
 using School_Indicators_DAL;
+using AutoMapper;
+using System.Data;
+using Dapper;
+
 
 namespace School_Indicators_BLL
 {
@@ -15,17 +19,14 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    List<Question> model = (from e in db.tblQuestionOfQuestionnaires
-                                            join t in db.tblQuestionTypes on e.QuestionTypeID equals t.Id
-                                            where e.Id==id
+                    List<Question> model = (from e in db.tblQuestions
+                                            where e.Id == id
                                             select new Question
                                             {
                                                 Id = e.Id,
-                                                QuestionTypeID = e.QuestionTypeID,
-                                                QuestionTypeName = t.Name1,
-                                                Name1 = e.QuestionName,
+                                                Name1 = e.QuestionName1,
                                                 Name2 = e.QuestionName2,
                                                 Name3 = e.QuestionName3
                                             }).ToList();
@@ -41,27 +42,37 @@ namespace School_Indicators_BLL
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    List<Question> model = (from e in db.tblQuestionOfQuestionnaires
-                                            join cq in db.tblCategoryQuestionnaireQuestions on e.Id equals cq.QuestionId
-                                            join c in db.tblCategoryOfQuestionnaires on cq.CategoryId equals c.Id
-                                            join q in db.tblQuestionnaires on cq.QuestionnaireId equals q.Id
-                                            join t in db.tblQuestionTypes on e.QuestionTypeID equals t.Id
-                                            //where q.Id == id
-                                            select new Question
-                                            {
-                                                Id = e.Id,
-                                                CategoryId = c.Id,
-                                                QuestionnaireName = q.QuestName,
-                                                CategoryName = c.CategoryName,
-                                                QuestionTypeID = e.QuestionTypeID,
-                                                QuestionTypeName = t.Name1,
-                                                Name1 = e.QuestionName,
-                                                Name2 = e.QuestionName2,
-                                                Name3 = e.QuestionName3,
-                                                IsActive = e.isActive
-                                            }).ToList();
+                    var query = @"select q.Id as Id,q.IndicatorID as IndicatorId,q.QuestionName1 as Name1,q.QuestionName2 as Name2,q.QuestionName3 as Name3,i.IndicatorName as IndicatorName,qq.QuestName as QuestionnaireName,q.IsActive as IsActive from tblQuestion q 
+	                              join IndicatorsDetails id on id.QuestionID=q.Id
+	                              join tblIndicators i on id.IndicatorID=i.Id
+	                              join tblQuestionnaire qq on id.QuestionnaireID=qq.Id
+	                              Where qq.Id=@QuestionnaireID
+	                              group by q.Id,q.IndicatorID,q.QuestionName1,q.QuestionName2,q.QuestionName3,i.IndicatorName,qq.QuestName,q.IsActive";
+
+                    IDbConnection dbConnection = db.Database.Connection;
+                    var res = dbConnection.QueryMultiple(query, new { QuestionnaireID = id });
+                    List<Question> model = res.Read<Question>().ToList();
+
+                    //var model = (from e in db.tblQuestions
+                    //             join cq in db.IndicatorsDetails on e.Id equals cq.QuestionID
+                    //             join c in db.tblIndicators on cq.IndicatorID equals c.Id
+                    //             join q in db.tblQuestionnaires on cq.QuestionnaireID equals q.Id
+                    //             where cq.QuestionnaireID == id
+                    //             select new Question
+                    //             {
+                    //                 Id = e.Id,
+                    //                 IndicatorId = c.Id,
+                    //                 QuestionnaireName = q.QuestName,
+                    //                 IndicatorName = c.IndicatorName,
+                    //                 Name1 = e.QuestionName1,
+                    //                 Name2 = e.QuestionName2,
+                    //                 Name3 = e.QuestionName3,
+                    //                 IsActive = e.IsActive
+                    //             }).ToList();
+
+
                     return model;
                 }
             }
@@ -70,49 +81,27 @@ namespace School_Indicators_BLL
                 throw;
             }
         }
-        //public Question GetQuestionsById(int id)
-        //{
-        //    try
-        //    {
-        //        using (School_CardsEntities db = new School_CardsEntities())
-        //        {
-        //            Question model = (from e in db.tblQuestionOfQuestionnaires
-        //                              join c in db.tblCategoryOfQuestionnaires on e.CategoryOfQuestionnaireID equals c.Id
-        //                              join t in db.tblQuestionTypes on e.QuestionTypeID equals t.Id
-        //                              where e.Id == id
-        //                              select new Question
-        //                              {
-        //                                  Id = e.Id,
-        //                                  CategoryId = c.Id,
-        //                                  CategoryName = c.CategoryName,
-        //                                  QuestionTypeID = e.QuestionTypeID,
-        //                                  QuestionTypeName = t.Name1,
-        //                                  Name1 = e.QuestionName,
-        //                                  Name2 = e.QuestionName2,
-        //                                  Name3 = e.QuestionName3,
-        //                                  IsActive = e.isActive
-        //                              }).First();
-        //            return model;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
-        
-        public Question GetCategory(int id)
+        public Question GetQuestionById(int id)
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    Question model = (from e in db.tblCategoryOfQuestionnaires
+                    Question model = (from e in db.tblQuestions
+                                      join c in db.IndicatorsDetails on e.Id equals c.QuestionID
+                                      join q in db.tblQuestionnaires on c.QuestionnaireID equals q.Id
+                                      join i in db.tblIndicators on c.IndicatorID equals i.Id
                                       where e.Id == id
                                       select new Question
                                       {
-                                          CategoryId = e.Id,
-                                          CategoryName = e.CategoryName,
+                                          Id = e.Id,
+                                          IndicatorId = i.Id,
+                                          QuestionnaireID = q.Id,
+                                          IndicatorName = i.IndicatorName,
+                                          Name1 = e.QuestionName1,
+                                          Name2 = e.QuestionName2,
+                                          Name3 = e.QuestionName3,
+                                          IsActive = e.IsActive
                                       }).FirstOrDefault();
                     return model;
                 }
@@ -122,25 +111,24 @@ namespace School_Indicators_BLL
                 throw;
             }
         }
-
         public int SaveQuestions(Question model)
         {
             try
             {
                 int id = 0;
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    tblQuestionOfQuestionnaire q = new tblQuestionOfQuestionnaire
+                    tblQuestion q = new tblQuestion
                     {
-                        QuestionTypeID = model.QuestionTypeID,
-                        QuestionName = model.Name1,
+                        IndicatorID = model.IndicatorId,
+                        QuestionName1 = model.Name1,
                         QuestionName2 = model.Name2,
                         QuestionName3 = model.Name3,
-                        isActive = model.IsActive,
+                        IsActive = model.IsActive,
                         InsertDate = DateTime.Now,
                         InsertBy = "admin",
                     };
-                    db.tblQuestionOfQuestionnaires.Add(q);
+                    db.tblQuestions.Add(q);
                     db.SaveChanges();
                     id = q.Id;
                 }
@@ -152,23 +140,24 @@ namespace School_Indicators_BLL
             }
         }
 
-        public void UpdateQuestions(Question model)
+        public int UpdateQuestions(Question model)
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    tblQuestionOfQuestionnaire q = db.tblQuestionOfQuestionnaires.Where(x => x.Id == model.Id).FirstOrDefault();
-                    q.QuestionTypeID = model.QuestionTypeID;
-                    q.QuestionName = model.Name1;
+                    tblQuestion q = db.tblQuestions.Where(x => x.Id == model.Id).FirstOrDefault();
+                    q.IndicatorID = model.IndicatorId;
+                    q.QuestionName1 = model.Name1;
                     q.QuestionName2 = model.Name2;
                     q.QuestionName3 = model.Name3;
-                    q.isActive = model.IsActive;
+                    q.IsActive = model.IsActive;
                     q.LUB = "admin";
                     q.LUD = DateTime.Now;
                     db.Entry(q).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
+                return model.Id;
             }
             catch (Exception ex)
             {
@@ -176,43 +165,18 @@ namespace School_Indicators_BLL
             }
         }
 
-        //public void DeleteQuestion(int id)
-        //{
-        //    try
-        //    {
-        //        using (School_CardsEntities db = new School_CardsEntities())
-        //        {
-        //            tblQuestionOfQuestionnaire question = db.tblQuestionOfQuestionnaires.Where(x => x.CategoryOfQuestionnaireID == id).FirstOrDefault();
-        //            List<tblQuestionOption> options = db.tblQuestionOptions.Where(x => x.QuestionID == question.Id).ToList();
-        //            if (options != null)
-        //            {
-        //                db.tblQuestionOptions.RemoveRange(options);
-        //                db.SaveChanges();
-        //            }
-        //            db.tblQuestionOfQuestionnaires.Remove(question);
-        //            db.SaveChanges();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
-
-        public List<QuestionType> GetQuestionTypes()
+        public void DeleteQuestion(int id)
         {
             try
             {
-                using (School_CardsEntities db = new School_CardsEntities())
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
-                    List<QuestionType> model = (from t in db.tblQuestionTypes
-                                                select new QuestionType
-                                                {
-                                                    Id = t.Id,
-                                                    Type = t.Type,
-                                                    Name1 = t.Name1
-                                                }).ToList();
-                    return model;
+                    tblQuestion question = db.tblQuestions.Where(x => x.Id == id).FirstOrDefault();
+                    if (question != null)
+                    {
+                        db.tblQuestions.Remove(question);
+                        db.SaveChanges();
+                    }
                 }
             }
             catch (Exception ex)

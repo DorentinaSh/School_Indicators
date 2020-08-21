@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace School_Indicators_BO.BO
 {
-    public class CategoryOfQuestion : Base
+    public class Indicator : Base
     {
         [Display(Name = "Name in Albanian")]
-        public string CategoryName { get; set; }
+        public string Name1 { get; set; }
         [Display(Name = "Name in English")]
-        public string CategoryName2 { get; set; }
+        public string Name2 { get; set; }
         [Display(Name = "Name in Srpsko")]
-        public string CategoryName3 { get; set; }
+        public string Name3 { get; set; }
         public bool IsActive { get; set; }
     }
 }

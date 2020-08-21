@@ -25,7 +25,7 @@ namespace School_Indicators.BO
         [Display(Name = "Name in Srpsko")]
         public string Name3 { get; set; }
         public string Location { get; set; }
-        public int CityID { get; set; }
+        public int? CityID { get; set; }
         public string Address { get; set; }
         [Display(Name = "Telephone Number")]
         [DataType(DataType.PhoneNumber)]

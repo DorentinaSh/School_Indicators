@@ -1,10 +1,10 @@
-﻿@model School_Indicators_BO.BO.CategoryOfQuestion
+﻿@model School_Indicators_BO.BO.Indicator
 @{
     ViewBag.Title = "Create";
 }
     <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
-    <h3>Edit Category </h3>
+    <h3>Edit indicator </h3>
     <hr />
 </div>
 <div class="row">
@@ -16,20 +16,20 @@
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Category Name in Albanian</label>
-            <input type="text" class="form-control" id="CategoryName" name="CategoryName" value="@Model.CategoryName" />
+            <label class="control-label">Indicator Name in Albanian</label>
+            <input type="text" class="form-control" id="CategoryName" name="CategoryName" value="@Model.Name1" />
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Category Name in English</label>
-            <input type="text" class="form-control" id="CategoryName2" name="CategoryName2" value="@Model.CategoryName2" />
+            <label class="control-label">Indicator Name in English</label>
+            <input type="text" class="form-control" id="CategoryName2" name="CategoryName2" value="@Model.Name2" />
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label class="control-label">Category Name in Srpsko</label>
-            <input type="text" class="form-control" id="CategoryName3" name="CategoryName3" value="@Model.CategoryName3" />
+            <label class="control-label">Indicator Name in Srpsko</label>
+            <input type="text" class="form-control" id="CategoryName3" name="CategoryName3" value="@Model.Name3" />
         </div>
     </div>
     <div class="col-md-12">
