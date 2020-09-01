@@ -31,5 +31,6 @@ namespace School_Indicators.BO
         public int OrderBy { get; set; }
 
         public List<Evaluation> Rate { get; set; }
+        public List<QuestionOption> Options { get; set; }
     }
 }

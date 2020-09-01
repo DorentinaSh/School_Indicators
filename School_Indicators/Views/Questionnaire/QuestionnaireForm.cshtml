@@ -1,0 +1,78 @@
+﻿@model School_Indicators.BO.Questionnaries
+
+@{
+    ViewBag.Title = "Questionnaire Form";
+}
+<style>
+    .title {
+        text-align: center;
+    }
+    label 
+    {
+        text-align:left;
+    }
+</style>
+
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="title">@Model.Name1</h3>
+        </div>
+        <div class="col-md-7">
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                <label class="form-control" id="QuestionnaireDescription" name="QuestionnaireDescription">@Model.Description</label>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label class="control-label">Created Date</label>
+                <label class="form-control" id="QuestionnaireCreatedDate" name="QuestionnaireCreatedDate">@Model.InsertDate.ToString()</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @if (Model.Indicators.Count > 0)
+        {
+            foreach (School_Indicators_BO.BO.Indicator item in Model.Indicators)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            @*<input id="indictorID" value="@item.Id" hidden />*@
+                            <label class="control-label">@item.Name1</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        @foreach (School_Indicators.BO.Question item1 in item.Questions)
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">@item1.Name1</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    @foreach (School_Indicators.BO.QuestionOption item2 in item1.Options)
+                                    {
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input type="radio">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <label class="control-label">@item2.Name1</label>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            
+                        }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<script></script>

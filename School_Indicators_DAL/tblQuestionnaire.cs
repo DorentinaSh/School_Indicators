@@ -32,6 +32,7 @@ namespace School_Indicators_DAL
         public Nullable<int> LUN { get; set; }
         public Nullable<int> OrderBy { get; set; }
         public bool IsActive { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IndicatorsDetail> IndicatorsDetails { get; set; }

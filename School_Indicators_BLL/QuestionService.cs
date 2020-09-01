@@ -54,25 +54,6 @@ namespace School_Indicators_BLL
                     IDbConnection dbConnection = db.Database.Connection;
                     var res = dbConnection.QueryMultiple(query, new { QuestionnaireID = id });
                     List<Question> model = res.Read<Question>().ToList();
-
-                    //var model = (from e in db.tblQuestions
-                    //             join cq in db.IndicatorsDetails on e.Id equals cq.QuestionID
-                    //             join c in db.tblIndicators on cq.IndicatorID equals c.Id
-                    //             join q in db.tblQuestionnaires on cq.QuestionnaireID equals q.Id
-                    //             where cq.QuestionnaireID == id
-                    //             select new Question
-                    //             {
-                    //                 Id = e.Id,
-                    //                 IndicatorId = c.Id,
-                    //                 QuestionnaireName = q.QuestName,
-                    //                 IndicatorName = c.IndicatorName,
-                    //                 Name1 = e.QuestionName1,
-                    //                 Name2 = e.QuestionName2,
-                    //                 Name3 = e.QuestionName3,
-                    //                 IsActive = e.IsActive
-                    //             }).ToList();
-
-
                     return model;
                 }
             }

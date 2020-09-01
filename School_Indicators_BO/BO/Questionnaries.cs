@@ -1,4 +1,5 @@
-﻿using System;
+﻿using School_Indicators_BO.BO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,7 +21,9 @@ namespace School_Indicators.BO
         //Name in Serbian Language
         [Display(Name = "Name in Srpsko")]
         public string Name3 { get; set; }
+        public string Description { get; set; }
         public bool IsActive { get; set; }
         public int OrderBy { get; set; }
+        public List<Indicator> Indicators { get; set; }
     }
 }

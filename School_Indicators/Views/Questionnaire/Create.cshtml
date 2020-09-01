@@ -14,25 +14,34 @@
             <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked/>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
+    <div class="col-md-7">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
+            </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="form-group">
-            @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+            @Html.TextAreaFor(model => model.Description, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
 </div>
@@ -48,6 +57,7 @@
             'Name1': $('#Name1').val(),
             'Name2': $('#Name2').val(),
             'Name3': $('#Name3').val(),
+            'Description': $('#Description').val(),
             'IsActive': $('#IsActive').prop('checked')
         };
 

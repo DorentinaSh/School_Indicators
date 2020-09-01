@@ -69,11 +69,16 @@
                 width: 20%;
                 font-weight: 600;
             }
+
+    span.bold-red {
+        color: red;
+        font-weight: bold;
+    }
 </style>
 <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
-    <h3></h3>
-    <h3>Add question for questionnaire: @ViewBag.Name</h3>
+    <br />
+    <h4>Add question for questionnaire:     <span class="bold-red">@ViewBag.Name</span> </h4>
     <hr />
 </div>
 <div class="row">

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using School_Indicators.BO;
 using School_Indicators_BLL;
+using School_Indicators_BO.BO.ModelDTO;
 
 namespace School_Indicators.Controllers
 {
@@ -82,5 +84,11 @@ namespace School_Indicators.Controllers
             return Json(new { data = questionnaireList }, JsonRequestBehavior.AllowGet);
         }
 
+        public async Task<PartialViewResult> QuestionnaireForm(int questionnaireID)
+        {
+            Task<List<QuestionOptDTO>> model =  service.GetQuestionnairFormData(questionnaireID);
+            Questionnaries temp = service.CreateQuestionaireFormModel(model.Result);
+            return PartialView("QuestionnaireForm", temp);
+        }
     }
 }

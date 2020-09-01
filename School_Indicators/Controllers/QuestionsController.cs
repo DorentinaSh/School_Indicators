@@ -35,7 +35,7 @@ namespace School_Indicators.Controllers
             QuestionOpstionsDTO model = new QuestionOpstionsDTO();
             model.Question = new Question();
             ViewBag.Rate = JsonConvert.SerializeObject(EvaluationService.GetRate().OrderByDescending(x=>x.Value));
-            ViewBag.Name = questionnaireService.GetQuestionnaireNameById(id);
+            ViewBag.Name = questionnaireService.GetQuestionnaireNameById(id).ToUpper();
             ViewBag.QuestionnaireId = id;
             ViewBag.Indicators = new SelectList(categoryService.GetCategories(), "Id", "Name1");
             return View(model);
@@ -65,6 +65,7 @@ namespace School_Indicators.Controllers
             model.Question = service.GetQuestionById(id);
             model.Options = opsionService.OptionList(id);
             ViewBag.QuestionnaireId = model.Question.QuestionnaireID;
+            ViewBag.Name = questionnaireService.GetQuestionnaireNameById(model.Question.QuestionnaireID).ToUpper();
             ViewBag.Rate = JsonConvert.SerializeObject(EvaluationService.GetRate().OrderByDescending(x=>x.Value));
             ViewBag.Options = JsonConvert.SerializeObject(model.Options);
             ViewBag.Indicators = new SelectList(categoryService.GetCategories(), "Id", "Name1",model.Question.IndicatorId);

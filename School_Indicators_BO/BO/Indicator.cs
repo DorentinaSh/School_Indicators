@@ -17,5 +17,6 @@ namespace School_Indicators_BO.BO
         [Display(Name = "Name in Srpsko")]
         public string Name3 { get; set; }
         public bool IsActive { get; set; }
+        public List<Question> Questions { get; set; }
     }
 }

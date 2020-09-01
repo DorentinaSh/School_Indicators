@@ -25,7 +25,7 @@ namespace School_Indicators_DAL
         public Nullable<int> LUN { get; set; }
     
         public virtual tblIndicator tblIndicator { get; set; }
-        public virtual tblQuestionnaire tblQuestionnaire { get; set; }
         public virtual tblQuestion tblQuestion { get; set; }
+        public virtual tblQuestionnaire tblQuestionnaire { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="School_IndicatorsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="School_IndicatorsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="IndicatorsDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -125,6 +125,7 @@
           <Property Name="LUN" Type="int" />
           <Property Name="OrderBy" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tblQuestionOption">
           <Key>
@@ -410,8 +411,7 @@
             <End Role="tblUserInstitutions" EntitySet="tblUserInstitutions" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="School_IndicatorsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -429,8 +429,8 @@
           <Property Name="LUD" Type="DateTime" Precision="0" />
           <Property Name="LUN" Type="Int32" />
           <NavigationProperty Name="tblIndicator" Relationship="Self.FK__Indicator__Indic__5AEE82B9" FromRole="IndicatorsDetails" ToRole="tblIndicators" />
-          <NavigationProperty Name="tblQuestionnaire" Relationship="Self.FK__Indicator__Quest__59063A47" FromRole="IndicatorsDetails" ToRole="tblQuestionnaire" />
           <NavigationProperty Name="tblQuestion" Relationship="Self.FK__Indicator__Quest__59FA5E80" FromRole="IndicatorsDetails" ToRole="tblQuestion" />
+          <NavigationProperty Name="tblQuestionnaire" Relationship="School_IndicatorsModel.FK__Indicator__Quest__59063A47" FromRole="IndicatorsDetail" ToRole="tblQuestionnaire" />
         </EntityType>
         <EntityType Name="tblCity">
           <Key>
@@ -533,24 +533,6 @@
           <NavigationProperty Name="tblQuestionOptions" Relationship="Self.FK__tblQuesti__Quest__5DCAEF64" FromRole="tblQuestion" ToRole="tblQuestionOption" />
           <NavigationProperty Name="tblSessionDetails" Relationship="Self.FK__tblSessio__Quest__6A30C649" FromRole="tblQuestion" ToRole="tblSessionDetails" />
         </EntityType>
-        <EntityType Name="tblQuestionnaire">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QuestName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="QuestName2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="QuestName3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="InsertBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LUB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LUD" Type="DateTime" Precision="0" />
-          <Property Name="LUN" Type="Int32" />
-          <Property Name="OrderBy" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="IndicatorsDetails" Relationship="Self.FK__Indicator__Quest__59063A47" FromRole="tblQuestionnaire" ToRole="IndicatorsDetails" />
-          <NavigationProperty Name="tblSessions" Relationship="Self.FK__tblSessio__Quest__66603565" FromRole="tblQuestionnaire" ToRole="tblSessions" />
-        </EntityType>
         <EntityType Name="tblQuestionOption">
           <Key>
             <PropertyRef Name="Id" />
@@ -605,9 +587,9 @@
           <Property Name="LUB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LUD" Type="DateTime" Precision="0" />
           <Property Name="LUN" Type="Int32" />
-          <NavigationProperty Name="tblQuestionnaire" Relationship="Self.FK__tblSessio__Quest__66603565" FromRole="tblSessions" ToRole="tblQuestionnaire" />
           <NavigationProperty Name="tblSessionDetails" Relationship="Self.FK__tblSessio__Sessi__693CA210" FromRole="tblSessions" ToRole="tblSessionDetails" />
           <NavigationProperty Name="tblUserInstitution" Relationship="Self.FK__tblSessio__UserI__656C112C" FromRole="tblSessions" ToRole="tblUserInstitutions" />
+          <NavigationProperty Name="tblQuestionnaire" Relationship="School_IndicatorsModel.FK__tblSessio__Quest__66603565" FromRole="tblSession" ToRole="tblQuestionnaire" />
         </EntityType>
         <EntityType Name="tblUserInstitution">
           <Key>
@@ -634,18 +616,6 @@
             </Principal>
             <Dependent Role="IndicatorsDetails">
               <PropertyRef Name="IndicatorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Indicator__Quest__59063A47">
-          <End Role="tblQuestionnaire" Type="Self.tblQuestionnaire" Multiplicity="0..1" />
-          <End Role="IndicatorsDetails" Type="Self.IndicatorsDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblQuestionnaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="IndicatorsDetails">
-              <PropertyRef Name="QuestionnaireID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -733,18 +703,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblSessio__Quest__66603565">
-          <End Role="tblQuestionnaire" Type="Self.tblQuestionnaire" Multiplicity="0..1" />
-          <End Role="tblSessions" Type="Self.tblSession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblQuestionnaire">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblSessions">
-              <PropertyRef Name="QuestionnaireID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__tblSessio__Quest__6B24EA82">
           <End Role="tblQuestionOption" Type="Self.tblQuestionOption" Multiplicity="0..1" />
           <End Role="tblSessionDetails" Type="Self.tblSessionDetail" Multiplicity="*" />
@@ -788,17 +746,12 @@
           <EntitySet Name="tblIndicators" EntityType="Self.tblIndicator" />
           <EntitySet Name="tblInstitutions" EntityType="Self.tblInstitution" />
           <EntitySet Name="tblQuestions" EntityType="Self.tblQuestion" />
-          <EntitySet Name="tblQuestionnaires" EntityType="Self.tblQuestionnaire" />
           <EntitySet Name="tblQuestionOptions" EntityType="Self.tblQuestionOption" />
           <EntitySet Name="tblSessionDetails" EntityType="Self.tblSessionDetail" />
           <EntitySet Name="tblSessions" EntityType="Self.tblSession" />
           <EntitySet Name="tblUserInstitutions" EntityType="Self.tblUserInstitution" />
           <AssociationSet Name="FK__Indicator__Indic__5AEE82B9" Association="Self.FK__Indicator__Indic__5AEE82B9">
             <End Role="tblIndicators" EntitySet="tblIndicators" />
-            <End Role="IndicatorsDetails" EntitySet="IndicatorsDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Indicator__Quest__59063A47" Association="Self.FK__Indicator__Quest__59063A47">
-            <End Role="tblQuestionnaire" EntitySet="tblQuestionnaires" />
             <End Role="IndicatorsDetails" EntitySet="IndicatorsDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__Indicator__Quest__59FA5E80" Association="Self.FK__Indicator__Quest__59FA5E80">
@@ -829,10 +782,6 @@
             <End Role="tblQuestion" EntitySet="tblQuestions" />
             <End Role="tblSessionDetails" EntitySet="tblSessionDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblSessio__Quest__66603565" Association="Self.FK__tblSessio__Quest__66603565">
-            <End Role="tblQuestionnaire" EntitySet="tblQuestionnaires" />
-            <End Role="tblSessions" EntitySet="tblSessions" />
-          </AssociationSet>
           <AssociationSet Name="FK__tblSessio__Quest__6B24EA82" Association="Self.FK__tblSessio__Quest__6B24EA82">
             <End Role="tblQuestionOption" EntitySet="tblQuestionOptions" />
             <End Role="tblSessionDetails" EntitySet="tblSessionDetails" />
@@ -845,7 +794,59 @@
             <End Role="tblUserInstitutions" EntitySet="tblUserInstitutions" />
             <End Role="tblSessions" EntitySet="tblSessions" />
           </AssociationSet>
+          <EntitySet Name="tblQuestionnaires" EntityType="School_IndicatorsModel.tblQuestionnaire" />
+          <AssociationSet Name="FK__Indicator__Quest__59063A47" Association="School_IndicatorsModel.FK__Indicator__Quest__59063A47">
+            <End Role="tblQuestionnaire" EntitySet="tblQuestionnaires" />
+            <End Role="IndicatorsDetail" EntitySet="IndicatorsDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSessio__Quest__66603565" Association="School_IndicatorsModel.FK__tblSessio__Quest__66603565">
+            <End Role="tblQuestionnaire" EntitySet="tblQuestionnaires" />
+            <End Role="tblSession" EntitySet="tblSessions" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblQuestionnaire">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="QuestName2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="QuestName3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InsertBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LUB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LUD" Type="DateTime" Precision="0" />
+          <Property Name="LUN" Type="Int32" />
+          <Property Name="OrderBy" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IndicatorsDetails" Relationship="School_IndicatorsModel.FK__Indicator__Quest__59063A47" FromRole="tblQuestionnaire" ToRole="IndicatorsDetail" />
+          <NavigationProperty Name="tblSessions" Relationship="School_IndicatorsModel.FK__tblSessio__Quest__66603565" FromRole="tblQuestionnaire" ToRole="tblSession" />
+        </EntityType>
+        <Association Name="FK__Indicator__Quest__59063A47">
+          <End Type="School_IndicatorsModel.tblQuestionnaire" Role="tblQuestionnaire" Multiplicity="0..1" />
+          <End Type="School_IndicatorsModel.IndicatorsDetail" Role="IndicatorsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuestionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndicatorsDetail">
+              <PropertyRef Name="QuestionnaireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSessio__Quest__66603565">
+          <End Type="School_IndicatorsModel.tblQuestionnaire" Role="tblQuestionnaire" Multiplicity="0..1" />
+          <End Type="School_IndicatorsModel.tblSession" Role="tblSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuestionnaire">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblSession">
+              <PropertyRef Name="QuestionnaireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -963,23 +964,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblQuestionnaires">
-            <EntityTypeMapping TypeName="School_IndicatorsModel.tblQuestionnaire">
-              <MappingFragment StoreEntitySet="tblQuestionnaire">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="QuestName" ColumnName="QuestName" />
-                <ScalarProperty Name="QuestName2" ColumnName="QuestName2" />
-                <ScalarProperty Name="QuestName3" ColumnName="QuestName3" />
-                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
-                <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
-                <ScalarProperty Name="LUB" ColumnName="LUB" />
-                <ScalarProperty Name="LUD" ColumnName="LUD" />
-                <ScalarProperty Name="LUN" ColumnName="LUN" />
-                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblQuestionOptions">
             <EntityTypeMapping TypeName="School_IndicatorsModel.tblQuestionOption">
               <MappingFragment StoreEntitySet="tblQuestionOption">
@@ -1044,6 +1028,24 @@
                 <ScalarProperty Name="LUB" ColumnName="LUB" />
                 <ScalarProperty Name="LUD" ColumnName="LUD" />
                 <ScalarProperty Name="LUN" ColumnName="LUN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblQuestionnaires">
+            <EntityTypeMapping TypeName="School_IndicatorsModel.tblQuestionnaire">
+              <MappingFragment StoreEntitySet="tblQuestionnaire">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="LUN" ColumnName="LUN" />
+                <ScalarProperty Name="LUD" ColumnName="LUD" />
+                <ScalarProperty Name="LUB" ColumnName="LUB" />
+                <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="QuestName3" ColumnName="QuestName3" />
+                <ScalarProperty Name="QuestName2" ColumnName="QuestName2" />
+                <ScalarProperty Name="QuestName" ColumnName="QuestName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
