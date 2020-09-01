@@ -175,5 +175,36 @@ namespace School_Indicators_BLL
                 throw ex;
             }
         }
+
+        public List<Institution> SchoolsByCity(int city)
+        {
+            try
+            {
+                using (School_CardsEntities db = new School_CardsEntities())
+                {
+                    List<Institution> model = (from e in db.tblInstitutions
+                                               where e.CityID == city
+                                               select new Institution
+                                               {
+                                                   Id = e.Id,
+                                                   Name1 = e.InstitutionsName1,
+                                                   Name2 = e.InstitutionsName2,
+                                                   Name3 = e.InstitutionsName3,
+                                                   InstitutionsNo = e.InstitutionsNo,
+                                                   Location = e.Location,
+                                                   Address = e.Address,
+                                                   CityID = e.CityID,
+                                                   TelephoneNo = e.TelNo,
+                                                   IsActive = e.IsActive
+                                               }).ToList();
+                    return model;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
