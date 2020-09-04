@@ -25,6 +25,7 @@ namespace School_Indicators_BLL
                             QuestOptName = item.Name1,
                             QuestOptName2 = item.Name2,
                             QuestOptName3 = item.Name2,
+                            IsActive = true,
                             InsertDate = DateTime.Now,
                             InsertBy = "admin",
                         };

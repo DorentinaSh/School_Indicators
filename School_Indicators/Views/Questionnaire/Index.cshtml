@@ -47,8 +47,6 @@
     .popup .content {
         position: absolute;
         /*top: 70%;*/
-        margin-bottom: 5%;
-        margin-top: 46%;
         left: 50%;
         transform: translate(-50%,-50%) scale(0);
         background: #fff;
@@ -60,7 +58,10 @@
         padding-top: 50px;
         box-sizing: border-box;
     }
-
+    .before-content {
+        margin-bottom: 5%;
+        margin-top: 70%;
+    }
     .popup .close-btn {
         cursor: pointer;
         position: absolute;
@@ -132,15 +133,15 @@
     </div>
     <div class="popup" id="popup-1">
         <div class="overlay">
-            <div class="content">
-                <div class="close-btn" onclick="togglePopup()">&times;</div>
-                <div id="questionnaireForm">
+            <div class="before-content">
+                <div class="content">
+                    <div class="close-btn" onclick="togglePopup()">&times;</div>
+                    <div id="questionnaireForm">
+                    </div>
                 </div>
             </div>
         </div>
-        
     </div>
-
 </div>
 <script>
 
@@ -228,7 +229,6 @@
             data: { questionnaireID: id  },
             url: '@Url.Action("QuestionnaireForm", "Questionnaire")',
             success: function (data) {
-                console.log(data);
                 $("#questionnaireForm").html(data);
                 document.getElementById("popup-1").classList.toggle("active");
             },

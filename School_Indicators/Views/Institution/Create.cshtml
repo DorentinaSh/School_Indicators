@@ -9,12 +9,14 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <div class="form-group" style="float:left;">
             <label class="control-label">Is Active?</label>
             <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked />
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-md-4">
         <div class="form-group">
             @Html.LabelFor(model => model.InstitutionsNo, htmlAttributes: new { @class = "control-label" })
@@ -22,30 +24,27 @@
             @Html.ValidationMessageFor(model => model.InstitutionsNo, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(model => model.TelephoneNo, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.TelephoneNo, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.TelephoneNo, "", new { @class = "text-danger" })
-        </div>
-    </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <div class="form-group">
             @Html.LabelFor(model => model.Name1, htmlAttributes: new { @class = "control-label" })
             @Html.TextBoxFor(model => model.Name1, null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="col-md-4">
+</div>
+<div class="row">
+    <div class="col-md-8">
         <div class="form-group">
             @Html.LabelFor(model => model.Name2, htmlAttributes: new { @class = "control-label" })
             @Html.TextBoxFor(model => model.Name2, null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="col-md-4">
+</div>
+<div class="row">
+    <div class="col-md-8">
         <div class="form-group">
             @Html.LabelFor(model => model.Name3, htmlAttributes: new { @class = "control-label" })
             @Html.TextBoxFor(model => model.Name3, null, htmlAttributes: new { @class = "form-control" })
@@ -54,12 +53,11 @@
     </div>
 </div>
 <div class="row">
-
     <div class="col-md-4">
         <div class="form-group">
-            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Location, null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.TelephoneNo, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.TelephoneNo, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TelephoneNo, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="col-md-4">
@@ -69,11 +67,92 @@
             @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Level, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Level, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Level, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Status, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    
+</div>
+<div class="row">
     <div class="col-md-4">
         <div class="form-group">
             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
             @Html.TextBoxFor(model => model.Address, null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Location, null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row">
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <label class="control-label">
+                Number of Students
+            </label>
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.TotalNr_Female, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(model => model.TotalNr_Female, null, htmlAttributes: new { @class = "form-control col-md-1" })
+            @Html.ValidationMessageFor(model => model.TotalNr_Female, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.TotalNr_Male, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.TotalNr_Male, null, htmlAttributes: new { @class = "form-control col-md-1" })
+            @Html.ValidationMessageFor(model => model.TotalNr_Male, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <label class="control-label">
+                Enrollments Per Year
+            </label>
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.EnrollmentsPerYear_Female, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(model => model.EnrollmentsPerYear_Female, null, htmlAttributes: new { @class = "form-control col-md-1" })
+            @Html.ValidationMessageFor(model => model.EnrollmentsPerYear_Female, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.EnrollmentsPerYear_Male, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(model => model.EnrollmentsPerYear_Male, null, htmlAttributes: new { @class = "form-control col-md-1" })
+            @Html.ValidationMessageFor(model => model.EnrollmentsPerYear_Male, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <label class="control-label">
+                Number of Students With Disabilities
+            </label>
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Students_WithDisabilities_Female, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Students_WithDisabilities_Female, null, htmlAttributes: new { @class = "form-control col-md-1" })
+            @Html.ValidationMessageFor(model => model.Students_WithDisabilities_Female, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Students_WithDisabilities_Male, htmlAttributes: new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Students_WithDisabilities_Male, null, htmlAttributes: new { @class = "form-control col-md-1" })
+            @Html.ValidationMessageFor(model => model.Students_WithDisabilities_Male, "", new { @class = "text-danger" })
         </div>
     </div>
 </div>
@@ -94,6 +173,14 @@
             'Name2': $('#Name2').val(),
             'Name3': $('#Name3').val(),
             'Location': $('#Location').val(),
+            'Level': $('#Level').val(),
+            'Status': $('#Status').val(),
+            'TotalNr_Female': $('#TotalNr_Female').val(),
+            'TotalNr_Male': $('#TotalNr_Male').val(),
+            'EnrollmentsPerYear_Female': $('#EnrollmentsPerYear_Female').val(),
+            'EnrollmentsPerYear_Male': $('#EnrollmentsPerYear_Male').val(),
+            'Students_WithDisabilities_Female': $('#Students_WithDisabilities_Female').val(),
+            'Students_WithDisabilities_Male': $('#Students_WithDisabilities_Male').val(),
             'Address': $('#Address').val(),
             'CityID': $("#CityID option:selected").val(),
         };

@@ -6,22 +6,26 @@
     .options {
         align-self: center;
     }
+
     .answers {
         color: red;
         font-size: 15px;
     }
+
     .circleRate {
         border-radius: 50%;
         background: #BADA55;
-        padding-top:-10px;
-        padding-bottom:10px;
-        margin-top:10px;
-        margin-bottom:0px;
-        margin-right:130px;
-        text-align:center;
-        color:white;
-        font-size:15px;
+        padding-top: -10px;
+        padding-bottom: 10px;
+        margin-top: 15px;
+        margin-bottom: 0px;
+        /*margin-right: 130px;*/
+        width:50px;
+        text-align: center;
+        color: white;
+        font-size: 15px;
     }
+
     .header {
         border-top: 3px solid #28a745;
         background: rgba(230,233,237,0);
@@ -29,6 +33,7 @@
         width: 100%;
         padding: 1%;
     }
+
     .header-left i {
         margin-left: 5%;
     }
@@ -43,9 +48,11 @@
         background: #e6e9ed;
         width: 100%;
     }
+
         .content .form-content {
             padding: 5%;
         }
+
             .content .form-content .input-group .input-group-text {
                 background: #333;
                 color: #fff;
@@ -53,15 +60,19 @@
                 border-radius: 0;
                 font-weight: 600;
             }
+
             .content .form-content .input-group input {
                 border-radius: 0;
             }
+
                 .content .form-content .input-group input:focus {
                     border-color: transparent;
                 }
+
             .content .form-content h4 {
                 margin-bottom: 5%;
             }
+
             .content .form-content button {
                 background: #333;
                 color: #fff;
@@ -83,12 +94,12 @@
 </div>
 <div class="row">
     <div class="row">
-        <div class="col-md-12">
-            <div class="form-group" style="float:left;">
-                <label class="control-label">Is Active?</label>
-                <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked />
-            </div>
-        </div>
+        @*<div class="col-md-12">
+                <div class="form-group" style="float:left;">
+                    <label class="control-label">Is Active?</label>
+                    <input type="checkbox" class="form-control" id="IsActive" name="IsActive" checked />
+                </div>
+            </div>*@
         <div class="col-md-5">
             <div class="form-group">
                 <div class="form-group">
@@ -150,6 +161,11 @@
                     </div>
                     <div id="options" class="row options">
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a id="addMoreOption" class="btn btn-xs btn-info" onclick="AddMoreOption()"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,8 +176,9 @@
     </div>
 </div>
 <script>
-    let nrOfOption = [0,1, 2, 3, 4];
-    let rate = JSON.parse('@Html.Raw(ViewBag.Rate)');
+    let nrOfOption = [0, 1];
+    var optionCounter;
+    //let rate = JSON.parse('@Html.Raw(ViewBag.Rate)');
 
     $(document).ready(function () {
         DrawOption();
@@ -169,8 +186,22 @@
 
     function DrawOption() {
         nrOfOption.forEach(function (item, index, array) {
-            $("#options").append('<div class="row">'+
-                '<div class="col-md-1"> <div class="form-group"><br/><label class="control-label">' + item + ' </label>'
+            //$("#options").append('<div class="row">'+
+            //    '<div class="col-md-1"> <div class="form-group"><br/><label class="control-label">' + (item+1) + ' </label>'
+            //    + '</div></div>' +
+            //    '<div class="col-md-3"><div class="form-group row"><br/>'
+            //    + '<input type="text" id="optionsAlb_' + item + '" class="form-control"/></div></div>' +
+            //    '<div class="col-md-3"><div class="form-group row"><br/>'
+            //    + '<input type="text" id="optionsEng_' + item + '" class="form-control"/></div></div>' +
+            //    '<div class="col-md-3"><div class="form-group row"><br/>'
+            //    + '<input type="text" id="optionsSrp_' + item + '" class="form-control"/></div></div>' +
+            //    '<div class="col-md-2"><div class="form-group row circleRate"><br/>'
+            //    + '<label class="control-label">' + rate[item].Value + ' </label>' +
+            //    '<input id="rate_' + item + '" type="hidden" value="' + rate[item].Id+'"/> </div></div>' +
+            //    '</div>');
+            optionCounter = item;
+            $("#options").append('<div class="row">' +
+                '<div class="col-md-1"> <div class="form-group"><br/><label class="control-label">' + ( item + 1 ) + ' </label>'
                 + '</div></div>' +
                 '<div class="col-md-3"><div class="form-group row"><br/>'
                 + '<input type="text" id="optionsAlb_' + item + '" class="form-control"/></div></div>' +
@@ -179,19 +210,46 @@
                 '<div class="col-md-3"><div class="form-group row"><br/>'
                 + '<input type="text" id="optionsSrp_' + item + '" class="form-control"/></div></div>' +
                 '<div class="col-md-2"><div class="form-group row circleRate"><br/>'
-                + '<label class="control-label">' + rate[item].Value + ' </label>' +
-                '<input id="rate_' + item + '" type="hidden" value="' + rate[item].Id+'"/> </div></div>' +
+                + '<label class="control-label">' + optionCounter/ + ' </label>' +
+                '<input id="rate_' + item + '" type="hidden" /> </div></div>' +
                 '</div>');
         })
     }
-
+    function AddMoreOption() {
+        $("#removeoption_" + optionCounter).hide();
+        optionCounter = optionCounter + 1;
+        $("#options").append('<div class="row" id="option_' + optionCounter + '">' +
+            '<div class="col-md-1"> <div class="form-group"><br/><label class="control-label">' + (optionCounter + 1) + ' </label>'
+            + '</div></div>' +
+            '<div class="col-md-3"><div class="form-group row"><br/>'
+            + '<input type="text" id="optionsAlb_' + optionCounter + '" class="form-control"/></div></div>' +
+            '<div class="col-md-3"><div class="form-group row"><br/>'
+            + '<input type="text" id="optionsEng_' + optionCounter + '" class="form-control"/></div></div>' +
+            '<div class="col-md-3"><div class="form-group row"><br/>'
+            + '<input type="text" id="optionsSrp_' + optionCounter + '" class="form-control"/></div></div>' +
+            '<div class="col-md-1"><div class="form-group row circleRate"><br/>'
+            + '<label class="control-label">' + optionCounter + ' </label>' +
+            '<input id="rate_' + optionCounter + '" type="hidden" /> </div></div>' +
+            '<div class="col-md-1"><div class="form-group row"><br/>' +
+            '<a id="removeoption_' + optionCounter + '" class="btn btn-danger btn-sm text-white" onclick="RemoveOption(' + optionCounter + ')"><i class="glyphicon glyphicon-trash"></i></a>'+
+            '</div></div>' +
+            '</div>');
+    }
+    function RemoveOption(optionnr) {
+        $("#option_" + optionnr).remove();
+        optionCounter--;
+        $("#removeoption_" + optionCounter).show();
+        //if (option < 5) {
+        //    $("#addmore").show();
+        //}
+    }
     function SaveQuestion() {
         var question = {
             'IndicatorId': $("#Question_IndicatorId option:selected").val(),
             'Name1': $('#Question_Name1').val(),
             'Name2': $('#Question_Name2').val(),
-            'Name3': $('#Question_Name3').val(),
-            'IsActive': $('#IsActive').prop('checked')
+            'Name3': $('#Question_Name3').val()
+            //'IsActive': $('#IsActive').prop('checked')
         };
 
         var optionsList = [];

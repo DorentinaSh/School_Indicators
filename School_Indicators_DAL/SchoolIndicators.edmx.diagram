@@ -9,18 +9,15 @@
         <EntityTypeShape EntityType="School_IndicatorsModel.tblCity" Width="1.5" PointX="1.5" PointY="24.5" IsExpanded="true" />
         <EntityTypeShape EntityType="School_IndicatorsModel.tblEvaluation" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="School_IndicatorsModel.tblIndicator" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="School_IndicatorsModel.tblInstitution" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="School_IndicatorsModel.tblQuestion" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="School_IndicatorsModel.tblQuestionOption" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="School_IndicatorsModel.tblSessionDetail" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="School_IndicatorsModel.tblSession" Width="1.5" PointX="5.25" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="School_IndicatorsModel.tblUserInstitution" Width="1.5" PointX="3" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="School_IndicatorsModel.tblUserInstitution" Width="1.5" PointX="1.25" PointY="17.75" IsExpanded="true" />
         <AssociationConnector Association="School_IndicatorsModel.FK__Indicator__Indic__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="School_IndicatorsModel.FK__Indicator__Quest__59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="School_IndicatorsModel.FK__tblInstit__CityI__4D94879B" ManuallyRouted="false" />
         <AssociationConnector Association="School_IndicatorsModel.FK__tblQuesti__Evalu__5EBF139D" ManuallyRouted="false" />
         <AssociationConnector Association="School_IndicatorsModel.FK__tblQuesti__Indic__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="School_IndicatorsModel.FK__tblUserIn__Insti__628FA481" ManuallyRouted="false" />
         <AssociationConnector Association="School_IndicatorsModel.FK__tblQuesti__Quest__5DCAEF64" ManuallyRouted="false" />
         <AssociationConnector Association="School_IndicatorsModel.FK__tblSessio__Quest__6A30C649" ManuallyRouted="false" />
         <AssociationConnector Association="School_IndicatorsModel.FK__tblSessio__Quest__6B24EA82" ManuallyRouted="false" />
@@ -29,6 +26,9 @@
         <EntityTypeShape EntityType="School_IndicatorsModel.tblQuestionnaire" Width="1.5" PointX="0.75" PointY="12" />
         <AssociationConnector Association="School_IndicatorsModel.FK__Indicator__Quest__59063A47" />
         <AssociationConnector Association="School_IndicatorsModel.FK__tblSessio__Quest__66603565" />
+        <EntityTypeShape EntityType="School_IndicatorsModel.tblInstitution" Width="1.5" PointX="3.75" PointY="22.75" />
+        <AssociationConnector Association="School_IndicatorsModel.FK__tblInstit__CityI__4D94879B" />
+        <AssociationConnector Association="School_IndicatorsModel.FK__tblUserIn__Insti__628FA481" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

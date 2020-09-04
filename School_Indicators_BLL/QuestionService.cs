@@ -105,7 +105,7 @@ namespace School_Indicators_BLL
                         QuestionName1 = model.Name1,
                         QuestionName2 = model.Name2,
                         QuestionName3 = model.Name3,
-                        IsActive = model.IsActive,
+                        IsActive = true,
                         InsertDate = DateTime.Now,
                         InsertBy = "admin",
                     };

@@ -55,6 +55,17 @@ namespace School_Indicators_BLL
                         Address = model.Address,
                         CityID = model.CityID,
                         TelNo = model.TelephoneNo,
+                        Status = model.Status,
+                        Level = model.Level,
+                        NrOfStudentsTotal_Female = model.TotalNr_Female,
+                        NrOfStudentsTotal_Male = model.TotalNr_Male,
+                        EnrollmentsPerYear_Female = model.EnrollmentsPerYear_Female,
+                        EnrollmentsPerYear_Male = model.EnrollmentsPerYear_Male,
+                        StudentsWDissabilitiesTotal_Female = model.Students_WithDisabilities_Female,
+                        StudentsWDissabilitiesTotal_Male = model.Students_WithDisabilities_Male,
+                        NrOfStudentsTotal = model.TotalNr_Male + model.TotalNr_Female,
+                        EnrollmentsPerYearTotal = model.EnrollmentsPerYear_Male + model.EnrollmentsPerYear_Female,
+                        StudentsWDissabilitiesTotal = model.Students_WithDisabilities_Male + model.Students_WithDisabilities_Female,
                         IsActive = model.IsActive,
                         InsertDate = DateTime.Now,
                         InsertBy = "admin",
@@ -86,6 +97,17 @@ namespace School_Indicators_BLL
                     q.CityID = model.CityID;
                     q.TelNo = model.TelephoneNo;
                     q.IsActive = model.IsActive;
+                    q.Level = model.Level;
+                    q.Status = model.Status;
+                    q.NrOfStudentsTotal_Female = model.TotalNr_Female;
+                    q.NrOfStudentsTotal_Male = model.TotalNr_Male;
+                    q.NrOfStudentsTotal = model.TotalNr_Male + model.TotalNr_Female;
+                    q.EnrollmentsPerYear_Female = model.EnrollmentsPerYear_Female;
+                    q.EnrollmentsPerYear_Male = model.EnrollmentsPerYear_Male;
+                    q.EnrollmentsPerYearTotal = model.EnrollmentsPerYear_Male + model.EnrollmentsPerYear_Female;
+                    q.StudentsWDissabilitiesTotal_Female = model.Students_WithDisabilities_Female;
+                    q.StudentsWDissabilitiesTotal_Male = model.Students_WithDisabilities_Male;
+                    q.StudentsWDissabilitiesTotal = model.Students_WithDisabilities_Female + model.Students_WithDisabilities_Male;
                     q.LUB = "admin";
                     q.LUD = DateTime.Now;
                     db.Entry(q).State = System.Data.Entity.EntityState.Modified;
@@ -118,7 +140,15 @@ namespace School_Indicators_BLL
                                              Address = e.Address,
                                              CityID = e.CityID,
                                              TelephoneNo = e.TelNo,
-                                             IsActive = e.IsActive
+                                             IsActive = e.IsActive,
+                                             Status = e.Status,
+                                             Level = e.Level,
+                                             TotalNr_Female = e.NrOfStudentsTotal_Female,
+                                             TotalNr_Male = e.NrOfStudentsTotal_Male,
+                                             EnrollmentsPerYear_Female = e.EnrollmentsPerYear_Female,
+                                             EnrollmentsPerYear_Male = e.EnrollmentsPerYear_Male,
+                                             Students_WithDisabilities_Female = e.StudentsWDissabilitiesTotal_Female,
+                                             Students_WithDisabilities_Male = e.StudentsWDissabilitiesTotal_Male
                                          }).FirstOrDefault();
                     return model;
                 }
@@ -153,24 +183,24 @@ namespace School_Indicators_BLL
                 using (School_IndicatorsEntities db = new School_IndicatorsEntities())
                 {
                     List<Institution> model = (from e in db.tblInstitutions
-                                         where e.InstitutionsName1.Contains(query)
-                                         select new Institution
-                                         {
-                                             Id = e.Id,
-                                             Name1 = e.InstitutionsName1,
-                                             Name2 = e.InstitutionsName2,
-                                             Name3 = e.InstitutionsName3,
-                                             InstitutionsNo = e.InstitutionsNo,
-                                             Location = e.Location,
-                                             Address = e.Address,
-                                             CityID = e.CityID,
-                                             TelephoneNo = e.TelNo,
-                                             IsActive = e.IsActive
-                                         }).ToList();
+                                               where e.InstitutionsName1.Contains(query)
+                                               select new Institution
+                                               {
+                                                   Id = e.Id,
+                                                   Name1 = e.InstitutionsName1,
+                                                   Name2 = e.InstitutionsName2,
+                                                   Name3 = e.InstitutionsName3,
+                                                   InstitutionsNo = e.InstitutionsNo,
+                                                   Location = e.Location,
+                                                   Address = e.Address,
+                                                   CityID = e.CityID,
+                                                   TelephoneNo = e.TelNo,
+                                                   IsActive = e.IsActive
+                                               }).ToList();
                     return model;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

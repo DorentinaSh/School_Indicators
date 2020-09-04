@@ -29,12 +29,12 @@ namespace School_Indicators_DAL
         public virtual DbSet<tblCity> tblCities { get; set; }
         public virtual DbSet<tblEvaluation> tblEvaluations { get; set; }
         public virtual DbSet<tblIndicator> tblIndicators { get; set; }
-        public virtual DbSet<tblInstitution> tblInstitutions { get; set; }
         public virtual DbSet<tblQuestion> tblQuestions { get; set; }
         public virtual DbSet<tblQuestionOption> tblQuestionOptions { get; set; }
         public virtual DbSet<tblSessionDetail> tblSessionDetails { get; set; }
         public virtual DbSet<tblSession> tblSessions { get; set; }
         public virtual DbSet<tblUserInstitution> tblUserInstitutions { get; set; }
         public virtual DbSet<tblQuestionnaire> tblQuestionnaires { get; set; }
+        public virtual DbSet<tblInstitution> tblInstitutions { get; set; }
     }
 }

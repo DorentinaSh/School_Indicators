@@ -445,7 +445,7 @@
           <Property Name="LUB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LUD" Type="DateTime" Precision="0" />
           <Property Name="LUN" Type="Int32" />
-          <NavigationProperty Name="tblInstitutions" Relationship="Self.FK__tblInstit__CityI__4D94879B" FromRole="tblCity" ToRole="tblInstitution" />
+          <NavigationProperty Name="tblInstitutions" Relationship="School_IndicatorsModel.FK__tblInstit__CityI__4D94879B" FromRole="tblCity" ToRole="tblInstitution" />
         </EntityType>
         <EntityType Name="tblEvaluation">
           <Key>
@@ -477,39 +477,6 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="IndicatorsDetails" Relationship="Self.FK__Indicator__Indic__5AEE82B9" FromRole="tblIndicators" ToRole="IndicatorsDetails" />
           <NavigationProperty Name="tblQuestions" Relationship="Self.FK__tblQuesti__Indic__5441852A" FromRole="tblIndicators" ToRole="tblQuestion" />
-        </EntityType>
-        <EntityType Name="tblInstitution">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InstitutionsNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InstitutionsName1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InstitutionsName2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="InstitutionsName3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CityID" Type="Int32" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NrOfStudentsTotal" Type="Int64" />
-          <Property Name="NrOfStudentsTotal_Female" Type="Int64" />
-          <Property Name="NrOfStudentsTotal_Male" Type="Int64" />
-          <Property Name="EnrollmentsPerYearTotal" Type="Int64" />
-          <Property Name="EnrollmentsPerYear_Female" Type="Int64" />
-          <Property Name="EnrollmentsPerYear_Male" Type="Int64" />
-          <Property Name="StudentsWDissabilitiesTotal" Type="Int64" />
-          <Property Name="StudentsWDissabilitiesTotal_Female" Type="Int64" />
-          <Property Name="StudentsWDissabilitiesTotal_Male" Type="Int64" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="InsertDate" Type="DateTime" Precision="0" />
-          <Property Name="InsertBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="LUB" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="LUD" Type="DateTime" Precision="0" />
-          <Property Name="LUN" Type="Int32" />
-          <NavigationProperty Name="tblCity" Relationship="Self.FK__tblInstit__CityI__4D94879B" FromRole="tblInstitution" ToRole="tblCity" />
-          <NavigationProperty Name="tblUserInstitutions" Relationship="Self.FK__tblUserIn__Insti__628FA481" FromRole="tblInstitution" ToRole="tblUserInstitutions" />
         </EntityType>
         <EntityType Name="tblQuestion">
           <Key>
@@ -604,8 +571,8 @@
           <Property Name="LUB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LUD" Type="DateTime" Precision="0" />
           <Property Name="LUN" Type="Int32" />
-          <NavigationProperty Name="tblInstitution" Relationship="Self.FK__tblUserIn__Insti__628FA481" FromRole="tblUserInstitutions" ToRole="tblInstitution" />
           <NavigationProperty Name="tblSessions" Relationship="Self.FK__tblSessio__UserI__656C112C" FromRole="tblUserInstitutions" ToRole="tblSessions" />
+          <NavigationProperty Name="tblInstitution" Relationship="School_IndicatorsModel.FK__tblUserIn__Insti__628FA481" FromRole="tblUserInstitution" ToRole="tblInstitution" />
         </EntityType>
         <Association Name="FK__Indicator__Indic__5AEE82B9">
           <End Role="tblIndicators" Type="Self.tblIndicator" Multiplicity="0..1" />
@@ -631,18 +598,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblInstit__CityI__4D94879B">
-          <End Role="tblCity" Type="Self.tblCity" Multiplicity="0..1" />
-          <End Role="tblInstitution" Type="Self.tblInstitution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCity">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblInstitution">
-              <PropertyRef Name="CityID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__tblQuesti__Evalu__5EBF139D">
           <End Role="tblEvaluation" Type="Self.tblEvaluation" Multiplicity="0..1" />
           <End Role="tblQuestionOption" Type="Self.tblQuestionOption" Multiplicity="*" />
@@ -664,18 +619,6 @@
             </Principal>
             <Dependent Role="tblQuestion">
               <PropertyRef Name="IndicatorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__tblUserIn__Insti__628FA481">
-          <End Role="tblInstitution" Type="Self.tblInstitution" Multiplicity="1" />
-          <End Role="tblUserInstitutions" Type="Self.tblUserInstitution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblInstitution">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblUserInstitutions">
-              <PropertyRef Name="InstitutionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -744,7 +687,6 @@
           <EntitySet Name="tblCities" EntityType="Self.tblCity" />
           <EntitySet Name="tblEvaluations" EntityType="Self.tblEvaluation" />
           <EntitySet Name="tblIndicators" EntityType="Self.tblIndicator" />
-          <EntitySet Name="tblInstitutions" EntityType="Self.tblInstitution" />
           <EntitySet Name="tblQuestions" EntityType="Self.tblQuestion" />
           <EntitySet Name="tblQuestionOptions" EntityType="Self.tblQuestionOption" />
           <EntitySet Name="tblSessionDetails" EntityType="Self.tblSessionDetail" />
@@ -758,10 +700,6 @@
             <End Role="tblQuestion" EntitySet="tblQuestions" />
             <End Role="IndicatorsDetails" EntitySet="IndicatorsDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblInstit__CityI__4D94879B" Association="Self.FK__tblInstit__CityI__4D94879B">
-            <End Role="tblCity" EntitySet="tblCities" />
-            <End Role="tblInstitution" EntitySet="tblInstitutions" />
-          </AssociationSet>
           <AssociationSet Name="FK__tblQuesti__Evalu__5EBF139D" Association="Self.FK__tblQuesti__Evalu__5EBF139D">
             <End Role="tblEvaluation" EntitySet="tblEvaluations" />
             <End Role="tblQuestionOption" EntitySet="tblQuestionOptions" />
@@ -769,10 +707,6 @@
           <AssociationSet Name="FK__tblQuesti__Indic__5441852A" Association="Self.FK__tblQuesti__Indic__5441852A">
             <End Role="tblIndicators" EntitySet="tblIndicators" />
             <End Role="tblQuestion" EntitySet="tblQuestions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__tblUserIn__Insti__628FA481" Association="Self.FK__tblUserIn__Insti__628FA481">
-            <End Role="tblInstitution" EntitySet="tblInstitutions" />
-            <End Role="tblUserInstitutions" EntitySet="tblUserInstitutions" />
           </AssociationSet>
           <AssociationSet Name="FK__tblQuesti__Quest__5DCAEF64" Association="Self.FK__tblQuesti__Quest__5DCAEF64">
             <End Role="tblQuestion" EntitySet="tblQuestions" />
@@ -802,6 +736,15 @@
           <AssociationSet Name="FK__tblSessio__Quest__66603565" Association="School_IndicatorsModel.FK__tblSessio__Quest__66603565">
             <End Role="tblQuestionnaire" EntitySet="tblQuestionnaires" />
             <End Role="tblSession" EntitySet="tblSessions" />
+          </AssociationSet>
+          <EntitySet Name="tblInstitutions" EntityType="School_IndicatorsModel.tblInstitution" />
+          <AssociationSet Name="FK__tblInstit__CityI__4D94879B" Association="School_IndicatorsModel.FK__tblInstit__CityI__4D94879B">
+            <End Role="tblCity" EntitySet="tblCities" />
+            <End Role="tblInstitution" EntitySet="tblInstitutions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserIn__Insti__628FA481" Association="School_IndicatorsModel.FK__tblUserIn__Insti__628FA481">
+            <End Role="tblInstitution" EntitySet="tblInstitutions" />
+            <End Role="tblUserInstitution" EntitySet="tblUserInstitutions" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblQuestionnaire">
@@ -844,6 +787,63 @@
             </Principal>
             <Dependent Role="tblSession">
               <PropertyRef Name="QuestionnaireID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblInstitution">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstitutionsNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionsName1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionsName2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionsName3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NrOfStudentsTotal" Type="Int64" />
+          <Property Name="NrOfStudentsTotal_Female" Type="Int64" />
+          <Property Name="NrOfStudentsTotal_Male" Type="Int64" />
+          <Property Name="EnrollmentsPerYearTotal" Type="Int64" />
+          <Property Name="EnrollmentsPerYear_Female" Type="Int64" />
+          <Property Name="EnrollmentsPerYear_Male" Type="Int64" />
+          <Property Name="StudentsWDissabilitiesTotal" Type="Int64" />
+          <Property Name="StudentsWDissabilitiesTotal_Female" Type="Int64" />
+          <Property Name="StudentsWDissabilitiesTotal_Male" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="InsertDate" Type="DateTime" Precision="0" />
+          <Property Name="InsertBy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LUB" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LUD" Type="DateTime" Precision="0" />
+          <Property Name="LUN" Type="Int32" />
+          <NavigationProperty Name="tblCity" Relationship="School_IndicatorsModel.FK__tblInstit__CityI__4D94879B" FromRole="tblInstitution" ToRole="tblCity" />
+          <NavigationProperty Name="tblUserInstitutions" Relationship="School_IndicatorsModel.FK__tblUserIn__Insti__628FA481" FromRole="tblInstitution" ToRole="tblUserInstitution" />
+        </EntityType>
+        <Association Name="FK__tblInstit__CityI__4D94879B">
+          <End Type="School_IndicatorsModel.tblCity" Role="tblCity" Multiplicity="0..1" />
+          <End Type="School_IndicatorsModel.tblInstitution" Role="tblInstitution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblInstitution">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserIn__Insti__628FA481">
+          <End Type="School_IndicatorsModel.tblInstitution" Role="tblInstitution" Multiplicity="1" />
+          <End Type="School_IndicatorsModel.tblUserInstitution" Role="tblUserInstitution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblInstitution">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUserInstitution">
+              <PropertyRef Name="InstitutionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -910,38 +910,6 @@
                 <ScalarProperty Name="LUN" ColumnName="LUN" />
                 <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblInstitutions">
-            <EntityTypeMapping TypeName="School_IndicatorsModel.tblInstitution">
-              <MappingFragment StoreEntitySet="tblInstitution">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="InstitutionsNo" ColumnName="InstitutionsNo" />
-                <ScalarProperty Name="InstitutionsName1" ColumnName="InstitutionsName1" />
-                <ScalarProperty Name="InstitutionsName2" ColumnName="InstitutionsName2" />
-                <ScalarProperty Name="InstitutionsName3" ColumnName="InstitutionsName3" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
-                <ScalarProperty Name="NrOfStudentsTotal" ColumnName="NrOfStudentsTotal" />
-                <ScalarProperty Name="NrOfStudentsTotal_Female" ColumnName="NrOfStudentsTotal_Female" />
-                <ScalarProperty Name="NrOfStudentsTotal_Male" ColumnName="NrOfStudentsTotal_Male" />
-                <ScalarProperty Name="EnrollmentsPerYearTotal" ColumnName="EnrollmentsPerYearTotal" />
-                <ScalarProperty Name="EnrollmentsPerYear_Female" ColumnName="EnrollmentsPerYear_Female" />
-                <ScalarProperty Name="EnrollmentsPerYear_Male" ColumnName="EnrollmentsPerYear_Male" />
-                <ScalarProperty Name="StudentsWDissabilitiesTotal" ColumnName="StudentsWDissabilitiesTotal" />
-                <ScalarProperty Name="StudentsWDissabilitiesTotal_Female" ColumnName="StudentsWDissabilitiesTotal_Female" />
-                <ScalarProperty Name="StudentsWDissabilitiesTotal_Male" ColumnName="StudentsWDissabilitiesTotal_Male" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
-                <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
-                <ScalarProperty Name="LUB" ColumnName="LUB" />
-                <ScalarProperty Name="LUD" ColumnName="LUD" />
-                <ScalarProperty Name="LUN" ColumnName="LUN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1045,6 +1013,38 @@
                 <ScalarProperty Name="QuestName3" ColumnName="QuestName3" />
                 <ScalarProperty Name="QuestName2" ColumnName="QuestName2" />
                 <ScalarProperty Name="QuestName" ColumnName="QuestName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInstitutions">
+            <EntityTypeMapping TypeName="School_IndicatorsModel.tblInstitution">
+              <MappingFragment StoreEntitySet="tblInstitution">
+                <ScalarProperty Name="LUN" ColumnName="LUN" />
+                <ScalarProperty Name="LUD" ColumnName="LUD" />
+                <ScalarProperty Name="LUB" ColumnName="LUB" />
+                <ScalarProperty Name="InsertBy" ColumnName="InsertBy" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="StudentsWDissabilitiesTotal_Male" ColumnName="StudentsWDissabilitiesTotal_Male" />
+                <ScalarProperty Name="StudentsWDissabilitiesTotal_Female" ColumnName="StudentsWDissabilitiesTotal_Female" />
+                <ScalarProperty Name="StudentsWDissabilitiesTotal" ColumnName="StudentsWDissabilitiesTotal" />
+                <ScalarProperty Name="EnrollmentsPerYear_Male" ColumnName="EnrollmentsPerYear_Male" />
+                <ScalarProperty Name="EnrollmentsPerYear_Female" ColumnName="EnrollmentsPerYear_Female" />
+                <ScalarProperty Name="EnrollmentsPerYearTotal" ColumnName="EnrollmentsPerYearTotal" />
+                <ScalarProperty Name="NrOfStudentsTotal_Male" ColumnName="NrOfStudentsTotal_Male" />
+                <ScalarProperty Name="NrOfStudentsTotal_Female" ColumnName="NrOfStudentsTotal_Female" />
+                <ScalarProperty Name="NrOfStudentsTotal" ColumnName="NrOfStudentsTotal" />
+                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="InstitutionsName3" ColumnName="InstitutionsName3" />
+                <ScalarProperty Name="InstitutionsName2" ColumnName="InstitutionsName2" />
+                <ScalarProperty Name="InstitutionsName1" ColumnName="InstitutionsName1" />
+                <ScalarProperty Name="InstitutionsNo" ColumnName="InstitutionsNo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
