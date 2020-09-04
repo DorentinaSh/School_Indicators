@@ -2,76 +2,237 @@
 @{
     ViewBag.Title = "Create";
 }
-    <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
+    <style>
+        .content {
+            background: #e6e9ed;
+            border-radius: 10px;
+            width: 93%;
+            margin-left: 15px;
+        }
+
+            .content .form-content {
+                padding: 5%;
+                justify-content: center;
+            }
+
+                .content .form-content .input-group .input-group-text {
+                    background: #333;
+                    color: #fff;
+                    border: none;
+                    border-radius: 0;
+                    /*font-weight: 600;*/
+                }
+
+                .content .form-content .input-group input {
+                    border-radius: 0;
+                }
+
+                    .content .form-content .input-group input:focus {
+                        border-color: transparent;
+                    }
+
+                .content .form-content h4 {
+                    margin-bottom: 5%;
+                }
+
+                .content .form-content button {
+                    background: #333;
+                    color: #fff;
+                    border-radius: 0;
+                    width: 20%;
+                    font-weight: 600;
+                }
+
+        .titleLabel {
+            font-weight: bold !important;
+        }
+
+        .textLabel {
+            font-weight: normal !important;
+        }
+    </style>
+<div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 
 <div class="row">
     <h3>Edit Institution Information</h3>
     <hr />
 </div>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <div class="form-group" style="float:left;">
             <label class="control-label">Is Active?</label>
             <input type="checkbox" class="form-control" id="IsActive" name="IsActive" @(Model.IsActive ? "checked" : String.Empty) />
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Institution No.</label>
-            <input type="number" min="0" class="form-control" id="InstitutionNo" name="InstitutionNo" value="@Model.InstitutionsNo" />
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Institution No.</label>
+                    <input type="number" min="0" class="form-control" id="InstitutionNo" name="InstitutionNo" value="@Model.InstitutionsNo" />
+                    @Html.ValidationMessageFor(model => model.InstitutionsNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Telephone No</label>
+                    <input type="tel" class="form-control" id="TelNo" name="TelNo" value="@Model.TelephoneNo" />
+                    @Html.ValidationMessageFor(model => model.TelephoneNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Name in Albanian</label>
+                    <input type="text" class="form-control" id="Name1" name="Name1" value="@Model.Name1" />
+                    @Html.ValidationMessageFor(model => model.Name1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Name in English</label>
+                    <input type="text" class="form-control" id="Name2" name="Name2" value="@Model.Name2" />
+                    @Html.ValidationMessageFor(model => model.Name2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Name in Srpsko</label>
+                    <input type="text" class="form-control" id="Name3" name="Name3" value="@Model.Name3" />
+                    @Html.ValidationMessageFor(model => model.Name3, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Address</label>
+                    <input type="text" class="form-control" id="Address" name="Address" value="@Model.Address" />
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CityID, "City", htmlAttributes: new { @class = "control-label" })
+                    @Html.DropDownListFor(m => m.CityID, (SelectList)ViewBag.City, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Location</label>
+                    <input type="text" class="form-control" id="Location" name="Location" value="@Model.Location" />
+                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Telephone No</label>
-            <input type="tel" class="form-control" id="TelNo" name="TelNo" value="@Model.TelephoneNo" />
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Level</label>
+                    <input type="text" class="form-control" id="Level" name="Level" value="@Model.Level" />
+                    @Html.ValidationMessageFor(model => model.Level, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Status</label>
+                    <input type="text" class="form-control" id="Status" name="Status" value="@Model.Status" />
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="content">
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <label class="control-label titleLabel">
+                                    Number of Students
+                                </label>
+                                <br />
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label textLabel">Female</label>
+                                    <input type="text" class="form-control" id="TotalNr_Female" name="TotalNr_Female" value="@Model.TotalNr_Female" />
+                                    @Html.ValidationMessageFor(model => model.TotalNr_Female, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label textLabel">Male</label>
+                                    <input type="text" class="form-control" id="TotalNr_Male" name="TotalNr_Male" value="@Model.TotalNr_Male" />
+                                    @Html.ValidationMessageFor(model => model.TotalNr_Male, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <hr />
+                                <label class="control-label">
+                                    Enrollments Per Year
+                                </label>
+                                <br />
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label textLabel">Female</label>
+                                    <input type="text" class="form-control" id="EnrollmentsPerYear_Female" name="EnrollmentsPerYear_Female" value="@Model.EnrollmentsPerYear_Female" />
+                                    @Html.ValidationMessageFor(model => model.EnrollmentsPerYear_Female, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label textLabel">Male</label>
+                                    <input type="text" class="form-control" id="EnrollmentsPerYear_Male" name="EnrollmentsPerYear_Male" value="@Model.EnrollmentsPerYear_Male" />
+                                    @Html.ValidationMessageFor(model => model.EnrollmentsPerYear_Male, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <hr />
+                                <label class="control-label">
+                                    Number of Students With Disabilities
+                                </label>
+                                <br />
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label textLabel">Female</label>
+                                    <input type="text" class="form-control" id="Students_WithDisabilities_Female" name="Students_WithDisabilities_Female" value="@Model.Students_WithDisabilities_Female" />
+                                    @Html.ValidationMessageFor(model => model.Students_WithDisabilities_Female, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label textLabel">Female</label>
+                                    <input type="text" class="form-control" id="Students_WithDisabilities_Male" name="Students_WithDisabilities_Male" value="@Model.Students_WithDisabilities_Male" />
+                                    @Html.ValidationMessageFor(model => model.Students_WithDisabilities_Male, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Name in Albanian</label>
-            <input type="text" class="form-control" id="Name1" name="Name1" value="@Model.Name1" />
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Name in English</label>
-            <input type="text" class="form-control" id="Name2" name="Name2" value="@Model.Name2" />
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Name in Srpsko</label>
-            <input type="text" class="form-control" id="Name3" name="Name3" value="@Model.Name3" />
-        </div>
-    </div>
-</div>
-<div class="row">
 
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Location</label>
-            <input type="text" class="form-control" id="Location" name="Location" value="@Model.Location" />
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            @Html.LabelFor(model => model.CityID, "City", htmlAttributes: new { @class = "control-label" })
-            @Html.DropDownListFor(m => m.CityID, (SelectList)ViewBag.City, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label class="control-label">Address</label>
-            <input type="text" class="form-control" id="Address" name="Address" value="@Model.Address" />
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-md-12">
+        <br />
         <button type="submit" class="btn btn-success pull-right" onclick="UpdateInstitution(@Model.Id)">Save <i class="glyphicon glyphicon-floppy-disk"></i></button>
     </div>
 </div>
@@ -87,6 +248,14 @@
            'Name2': $('#Name2').val(),
            'Name3': $('#Name3').val(),
            'Location': $('#Location').val(),
+           'Level': $('#Level').val(),
+           'Status': $('#Status').val(),
+           'TotalNr_Female': $('#TotalNr_Female').val(),
+           'TotalNr_Male': $('#TotalNr_Male').val(),
+           'EnrollmentsPerYear_Female': $('#EnrollmentsPerYear_Female').val(),
+           'EnrollmentsPerYear_Male': $('#EnrollmentsPerYear_Male').val(),
+           'Students_WithDisabilities_Female': $('#Students_WithDisabilities_Female').val(),
+           'Students_WithDisabilities_Male': $('#Students_WithDisabilities_Male').val(),
            'Address': $('#Address').val(),
            'CityID': $("#CityID option:selected").val(),
        };
@@ -95,7 +264,7 @@
 
        $.ajax({
            type: "POST",
-           url: '@Url.Action("UpdateInstitution", "Institution")',
+           url: '@Url.Action("Update", "Institution")',
            data: JSON.stringify({
                model: frm
            }),

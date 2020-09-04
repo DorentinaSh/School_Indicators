@@ -66,7 +66,7 @@ namespace School_Indicators_BLL
                         NrOfStudentsTotal = model.TotalNr_Male + model.TotalNr_Female,
                         EnrollmentsPerYearTotal = model.EnrollmentsPerYear_Male + model.EnrollmentsPerYear_Female,
                         StudentsWDissabilitiesTotal = model.Students_WithDisabilities_Male + model.Students_WithDisabilities_Female,
-                        IsActive = model.IsActive,
+                        IsActive = true,
                         InsertDate = DateTime.Now,
                         InsertBy = "admin",
                     };

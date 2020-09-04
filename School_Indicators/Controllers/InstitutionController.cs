@@ -45,6 +45,19 @@ namespace School_Indicators.Controllers
             ViewBag.City = new SelectList(CityService.GetCities(), "ID", "Name1",model.CityID);
             return View(model);
         }
+        [HttpPost]
+        public JsonResult Update(Institution model)
+        {
+            try
+            {
+                bool success = InstitutionService.UpdateInstitution(model);
+                return Json(new { success = success }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         [HttpPost]
         public JsonResult DeleteInstitution(int id)
