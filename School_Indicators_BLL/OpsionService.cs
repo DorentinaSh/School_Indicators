@@ -21,7 +21,7 @@ namespace School_Indicators_BLL
                         tblQuestionOption o = new tblQuestionOption
                         {
                             QuestionID = questionId,
-                            EvaluationID = item.EvaluationID,
+                            EvaluationID = 3,
                             QuestOptName = item.Name1,
                             QuestOptName2 = item.Name2,
                             QuestOptName3 = item.Name2,
