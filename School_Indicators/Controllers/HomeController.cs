@@ -44,9 +44,25 @@ namespace School_Indicators.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
+
+        [HttpGet]
+        public JsonResult GetSchoolsByCity(string city)
+        {
+            try
+            {
+                List<BO.Institution> model = new List<BO.Institution>();
+                model = institutionService.GetSchoolsByCity(city);
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+ 
 
     }
 }

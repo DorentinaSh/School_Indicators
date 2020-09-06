@@ -127,8 +127,8 @@
                                               style="fill: #8F8F8F">
                                             <title>Gllogoc</title>
                                         </path>
-                                        <path id="gjilan"
-                                              data-city="Gjilan"
+                                        <path id="Gjilan"
+                                              data-city="gjilan"
                                               onclick="regionOnClick(this)"
                                               onmouseover="regionOnHover(this)"
                                               onmouseout="regionOnLeave(this)"
@@ -531,6 +531,7 @@
         }
         function regionOnClick(x) {
             console.log(x.id);
+            this.getSchoolsByCity(x.id);
         }
 
         function getSearchInputValue() {
@@ -560,6 +561,30 @@
                      console.log(err);
                  }
             });
+        }
+
+        function getSchoolsByCity(city) {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetSchoolsByCity","Home")',
+                data: {
+                    city: city
+                },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                            + "<td>" + item.Name1 + "</td>"
+                            + "</tr>";
+                        $('#tblStudent tbody').append(rows);
+                    });
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
         }
 
 

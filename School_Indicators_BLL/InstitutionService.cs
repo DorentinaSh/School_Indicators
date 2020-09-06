@@ -176,14 +176,15 @@ namespace School_Indicators_BLL
             }
         }
 
-        public List<Institution> SchoolsByCity(int city)
+        public List<Institution> GetSchoolsByCity(string city)
         {
             try
             {
                 using (School_CardsEntities db = new School_CardsEntities())
                 {
                     List<Institution> model = (from e in db.tblInstitutions
-                                               where e.CityID == city
+                                               join c in db.tblCities on e.CityID equals c.Id
+                                               where c.Name1 == city
                                                select new Institution
                                                {
                                                    Id = e.Id,
