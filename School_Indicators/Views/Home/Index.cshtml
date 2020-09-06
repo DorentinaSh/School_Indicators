@@ -546,6 +546,8 @@
                 <table id="tblStudent" class="table table-bordered table-striped table-responsive table-hover">
                     <thead>
                         <tr>
+                            <th> School Name</th>
+                            <th> Location</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -587,9 +589,9 @@
                 success: function (data) {
                     var items = '';
                     $.each(data, function (i, item) {
-                        var rows = "<tr>"
+                        var rows = "<button style=' background-color: #379683;color:white;border-color:transparent'><tr>"
                             + "<td>" + item.Name1 + "</td>"
-                            + "</tr>";
+                            + "</tr></button>";
                         $('#tblStudent tbody').append(rows);
                     });
                  },
@@ -611,9 +613,9 @@
                 success: function (data) {
                     var items = '';
                     $.each(data, function (i, item) {
-                        var rows = "<tr>"
+                        var rows = "<button style=' background-color: #379683;color:white;border-color:transparent'><tr>"
                             + "<td>" + item.Name1 + "</td>"
-                            + "</tr>";
+                            + "</tr></button>";
                         $('#tblStudent tbody').append(rows);
                     });
                 },
