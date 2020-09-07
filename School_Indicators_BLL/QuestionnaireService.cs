@@ -56,7 +56,8 @@ namespace School_Indicators_BLL
                                 left join tblQuestionOption qo on qo.QuestionID=q.Id
                                 where qq.Id = @QuestionnaireID
                                 group by qq.Id,qq.QuestName,qq.Description,qq.InsertDate,q.Id
-                                ,q.QuestionName1,i.Id,i.IndicatorName,qo.Id,qo.QuestOptName ";
+                                ,q.QuestionName1,i.Id,i.IndicatorName,qo.Id,qo.QuestOptName
+                                order by i.Id";
 
                     IDbConnection dbConnection = db.Database.Connection;
                     var res = dbConnection.QueryMultiple(query, new { QuestionnaireID = questinnaireId });
@@ -248,6 +249,34 @@ namespace School_Indicators_BLL
                 //    form.ListOfQuestOption.Add(option);
                 //}
                 return questionnaries;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<Questionnaries> GetQuestionnairesWithQuestion() 
+        {
+            try
+            {
+                using (School_IndicatorsEntities db = new School_IndicatorsEntities()) 
+                { 
+                    var query = @"select qq.Id as 'Id',qq.QuestName as 'Name1',qq.QuestName2 as 'Name2'
+                                ,qq.QuestName3 as 'Name3',qq.InsertDate  as 'CreatedDate',qq.Description from tblQuestion q
+                                left join IndicatorsDetails id on q.Id=id.QuestionID
+                                left join tblQuestionnaire qq on id.QuestionnaireID=qq.Id
+                                left join tblIndicators i on id.IndicatorID= i.Id
+                                left join tblQuestionOption qo on qo.QuestionID=q.Id
+                                Where qq.Id is not null and qq.IsActive='True'
+                                group by qq.Id,qq.QuestName,qq.QuestName2,qq.QuestName3,qq.InsertDate,qq.Description ";
+
+                    IDbConnection dbConnection = db.Database.Connection;
+                    var res = dbConnection.QueryMultiple(query);
+                    List<Questionnaries> model = res.Read<Questionnaries>().ToList();
+                    return model;
+                }
+                   
             }
             catch (Exception ex)
             {

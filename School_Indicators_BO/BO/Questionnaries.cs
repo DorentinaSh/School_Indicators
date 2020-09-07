@@ -24,6 +24,7 @@ namespace School_Indicators.BO
         public string Description { get; set; }
         public bool IsActive { get; set; }
         public int OrderBy { get; set; }
+        public DateTime CreatedDate { get; set; }
         public List<Indicator> Indicators { get; set; }
     }
 }

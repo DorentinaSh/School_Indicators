@@ -1,0 +1,50 @@
+﻿@model School_Indicators.BO.Session
+@{
+    ViewBag.Title = "Index";
+}
+<sty
+<div class="row">
+    <h1>
+        Answers
+    </h1>
+    <hr />
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.InstitutionID, "Institution", htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.InstitutionID, (SelectList)ViewBag.Institutions,"Choose an institution", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.InstitutionID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuestionnaireID, "Questionnaire", htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.QuestionnaireID,(SelectList)ViewBag.Questionnaires,"Choose a questionnaire", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.QuestionnaireID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div id="QuestionnaireForm">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#QuestionnaireID").change(function () {
+            var selectedText = $(this).find("option:selected").text();
+            var selectedValue = $(this).val();
+            $("#QuestionnaireForm").html("");
+            $.ajax({
+                type: "GET",
+                data: { questionnaireID: selectedValue  },
+                url: '@Url.Action("QuestionnaireForm", "Session")',
+                success: function (data) {
+                    $("#QuestionnaireForm").html(data);
+                },
+                error: function (data) {
+                }
+            });
+        });
+    });
+</script>

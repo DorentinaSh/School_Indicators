@@ -2,7 +2,13 @@
 @{
     ViewBag.Title = "Create";
 }
-    <div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
+<style>
+    .textarea {
+        height: 100%;
+    }
+</style>
+
+<div class="row" style="float:right;"><a href="javascript:void(0);" onclick="history.go(-1);"><i class="glyphicon glyphicon-arrow-left"></i>  Back</a></div>
 <div class="row">
     <h3>Edit Questionnarie</h3>
     <hr />
@@ -38,7 +44,7 @@
         <div class="col-md-12">
             <div class="form-group">
                 <label class="control-label">Description</label>
-                <textarea class="form-control" id="Description" name="Description" >@Model.Description</textarea>
+                <textarea class="form-control textarea" id="Description" name="Description">@Model.Description</textarea>
             </div>
         </div>
     </div>

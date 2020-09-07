@@ -1,0 +1,136 @@
+﻿@model School_Indicators.BO.Questionnaries
+
+@{
+    ViewBag.Title = "Questionnaire Form";
+}
+<style>
+    .title {
+        text-align: center;
+        padding-left: -30px;
+    }
+
+    p {
+        text-align: left;
+    }
+
+    .indicatorTitle {
+        font: 20px Helvetica, Sans-Serif;
+        letter-spacing: 1px;
+        color: rgba(0, 23, 117, 0.74);
+        font-weight: 700;
+    }
+
+    .title {
+        font: 35px Helvetica, Sans-Serif;
+        letter-spacing: 1px;
+    }
+
+    .questions {
+        padding: 10px;
+    }
+
+    .questionTitle {
+        font: Helvetica, Sans-Serif;
+        font-weight: bold;
+    }
+    .main-form {
+        border: 1px solid navy;
+        border-radius: 8px 9px;
+        margin-top: 100px;
+        padding: 20px;
+        padding-left:35px;
+    }
+    .circle1 {
+        border-radius: 50%;
+        border: 2px solid;
+        padding: 5px;
+        margin-top: -10px;
+        margin-right: 15px;
+        margin-bottom: 0px;
+        width: 37px;
+        text-align: center;
+        color: #BADA55;
+        font: 20px bold;
+    }
+</style>
+<div class="container">
+    <div class="main-form">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Fill "@Model.Name1" questionnaire</h2>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <br />
+                    <p class="control-label" style="font-weight: bold;">Description</p>
+                    <p class="control-label">@Model.Description</p>
+                </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <br />
+                    <p class="control-label" style="font-weight:bold;">Created Date</p>
+                    <p class="control-label">@Model.InsertDate.ToString()</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Indicators.Count > 0)
+            {
+                int e = 0;
+                int i = 0;
+                foreach (School_Indicators_BO.BO.Indicator item in Model.Indicators)
+                {
+                    e = 0;
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <hr />
+                                @*<input id="indictorID" value="@item.Id" hidden />*@
+                                <div class="form-group col-md-2 circle1">
+                                    <label class="control-label">@(++i)</label>
+                                </div>
+                                <p class="control-label indicatorTitle"> @item.Name1</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            @foreach (School_Indicators.BO.Question item1 in item.Questions)
+                            {
+                                <div class="row questions">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <p class="control-label questionTitle">@(++e) . @item1.Name1</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        @foreach (School_Indicators.BO.QuestionOption item2 in item1.Options)
+                                        {
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <input type="radio" name="radio_@item1.Name1" id="radioID_@item2.Id" value="@item2.Id">
+                                                </div>
+                                                <div class="col-md-11">
+                                                    <p class="control-label">@item2.Name1</p>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" onclick="SubmitForm()" class="btn btn-success pull-right">Submit <i class="glyphicon glyphicon-floppy-disk"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script></script>
