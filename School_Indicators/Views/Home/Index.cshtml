@@ -25,10 +25,10 @@
             font-size: 18px
         }
 
-        td {
+        /*td {
             background-color: #379683;
             color: white;
-        }
+        }*/
 
         .table-responsive {
             min-height: .01%;
@@ -74,6 +74,34 @@
 
         .customPadding {
             padding-top: 50px;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table {
+            width: 750px;
+            border-collapse: collapse;
+            margin: 50px auto;
+        }
+
+        th {
+            background: #3A4141;
+            color: white;
+            font-weight: bold;
+        }
+
+        td, th {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        td {
+            background: #eee;
         }
     </style>
 </head>
@@ -543,14 +571,23 @@
         <div class="container">
             <div>
                 <br />
-                <table id="tblStudent" class="table table-bordered table-striped table-responsive table-hover">
+                @*<table id="tblStudent" class="table table-bordered table-striped table-responsive table-hover center">
+            <thead>
+                <tr>
+                    <th> School Name</th>
+                    <th> Location</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>*@
+                <table id="tblStudent">
                     <thead>
                         <tr>
-                            <th> School Name</th>
-                            <th> Location</th>
+                            <th> School Name </th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -589,9 +626,9 @@
                 success: function (data) {
                     var items = '';
                     $.each(data, function (i, item) {
-                        var rows = "<button style=' background-color: #379683;color:white;border-color:transparent'><tr>"
-                            + "<td>" + item.Name1 + "</td>"
-                            + "</tr></button>";
+                        var rows = "<tr>"
+                            + "<td data-column='School Name'><button style='border-color:transparent'>" + item.Name1 + ", " + item.Location + "</button></td>"
+                            + "</tr>";
                         $('#tblStudent tbody').append(rows);
                     });
                  },
@@ -613,9 +650,9 @@
                 success: function (data) {
                     var items = '';
                     $.each(data, function (i, item) {
-                        var rows = "<button style=' background-color: #379683;color:white;border-color:transparent'><tr>"
-                            + "<td>" + item.Name1 + "</td>"
-                            + "</tr></button>";
+                        var rows = "<tr>"
+                            + "<td data-column='School Name'><button style='border-color:transparent'>" + item.Name1 +", "+item.Location + "</button></td>"
+                            + "</tr>";
                         $('#tblStudent tbody').append(rows);
                     });
                 },
