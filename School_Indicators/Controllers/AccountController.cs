@@ -58,7 +58,8 @@ namespace School_Indicators.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            LoginViewModel model = new LoginViewModel();
+            return View(model);
         }
 
         //
@@ -139,7 +140,8 @@ namespace School_Indicators.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            RegisterViewModel model= new RegisterViewModel();
+            return View(model);
         }
 
         //

@@ -29,5 +29,19 @@ namespace School_Indicators.Controllers
             Questionnaries temp = questionnaireService.CreateQuestionaireFormModel(model.Result);
             return PartialView("QuestionnaireForm", temp);
         }
+
+        [HttpPost]
+        public JsonResult CreateSession(Session session, List<SessionDetails> optionsList)
+        {
+            try
+            {
+                int sessionId; //save session get ID
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
